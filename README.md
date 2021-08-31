@@ -6,3 +6,4 @@ https://devblogs.microsoft.com/premier-developer/deploying-react-apps-to-azure-w
 
 
 I'm mf tired bruh gotdamb - Jaden
+Same foo
