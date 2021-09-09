@@ -1,0 +1,65 @@
+.Login-header {
+  background-color: #e57c55;
+  min-height: 100vh;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  height: 650px;
+  width: 550px;
+  border-radius: 15px;
+  background-color: white;
+}
+
+.Login-titles {
+  text-align: center;
+  color: #e57c55;
+}
+
+.Login-subtitles {
+  color: #e57c55;
+  font-size: small;
+}
+
+.Login-button {
+  background-color: #467c83;
+  min-width: 200px;
+  min-height: 50px;
+}
+
+.Link-style {
+  color: white;
+  font-size: 2vh;
+}
+
+.Input {
+  min-width: 400px;
+  min-height: 30px;
+}
+
+/* @media all and (min-width: 480px) {
+  .Login {
+    background-color: #e57c55;
+    border-radius: 15px;
+    padding: 130px 0;
+    height: 250px;
+    width: 450px;
+    color: black;
+  }
+
+  .Login form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+} */
