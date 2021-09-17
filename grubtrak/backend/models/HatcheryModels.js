@@ -39,3 +39,5 @@ const hatcheryTemplate = new mongoose.Schema({
         required: false,
     }
 })
+
+module.exports = mongoose.model('Users', hatcheryTemplate)
