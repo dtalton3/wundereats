@@ -1,18 +1,18 @@
  import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
- import { MenuItems } from "./MenuItems"
- import './Navbar.css'
+ import { vMenuItems } from "./VMenuItems"
+ import './VNavbar.css'
  
- class Navbar extends React.Component{
+ class VNavbar extends React.Component{
      render() {
          return(
-            <nav className="NavbarItems">
-                <ul className="nav-menu">
-                    {MenuItems.map((item, index) => {
+            <nav className="vNavbarItems">
+                <ul className="vnav-menu">
+                    {vMenuItems.map((item, index) => {
                         return (
                             <li key={index}>
                                 <a className={item.cName} href={item.url}>
-                                {item .title}
+                                {item.title}
                                 </a>
                             </li>
                         )
@@ -24,4 +24,4 @@ import { NavLink } from 'react-router-dom'
      }
  }
 
- export default Navbar
+ export default VNavbar
