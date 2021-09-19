@@ -1,6 +1,6 @@
 import React from "react";
 //import Button from "react-bootstrap/Button";
-//import Navbar from './Navbar.js';
+import Navbar from './components/Navbar/Navbar';
 //import {Link} from 'react-router-dom';
 import "./Home.css";
 // import "./Navbar.css";
@@ -17,11 +17,11 @@ function Home() {
         <div className="Home-header">
 
             <div className="Left-panel">
-                <label> [Navigation Panel 1]</label>
+                <label> [Navigation Panel 1]</label> 
             </div>
 
             <div className="Top-panel">
-                {/* <Navbar /> */}
+                <Navbar />
                 <label className="Black-label"> [Navigation Panel 2]</label>
             </div>
 
