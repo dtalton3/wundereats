@@ -4,13 +4,13 @@ import axios from "axios";
 
 function CreateHatchery() {
     const [hatcheryName, setHatcheryName] = useState('');
-    const [dimensions, setDimensions] = useState('')
-    const [grubCount, setgrubCount] = useState('')
-    const [density, seDensity] = useState('')
-    const [feedType, setFeedType] = useState('')
-    const [feedWeight, setFeedWeight] = useState('')
-    const [substrateType, setSubstrateType] = useState('')
-    const [substrateWeight, setSubstrateWeight] = useState('')
+    // const [dimensions, setDimensions] = useState('')
+    // const [grubCount, setgrubCount] = useState('')
+    // const [density, seDensity] = useState('')
+    // const [feedType, setFeedType] = useState('')
+    // const [feedWeight, setFeedWeight] = useState('')
+    // const [substrateType, setSubstrateType] = useState('')
+    // const [substrateWeight, setSubstrateWeight] = useState('')
 
 
     function validateName() {
@@ -33,6 +33,7 @@ function CreateHatchery() {
 
     function handleSubmit(event) {
         event.preventDefault();
+        //add uuid generation here
 
         const created = {
             hatcheryName: hatcheryName
@@ -67,7 +68,7 @@ function CreateHatchery() {
                         <br />
                         <br />
 
-                        <div className= 'header'> 
+                        {/* <div className= 'header'> 
                             <h4> Set Hatchery Dimensions </h4>
                         </div>
                         <label for="hatchery-dims">Select Hatchery Kit Size: </label>
@@ -82,7 +83,7 @@ function CreateHatchery() {
                         <br />
                         <br />
 
-                        <div className= 'header'> 
+                        {/* <div className= 'header'> 
                             <h4> Grub Count</h4>
                         </div>
                         <label for="grub-count">Select Starting Number of Grubs: </label>
@@ -91,18 +92,16 @@ function CreateHatchery() {
                             <option value="100">100 Larvae</option>
                             <option value="500">500 Larvae</option>
                             <option value="750">750 Larvae</option>
-                        </select>
+                        </select> */}
 
-
-
-                        {/* <input type = 'text' 
-                        placeholder='Hatchery Dimensions' 
-                        onChange={(e) => setHatcheryName(e.target.value)} 
-                        value={hatcheryName}
-                        className='form-control form-group '> 
-                        </input> */}       
+                        <input type = 'text' 
+                            placeholder='Hatchery Dimensions' 
+                            onChange={(e) => setHatcheryName(e.target.value)} 
+                            value={hatcheryName}
+                            className='form-control form-group '> 
+                        </input>      
                         <br />
-                        <br />
+                        <br /> 
 
                         <input type = 'submit'
                         className='btn btn-danger btn-block'
