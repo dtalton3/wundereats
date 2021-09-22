@@ -1,12 +1,9 @@
 import React from "react";
-//import Button from "react-bootstrap/Button";
 import Navbar from './components/Navbar/Navbar';
-//import {Link} from 'react-router-dom';
 import "./Home.css";
-// import "./Navbar.css";
 
 
-function Home() {
+function About() {
     function backToHome(event) {
         event.preventDefault();
 
@@ -17,7 +14,6 @@ function Home() {
         <div className="Home-header">
 
             <div className="Left-panel">
-                <label> [Navigation Panel 1]</label> 
             </div>
 
             <div className="Top-panel">
@@ -25,11 +21,7 @@ function Home() {
             </div>
 
             <div className="Dashboard">
-                <h1 className="Dash-content">You have no connections. Add other Grub Trackers to see their impacts and how it compares to yours.</h1>
-                {/* making dashboard */}
-                {/* <Button className="Back-button">
-                    <Link to="/" className="Link-style">Back</Link>
-                </Button> */}
+                <h1 className="Dash-content">About Page</h1>
 
                 <input type = 'submit'
                         className='btn btn-danger btn-block'
@@ -44,4 +36,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default About;

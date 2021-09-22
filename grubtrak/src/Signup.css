@@ -1,0 +1,47 @@
+.Signup-container {
+  background-color: #e57c55;
+  min-height: 100vh;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.form-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  min-height: 650px;
+  min-width: 600px;
+  border-radius: 15px;
+  background-color: white;
+}
+
+.input-titles {
+  text-align: center;
+  color: #e57c55;
+}
+
+.login-link {
+  color: #e57c55;
+  font-size: small;
+}
+
+.create-button {
+  background-color: #467c83;
+  color: white;
+  font-weight: bolder;
+  min-width: 250px;
+  border-radius: 5px;
+}
+
+.input {
+  min-width: 500px;
+  min-height: 40px;
+  font-size: small;
+}
