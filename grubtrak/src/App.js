@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from 'axios';
-import {Route, Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import Signup from "./Signup";
 import Login from "./Login"; 
 import Home from "./Home";

@@ -34,7 +34,7 @@ function Signup() {
     return (
         <div className='Login-container'>
             <div className='form-div'>
-                <img src={grub}></img>
+                <img src={grub} alt="GrubLogo"></img>
                 <br />
                 <form onSubmit={handleSubmit}>
                     <formLabel className="input-titles">
