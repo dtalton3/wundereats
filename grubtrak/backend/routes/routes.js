@@ -56,8 +56,8 @@ router.get('/login', (req, res) => {
 //POST request to save hatchery changes
 router.post('/createhatchery', (req, res) => {
     const hatchery = new Hatchery({
-        id: req.hatcheryID,
-        name: req.name
+        id: req.body.hatcheryID,
+        name: req.body.name
     })
 
     hatchery.save()
