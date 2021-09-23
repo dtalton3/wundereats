@@ -3,9 +3,11 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/SignUpModels')
 const Hatchery = require('../models/HatcheryModels')
+const MUUID = require('../lib');
 
 router.post('/signup', (req, res) => {
     const user = new User({
+        _id: MUUID.v4(),
         fullName: req.body.fullName,
         email: req.body.email,
         username: req.body.username,
@@ -56,10 +58,11 @@ router.get('/login', (req, res) => {
 //POST request to save hatchery changes
 router.post('/createhatchery', (req, res) => {
     const hatchery = new Hatchery({
-        id: req.body.hatcheryID,
-        name: req.body.name
+        _id: MUUID.v4(),
+        hatcheryName: req.body.hatcheryName
     })
-
+    console.log(hatchery)
+    
     hatchery.save()
     .then(data => {
         res.json(data)

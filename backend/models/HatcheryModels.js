@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 
 const hatcheryTemplate = new mongoose.Schema({
-    hatcheryID: {
+    _id: {
         type: String,
-        required: false 
+        required: false
     },
-    name: {
+    hatcheryName: {
         type: String,
         required: false
     }

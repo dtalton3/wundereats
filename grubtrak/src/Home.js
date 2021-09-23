@@ -1,6 +1,7 @@
 import React from "react";
 //import Button from "react-bootstrap/Button";
-//import Navbar from './Navbar.js';
+import Navbar from './components/Navbar/Navbar';
+import VNavbar from './components/VNavbar/VNavbar'
 //import {Link} from 'react-router-dom';
 import "./Home.css";
 // import "./Navbar.css";
@@ -16,12 +17,16 @@ function Home() {
     return (
         <div className="Home-header">
 
+            <div className="corner-logo">
+                <label>Corner Logo</label>
+            </div>
             <div className="Left-panel">
-                <label> [Navigation Panel 1]</label>
+                <VNavbar />
+                <label> [Navigation Panel 1]</label> 
             </div>
 
             <div className="Top-panel">
-                {/* <Navbar /> */}
+                <Navbar />
                 <label className="Black-label"> [Navigation Panel 2]</label>
             </div>
 

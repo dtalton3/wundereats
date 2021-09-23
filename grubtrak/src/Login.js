@@ -3,9 +3,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
  
 function Signup() {
+    
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    var myStorage = window.localStorage;
     function validateForm() {
         return username.length > 0 && password.length > 0;
     }
@@ -17,11 +18,13 @@ function Signup() {
                     username: username,
                     password: password
         }
-        
-        axios.post('http://localhost:4000/api/signup', registered)
-            .then(res => console.log(res.data))
 
         
+        
+        axios.post('http://localhost:4000/api/signup', registered)
+            .then((res) => {
+                console.log(res.data);
+                myStorage.setItem('currentUser', res.data)});
         window.location = '/home';
 
         // setUsername('');
