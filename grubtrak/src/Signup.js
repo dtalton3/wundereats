@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 import "./Signup.css";
 import {Link} from 'react-router-dom';
-import grub from "/Users/samkofi/Desktop/wundereats/grubtrak/src/images/grub.jpeg";
+import grub from "./images/grub.jpeg";
  
 function Signup() {
     const [fullName, setFullName] = useState('');

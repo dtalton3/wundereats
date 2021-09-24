@@ -33,7 +33,7 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    height: calc(100vh - 620px);
+    height: calc(100vh - 830px);
     width: calc(100vw - 250px);
     background-color: white;
     border-bottom-style: solid;
@@ -58,6 +58,12 @@
   .Dash-content {
     color: #12545c;
     font-size: 30px;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    position: relative;
+    top: 60px;
+    cursor: pointer;
   }
   
   .Black-label {
@@ -75,3 +81,31 @@
     font-size: 2vh;
   }
   
+  .Title {
+    color: #12545c;
+    position: absolute;
+    top: 200px;
+    left: 360px;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    flex-direction: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: inline;
+  }
+
+  .My-Hatchery {
+    font-size: 35px;
+    list-style: none;
+    display: inline;
+    padding-right: 15px;
+  }
+
+  .Sort {
+    color: #929292;
+    font-size: 20px;
+    list-style: none;
+    display: inline;
+  }

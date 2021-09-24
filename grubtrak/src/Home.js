@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from './components/Navbar/Navbar';
 //import {Link} from 'react-router-dom';
 import "./Home.css";
-// import "./Navbar.css";
+import sort from "./images/sort.JPG";
 
 
 function Home() {
@@ -24,18 +24,25 @@ function Home() {
                 <Navbar />
             </div>
 
+            <div className="Title">
+                <ul>
+                    <li className="My-Hatchery">My Hatcheries</li>
+                    <li className="Sort">sort <img src={sort} alt="sort"></img></li>
+                </ul>
+            </div>
+
             <div className="Dashboard">
-                <h1 className="Dash-content">You have no connections. Add other Grub Trackers to see their impacts and how it compares to yours.</h1>
+                <h1 className="Dash-content">+ Create New Hatchery</h1>
                 {/* making dashboard */}
                 {/* <Button className="Back-button">
                     <Link to="/" className="Link-style">Back</Link>
                 </Button> */}
-
+                {/*
                 <input type = 'submit'
                         className='btn btn-danger btn-block'
                         value='Login'
                         onClick={backToHome}>
-                </input>
+                </input> */}
 
             </div>
 

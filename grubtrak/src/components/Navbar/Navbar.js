@@ -1,11 +1,12 @@
  import React from 'react';
  import { MenuItems } from "./MenuItems";
  import './Navbar.css';
+ import grub from "./grub.jpeg";
  
 function Navbar () {
     return(
         <nav className="NavbarItems">
-            {/* <h1 className="navbar-logo"></h1> */}
+            <img src={grub} alt="GrubLogo"></img>
             <ul className="nav-menu">
                 {MenuItems.map((item, index) => {
                     return (
