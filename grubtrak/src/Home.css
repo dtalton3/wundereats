@@ -1,76 +1,111 @@
 .Home-header {
-  background-color: white;
-  min-height: 100vh;
-  min-width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
+    background-color: white;
+    min-height: 100vh;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+  }
+  
+  .Left-panel {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    display: center;
+    flex-direction: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 100vh;
+    width: 250px;
+    /* width: calc(100vw - 900px); */
+    background-color: #12545c;
+  }
+  
+  .Top-panel {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    display: center;
+    flex-direction: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: calc(100vh - 830px);
+    width: calc(100vw - 250px);
+    background-color: white;
+    border-bottom-style: solid;
+    border-bottom-color: #12545c;
+  }
+  
+  .Dashboard {
+    position: absolute;
+    bottom: 0px;
+    right: 30px;
+    display: center;
+    flex-direction: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: calc(100vh - 250px);
+    width: calc(100vw - 400px);
+    border-radius: 20px;
+    background-color: #e57c55;
+  }
+  
+  .Dash-content {
+    color: #12545c;
+    font-size: 30px;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    position: relative;
+    top: 60px;
+    cursor: pointer;
+  }
+  
+  .Black-label {
+    color: black;
+  }
+  
+  .Back-button {
+    background-color: #467c83;
+    min-width: 200px;
+    min-height: 50px;
+  }
+  
+  .Link-style {
+    color: white;
+    font-size: 2vh;
+  }
+  
+  .Title {
+    color: #12545c;
+    position: absolute;
+    top: 200px;
+    left: 360px;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    flex-direction: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: inline;
+  }
 
-.Left-panel {
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
-  display: center;
-  flex-direction: center;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  height: 100vh;
-  width: calc(100vw - 87vw);
-  /* width: calc(100vw - 900px); */
-  background-color: #12545c;
-}
+  .My-Hatchery {
+    font-size: 35px;
+    list-style: none;
+    display: inline;
+    padding-right: 15px;
+  }
 
-.Top-panel {
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  display: center;
-  flex-direction: center;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  height: 150px;
-  width: calc(100vw - 13vw);
-  background-color: white;
-  border-bottom-style: solid;
-  border-bottom-color: #12545c;
-}
-
-.Dashboard {
-  position: absolute;
-  bottom: 0px;
-  right: 30px;
-  display: center;
-  flex-direction: center;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  height: calc(100vh - 250px);
-  width: calc(100vw - 20vw);
-  border-radius: 20px;
-  background-color: #e57c55;
-}
-
-.Dash-content {
-  color: #12545c;
-  font-size: 30px;
-}
-
-.Black-label {
-  color: black;
-}
-
-.Back-button {
-  background-color: #467c83;
-  min-width: 200px;
-  min-height: 50px;
-}
-
-.Link-style {
-  color: white;
-  font-size: 2vh;
-}
+  .Sort {
+    color: #929292;
+    font-size: 20px;
+    list-style: none;
+    display: inline;
+  }
