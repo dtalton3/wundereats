@@ -3,6 +3,7 @@
  import './Navbar.css';
  import grub from "./grub.jpeg";
  
+
 function Navbar () {
     return(
         <nav className="NavbarItems">

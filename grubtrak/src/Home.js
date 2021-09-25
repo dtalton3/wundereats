@@ -1,6 +1,7 @@
 import React from "react";
 //import Button from "react-bootstrap/Button";
 import Navbar from './components/Navbar/Navbar';
+import VNavbar from './components/VNavbar/VNavbar'
 //import {Link} from 'react-router-dom';
 import "./Home.css";
 import sort from "./images/sort.JPG";
@@ -16,7 +17,11 @@ function Home() {
     return (
         <div className="Home-header">
 
+            <div className="corner-logo">
+                <label>Corner Logo</label>
+            </div>
             <div className="Left-panel">
+                <VNavbar />
                 <label> [Navigation Panel 1]</label> 
             </div>
 

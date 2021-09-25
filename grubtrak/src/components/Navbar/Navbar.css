@@ -4,12 +4,24 @@
   display: flex;
   justify-content: center;
   align-items: right;
+
+}
+
+.navbar-logo {
+  background: url("https://ibb.co/d0WP3nt");
+  justify-self: start;
+  margin-left: 20px;
+  width: 100%;
+  height: 100px;
+  background-size: cover;
 }
 
 .nav-menu {
   display: grid;
   grid-template-columns: repeat(5, auto);
-  grid-gap: 5px;
+
+  grid-gap: 10px;
+
   list-style: none;
   text-align: center;
   width: 70vw;
