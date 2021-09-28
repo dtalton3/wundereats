@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const userTemplate = new mongoose.Schema({
+    userID:{
+        type: String,
+        required: true
+    },
     fullName: {
         type: String,
         required: true

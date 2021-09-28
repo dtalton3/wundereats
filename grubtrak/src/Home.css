@@ -1,0 +1,86 @@
+.Home-header {
+  background-color: white;
+  min-height: 100vh;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.Left-panel {
+  position: absolute;
+  font-size: 21px;
+  left: 0px;
+  bottom: 0px;
+  display: center;
+  flex-direction: center;
+  align-items: center;
+  justify-content: center;
+  /* height: 100vh; */
+  height: 640px; /* changed to account for corner logo*/
+  width: 200px;
+  /* width: calc(100vw - 900px); */
+  background-color: #12545c;
+}
+
+.Top-panel {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  display: center;
+  flex-direction: center;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  height: calc(100vh - 620px);
+  width: calc(100vw - 250px);
+  background-color: white;
+  border-bottom-style: solid;
+  border-bottom-color: #12545c;
+}
+
+.corner-logo {
+  position: fixed;
+  height: 300px;
+  width: 200px;
+  top: 0px;
+  left: 0px;
+  background-color: #12545c;
+  text-align: center;
+}
+.Dashboard {
+  position: absolute;
+  bottom: 0px;
+  right: 30px;
+  display: center;
+  flex-direction: center;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  height: calc(100vh - 250px);
+  width: calc(100vw - 400px);
+  border-radius: 20px;
+  background-color: #e57c55;
+}
+
+.Dash-content {
+  color: #12545c;
+  font-size: 30px;
+}
+
+.Black-label {
+  color: black;
+}
+
+.Back-button {
+  background-color: #467c83;
+  min-width: 200px;
+  min-height: 50px;
+}
+
+.Link-style {
+  color: white;
+  font-size: 2vh;
+}

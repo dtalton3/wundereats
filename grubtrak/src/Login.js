@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+//import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
- 
-function Signup() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+import "./Login.css";
+import grub from "./images/grub.jpeg";
+import {Link} from 'react-router-dom';
 
+function Signup() {
+    
+    var [username, setUsername] = useState('');
+    var [password, setPassword] = useState('');
+    var myStorage = window.localStorage;
     function validateForm() {
         return username.length > 0 && password.length > 0;
     }
@@ -13,15 +17,17 @@ function Signup() {
     function handleSubmit(event) {
         event.preventDefault();
 
-        const registered = {
+        const login = {
                     username: username,
                     password: password
         }
-        
-        axios.post('http://localhost:4000/api/signup', registered)
-            .then(res => console.log(res.data))
 
         
+        
+        axios.get('http://localhost:4000/api/login', login)
+            .then((res) => {
+                console.log(res.data);
+                myStorage.setItem('currentUser', res.data)});
         window.location = '/home';
 
         // setUsername('');
@@ -29,44 +35,59 @@ function Signup() {
     }
 
     return (
-        <div>
-            <div className='container'>
-                <div className='header'>
-                    <h1> Login </h1>
-                </div>
+        <div className='Login-container'>
+            <div className='form-div'>
+                <img src={grub} alt="GrubLogo"></img>
+                <br />
+                <form onSubmit={handleSubmit}>
+                    <formLabel className="input-titles">
+                            Username
+                    </ formLabel>
+                    <br />
+                    <input type = 'text' 
+                    placeholder='Enter username or e-mail' 
+                    onChange={(e) => setUsername(e.target.value)} 
+                    value={username}
+                    className='input'> 
+                    </input>
 
-                <div className='form-div'>
-                    <form onSubmit={handleSubmit}>
-                        
-                        <input type = 'text' 
-                        placeholder='Username' 
-                        onChange={(e) => setUsername(e.target.value)} 
-                        value={username}
-                        className='form-control form-group '> 
-                        </input>
+                    <br />
+                    <formLabel className="input-titles">
+                            Password
+                    </ formLabel>
+                    <br />
 
-                        <br />
+                    <input type = 'text' 
+                    placeholder='Enter password' 
+                    onChange={(e) => setPassword(e.target.value)} 
+                    value={password}
+                    className='input'> 
+                    </input>
 
-                        <input type = 'text' 
-                        placeholder='Password' 
-                        onChange={(e) => setPassword(e.target.value)} 
-                        value={password}
-                        className='form-control form-group '> 
-                        </input>
+                    <br />
+                    <Link className="login-link" to="/login"> 
+                        Forgot username or password?
+                    </Link>
 
-                        <br />
 
-                        <input type = 'submit'
-                        className='btn btn-danger btn-block'
-                        value='Login'
-                        disabled={!validateForm()}>
-                        </input>
+                    <br />
+                    <br />
 
-                        <br />
+                    <input type = 'submit'
+                    className='create-button'
+                    value='Login'
+                    disabled={!validateForm()}>
+                    </input>
 
-                    </form>
-                </div>
-            </div>   
+                    <br />
+                    <Link className="login-link" to="/"> 
+                        Don't have an account? Signup here
+                    </Link>
+
+                    <br />
+
+                </form>
+            </div>
         </div>
     );
 
