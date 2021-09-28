@@ -59,7 +59,14 @@ router.get('/login', (req, res) => {
 router.post('/createhatchery', (req, res) => {
     const hatchery = new Hatchery({
         _id: MUUID.v4(),
-        hatcheryName: req.body.hatcheryName
+        hatcheryName: req.body.hatcheryName,
+        dimensions: req.body.dimensions,
+        grubCount: req.body.grubCount,
+        density: req.body.density,
+        feedType: req.body.feedType,
+        feedWeight: req.body.feedWeight,
+        substrateType: req.body.substrateType,
+        substrateWeight: req.body.substrateWeight
     })
     console.log(hatchery)
     
