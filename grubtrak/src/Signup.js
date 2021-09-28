@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+//import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
+import "./Signup.css";
+import {Link} from 'react-router-dom';
+import grub from "./images/grub.jpeg";
  
 function Signup() {
     const [fullName, setFullName] = useState('');
@@ -25,60 +28,78 @@ function Signup() {
         axios.post('http://localhost:4000/api/signup', registered)
             .then(res => console.log(res.data))
 
-        window.location = '/login';
+        window.location = '/home';
     }
 
 
     return (
         <div>
-            <div className='container'>
-                <div className='header'>
-                    <h1> Sign Up ! </h1>
-                </div>
-
+            <div className='Signup-container'>
                 <div className='form-div'>
+                    <img src={grub} alt="GrubLogo"></img>
+
                     <form onSubmit={handleSubmit}>
+                        <formLabel className="input-titles">
+                            First and Last Name
+                        <br />
+                        </formLabel>
                         <input type = 'text' 
-                        placeholder='Full Name' 
+                        placeholder='Enter Full Name' 
                         onChange={(e) => setFullName(e.target.value)} 
                         value={fullName}
-                        className='form-control form-group '> 
+                        className='input'> 
                         </input>
 
                         <br />
 
+                        <formLabel className="input-titles">
+                            GrubTrak Username
+                        </formLabel>
+                        <br />
                         <input type = 'text' 
-                        placeholder='Username' 
+                        placeholder='Enter Username' 
                         onChange={(e) => setUsername(e.target.value)} 
                         value={username}
-                        className='form-control form-group '> 
+                        className='input'> 
                         </input>
 
                         <br />
 
+                        <formLabel className="input-titles">
+                            E-mail
+                        </formLabel>
+                        <br />
                         <input type = 'text' 
-                        placeholder='E-mail' 
+                        placeholder='Enter E-mail' 
                         onChange={(e) => setEmail(e.target.value)} 
                         value={email}
-                        className='form-control form-group '> 
+                        className='input'> 
                         </input>
 
                         <br />
-
+                        <formLabel className="input-titles">
+                            Password
+                        </formLabel>
+                        <br />
                         <input type = 'text' 
-                        placeholder='Password' 
+                        placeholder='Enter Password' 
                         onChange={(e) => setPassword(e.target.value)} 
                         value={password}
-                        className='form-control form-group '> 
+                        className='input'> 
                         </input>
+                        <br />
 
                         <br />
 
                         <input type = 'submit'
-                        className='btn btn-danger btn-block'
-                        value='Submit Slatt'
+                        className = "create-button"
+                        value='Register'
                         disabled={!validateForm()}>
                         </input>
+                        <br />
+                        <Link className="login-link" to="/login"> Already have an account? Login here</Link>
+
+                        
 
                         <br />
 
