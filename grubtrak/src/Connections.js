@@ -4,8 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import VNavbar from './components/VNavbar/VNavbar';
 import GlobalStyle from "./globalStyles";
 
-
-function Profile() {
+function Connections() {
     function backToHome(event) {
         event.preventDefault();
 
@@ -24,7 +23,7 @@ function Profile() {
             </div>
 
             <div className="Mid-panel">
-                <h1 className='Mid-panel-content'>Welcome to Your Profile!</h1>
+                <h1 className='Mid-panel-content'>Connections</h1>
             </div>
 
             {/* <div className="Dashboard">
@@ -39,4 +38,4 @@ function Profile() {
     );
 }
 
-export default Profile;
+export default Connections;

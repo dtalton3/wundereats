@@ -25,7 +25,7 @@ function Signup() {
             .then(res => console.log(res.data))
 
         
-        window.location = '/home';
+        window.location = '/Home';
 
         // setUsername('');
         // setPassword('');

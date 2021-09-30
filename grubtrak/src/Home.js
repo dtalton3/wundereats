@@ -1,43 +1,57 @@
-import React from "react";
-//import Button from "react-bootstrap/Button";
+import React, {useState} from "react";
 import Navbar from './components/Navbar/Navbar';
 import VNavbar from './components/VNavbar/VNavbar'
-//import {Link} from 'react-router-dom';
 import "./Home.css";
-import sort from "./images/sort.JPG";
+import Modal from './components/Modal.js';
+import GlobalStyle from "./globalStyles";
+import styled from "styled-components";
 
 
 function Home() {
-    function backToHome(event) {
+    // function backToHome(event) {
+    //     event.preventDefault();
+
+    //     window.location = '/Login'
+    // }
+
+    const [showModal, setShowModal] = useState(false);
+
+    function openModal(event) {
         event.preventDefault();
-
-        window.location = '/login'
-
+        setShowModal(prev => !prev);
     }
+
+    const PopUpButton = styled.button`
+    background-color: transparent;
+    border-style: none;
+    box-sizing: border-box;
+    color: #12545C;
+    margin: 0;
+    padding: 0; 
+    font-family: 'Arial', sans-sreif;
+    `;
+
     return (
         <div className="Home-header">
 
-            <div className="corner-logo">
-                <label>Corner Logo</label>
-            </div>
             <div className="Left-panel">
                 <VNavbar />
-                <label> [Navigation Panel 1]</label> 
             </div>
 
             <div className="Top-panel">
-                <Navbar />
+                <Navbar className="Top-panel-content"/>
             </div>
 
-            <div className="Title">
-                <ul>
-                    <li className="My-Hatchery">My Hatcheries</li>
-                    <li className="Sort">sort <img src={sort} alt="sort"></img></li>
-                </ul>
+            <div className="Mid-panel">
+                <h1 className='Mid-panel-content'>My Hatcheries</h1>
             </div>
 
             <div className="Dashboard">
-                <h1 className="Dash-content">+ Create New Hatchery</h1>
+                <PopUpButton className='Dash-content'onClick={openModal}> + Create New Hatchery</PopUpButton>
+                <Modal showModal={showModal} setShowModal={setShowModal}></Modal>
+                
+
+                {/* <h1>+ Create New Hatchery</h1> */}
                 {/* making dashboard */}
                 {/* <Button className="Back-button">
                     <Link to="/" className="Link-style">Back</Link>
@@ -48,10 +62,8 @@ function Home() {
                         value='Login'
                         onClick={backToHome}>
                 </input> */}
-
             </div>
-
-            
+            <GlobalStyle />
         </div>
     );
 }
