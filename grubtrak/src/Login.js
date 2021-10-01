@@ -21,14 +21,11 @@ function Signup() {
                     username: username,
                     password: password
         }
-
-        
-        
         axios.get('http://localhost:4000/api/login', login)
             .then((res) => {
                 console.log(res.data);
                 myStorage.setItem('currentUser', res.data)});
-        window.location = '/home';
+        window.location = '/Home';
 
         // setUsername('');
         // setPassword('');

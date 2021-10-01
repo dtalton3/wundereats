@@ -28,7 +28,7 @@ function Signup() {
         axios.post('http://localhost:4000/api/signup', registered)
             .then(res => console.log(res.data))
 
-        window.location = '/home';
+        window.location = '/Home';
     }
 
 
@@ -97,7 +97,7 @@ function Signup() {
                         disabled={!validateForm()}>
                         </input>
                         <br />
-                        <Link className="login-link" to="/login"> Already have an account? Login here</Link>
+                        <Link className="login-link" to="/Login"> Already have an account? Login here</Link>
 
                         
 

@@ -1,0 +1,76 @@
+.input {
+  border-radius: 15px;
+  padding: 10px;
+  height: 40px;
+  position: relative;
+  top: 5%;
+}
+
+.controls {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+}
+
+.cancel-btn {
+  background-color: #467c83;
+  color: white;
+  border-radius: 10px;
+}
+
+.next-btn {
+  background-color: #b1b1b1;
+  color: white;
+  border-radius: 10px;
+}
+
+.hatchery-selections {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  /* border-style: solid;
+  border-color: black; */
+}
+
+.beetle-box {
+  background-color: #467c83;
+  color: white;
+  height: 270px;
+  min-width: 170px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #12545c;
+}
+
+.egg-box {
+  background-color: #467c83;
+  color: white;
+  min-width: 170px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #12545c;
+}
+
+.larvae-box {
+  background-color: #467c83;
+  color: white;
+  min-width: 170px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #12545c;
+}
+
+.pupae-box {
+  background-color: #467c83;
+  color: white;
+  min-width: 170px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #12545c;
+}

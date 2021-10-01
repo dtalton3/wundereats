@@ -2,13 +2,13 @@
  import React from 'react';
  import { MenuItems } from "./MenuItems";
  import './Navbar.css';
- import grub from "./grub.jpeg";
+ import grub from "../grub.jpeg";
  
 
 function Navbar () {
     return(
-        <nav className="NavbarItems">
-            <img src={grub} alt="GrubLogo"></img>
+        <div className="NavbarItems">
+            <img src={grub} className="Grub-logo"alt="Grub-logo"></img>
             <ul className="nav-menu">
                 {MenuItems.map((item, index) => {
                     return (
@@ -20,7 +20,7 @@ function Navbar () {
                     )
                 })}       
             </ul>     
-        </nav>
+        </div>
     )
  }
 
