@@ -3,6 +3,7 @@
   height: calc(100vh - 87vh);
   display: flex;
   justify-content: center;
+  align-items: right;
 }
 
 .Grub-logo {
@@ -15,9 +16,7 @@
   display: grid;
   grid-template-columns: repeat(5, auto);
   height: calc(100vh - 87vh);
-
   grid-gap: 10px;
-
   list-style: none;
   text-align: center;
   width: 70vw;

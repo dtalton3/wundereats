@@ -8,7 +8,8 @@ mongoose.connect("mongodb://wundereats:HkwH9OfzuxZYVa0QCIboBZC6eaFmH2FngwUNHEuro
         console.log("connected to database.")
     });
 
-app.use(express.json())
+app.use(express.urlencoded({extended: true}));
+app.use(express.json()) // To parse the incoming requests with JSON payloads
 app.use(cors())
 app.use('/api', routesUrl)
 app.listen(4000, () => console.log("server is up and running"))
