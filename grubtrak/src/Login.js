@@ -15,20 +15,29 @@ function Signup() {
     }
     
     function handleSubmit(event) {
-        event.preventDefault();
+        event.preventDefault(); // <- beware
 
         const login = {
                     username: username,
                     password: password
         }
-        axios.get('http://localhost:4000/api/login', login)
-            .then((res) => {
-                console.log(res.data);
-                myStorage.setItem('currentUser', res.data)});
-        window.location = '/Home';
-
-        // setUsername('');
-        // setPassword('');
+        axios.get('http://localhost:4000/api/login')
+        .then((users) => {
+            var usersArr = users.data
+            var authenticated = false;
+            for (let i = 0; i < usersArr.length; i++) {
+                let user = usersArr[i];
+                if (user.username == login.username && user.password == login.password)  {
+                    authenticated = true;
+                    myStorage.setItem('currentUser', user);
+                    window.location = '/Home';
+                }
+            }
+            if (!authenticated) {
+                console.log("The username and/or password you’ve entered is incorrect.");
+                //frontend: put a lil popup showing that they login creds wrong.
+            }
+        });
     }
 
     return (
