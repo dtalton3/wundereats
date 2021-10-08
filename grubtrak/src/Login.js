@@ -79,7 +79,7 @@ function Signup() {
                     </ formLabel>
                     <br />
 
-                    <input type = 'text' 
+                    <input type = 'password' 
                     placeholder='Enter password' 
                     onChange={(e) => setPassword(e.target.value)} 
                     value={password}
