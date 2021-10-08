@@ -4,11 +4,13 @@ import axios from 'axios';
 import "./Login.css";
 import grub from "./images/grub.jpeg";
 import {Link} from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert'
 
 function Signup() {
     
     var [username, setUsername] = useState('');
     var [password, setPassword] = useState('');
+    var [flag, setFlag] = useState(0);
     var myStorage = window.localStorage;
     function validateForm() {
         return username.length > 0 && password.length > 0;
@@ -34,11 +36,25 @@ function Signup() {
                 }
             }
             if (!authenticated) {
+                {setFlag(1);}
                 console.log("The username and/or password you’ve entered is incorrect.");
                 //frontend: put a lil popup showing that they login creds wrong.
             }
-        });
+        });     
     }
+
+    function PoorCreds() {
+        if(flag > 0){
+                return (
+            <div class="alert alert-warning alert-dismissible fade show">
+                <strong>Invalid Credentials</strong> The username and/or password you’ve entered is incorrect
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            );
+        }
+        return null;
+      }
+      
 
     return (
         <div className='Login-container'>
@@ -75,6 +91,7 @@ function Signup() {
                         Forgot username or password?
                     </Link>
 
+                    <PoorCreds/>
 
                     <br />
                     <br />
