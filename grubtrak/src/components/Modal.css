@@ -6,25 +6,21 @@
   top: 5%;
 }
 
-.controls {
+.specifications-input {
+  border-radius: 5px;
+  width: 150px;
+  position: relative;
+  border-style: solid;
+  border-color: #afc5c7;
+}
+
+.specifications {
   display: grid;
-  grid-auto-flow: column;
+  grid-auto-flow: row;
   grid-column-gap: 20px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-top: 10px;
-}
-
-.cancel-btn {
-  background-color: #467c83;
-  color: white;
-  border-radius: 10px;
-}
-
-.next-btn {
-  background-color: #b1b1b1;
-  color: white;
-  border-radius: 10px;
 }
 
 .hatchery-selections {
@@ -38,39 +34,92 @@
   border-color: black; */
 }
 
-.beetle-box {
-  background-color: #467c83;
+/*begin divs containing sections of pop up*/
+.size-section {
+  background-color: transparent;
+  color: black;
+  height: 230px;
+  min-width: 200px;
+  border-radius: 10px;
+  border-style: solid;
+  font-size: small;
+}
+
+.number-section {
+  background-color: transparent;
+  color: black;
+  min-width: 200px;
+  border-radius: 10px;
+  /* border-style: solid; */
+  font-size: small;
+
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+.density-section {
   color: white;
-  height: 270px;
-  min-width: 170px;
+  min-width: 200px;
+  border-radius: 10px;
+  color: #e57c55;
+}
+
+.specifications-section {
+  /* background-color: transparent; */
+  color: black;
+  min-width: 200px;
+  border-radius: 10px;
+  font-size: small;
   border-radius: 10px;
   border-style: solid;
   border-color: #12545c;
 }
+/*end divs containing sections of pop up*/
 
-.egg-box {
-  background-color: #467c83;
-  color: white;
-  min-width: 170px;
-  border-radius: 10px;
-  border-style: solid;
-  border-color: #12545c;
+/*begin controls on bottom of pop up*/
+.controls {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 150px;
+  align-items: center;
+  justify-content: center;
 }
 
-.larvae-box {
+.cancel-btn {
   background-color: #467c83;
+  width: 150px;
+  height: 50px;
   color: white;
-  min-width: 170px;
   border-radius: 10px;
-  border-style: solid;
-  border-color: #12545c;
 }
 
-.pupae-box {
-  background-color: #467c83;
+.next-btn {
+  background-color: #b1b1b1;
   color: white;
-  min-width: 170px;
   border-radius: 10px;
-  border-style: solid;
-  border-color: #12545c;
+  width: 150px;
+  height: 50px;
+}
+/* end controls on bottom of pop up*/
+
+.hatchery-small-icon {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+.larvae-small-icon {
+  max-width: 150px;
+  max-height: 130px;
+}
+
+.small-text {
+  font-size: small;
+}
+
+.large-text {
+  font-size: large;
 }

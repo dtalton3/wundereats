@@ -29,7 +29,7 @@ function Signup() {
             var authenticated = false;
             for (let i = 0; i < usersArr.length; i++) {
                 let user = usersArr[i];
-                if (user.username == login.username && user.password == login.password)  {
+                if (user.username === login.username && user.password === login.password)  {
                     authenticated = true;
                     myStorage.setItem('currentUser', user);
                     window.location = '/Home';
@@ -62,9 +62,9 @@ function Signup() {
                 <img src={grub} alt="GrubLogo"></img>
                 <br />
                 <form onSubmit={handleSubmit}>
-                    <formLabel className="input-titles">
+                    <label className="input-titles">
                             Username
-                    </ formLabel>
+                    </label>
                     <br />
                     <input type = 'text' 
                     placeholder='Enter username or e-mail' 
@@ -74,9 +74,9 @@ function Signup() {
                     </input>
 
                     <br />
-                    <formLabel className="input-titles">
+                    <label className="input-titles">
                             Password
-                    </ formLabel>
+                    </label>
                     <br />
 
                     <input type = 'password' 

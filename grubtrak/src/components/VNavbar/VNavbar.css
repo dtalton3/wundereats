@@ -9,6 +9,8 @@
 .vnav-menu {
   list-style: none;
   padding-left: unset;
+  /* border-style: solid;
+  border-color: white; */
   width: 100%;
 }
 
@@ -16,7 +18,7 @@
   display: block; /* Make the links appear below each other */
   padding: 20px; /* Add some padding */
   text-decoration: none; /* Remove underline from links */
-  font-size: 33px;
+  font-size: 25px;
   color: #e57c55;
   border-bottom-style: solid;
   border-bottom-color: black;

@@ -6,11 +6,11 @@ import GlobalStyle from "./globalStyles";
 
 
 function Help() {
-    function backToHome(event) {
-        event.preventDefault();
+    // function backToHome(event) {
+    //     event.preventDefault();
 
-        window.location = '/Login'
-    }
+    //     window.location = '/Login'
+    // }
 
     return (
         <div className="Home-header">

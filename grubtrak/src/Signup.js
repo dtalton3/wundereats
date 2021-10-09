@@ -39,10 +39,12 @@ function Signup() {
                     <img src={grub} alt="GrubLogo"></img>
 
                     <form onSubmit={handleSubmit}>
-                        <formLabel className="input-titles">
+                        <label className="input-titles">
                             First and Last Name
+                        </label>
+                        
                         <br />
-                        </formLabel>
+
                         <input type = 'text' 
                         placeholder='Enter Full Name' 
                         onChange={(e) => setFullName(e.target.value)} 
@@ -52,10 +54,12 @@ function Signup() {
 
                         <br />
 
-                        <formLabel className="input-titles">
+                        <label className="input-titles">
                             GrubTrak Username
-                        </formLabel>
+                        </label>
+
                         <br />
+                        
                         <input type = 'text' 
                         placeholder='Enter Username' 
                         onChange={(e) => setUsername(e.target.value)} 
@@ -65,9 +69,9 @@ function Signup() {
 
                         <br />
 
-                        <formLabel className="input-titles">
+                        <label className="input-titles">
                             E-mail
-                        </formLabel>
+                        </label>
                         <br />
                         <input type = 'text' 
                         placeholder='Enter E-mail' 
@@ -77,9 +81,9 @@ function Signup() {
                         </input>
 
                         <br />
-                        <formLabel className="input-titles">
+                        <label className="input-titles">
                             Password
-                        </formLabel>
+                        </label>
                         <br />
                         <input type = 'text' 
                         placeholder='Enter Password' 

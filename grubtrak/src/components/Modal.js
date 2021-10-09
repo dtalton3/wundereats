@@ -4,8 +4,9 @@ import { useSpring, animated } from 'react-spring';
 import { MdClose } from 'react-icons/md';
 import { useRef, useCallback, useEffect } from "react";
 import "./Modal.css";
-
-
+import larvae from "./larvae.png";
+import hatchery from "./hatchery.png";
+import Dropdown from "../Dropdown.js";
 
 
 const Background = styled.div`
@@ -61,6 +62,8 @@ const ModalContent = styled.div`
   display: grid;
   flex-direction: column;
   justify-content: center;
+  padding-left: 10px;
+  padding-right: 10px;
   align-items: center;
   line-height: 1.8;
   color: #141414;
@@ -86,6 +89,15 @@ const CloseModalButton = styled(MdClose)`
 function Modal({showModal, setShowModal}) {
 
     const [hatcheryName, setHatcheryName] = useState('');
+    const [substrateWeight, setSubstrateWeight] = useState('');
+    const [feedWeight, setFeedWeight] = useState('');
+    const [hatcheryDensity, setHatcheryDensity] = useState('--');
+    const [hatchSelected, hatchSetSelected] = useState("Selection");
+    const hatcheryOptions = ["17” L x 6” W x 10” H", "10” L x 4” W x 6” H", "4” L x 4” W x 3” H"];
+    const [numSelected, numSetSelected] = useState("Selection");
+    const numberOptions = ["1000 Larvae", "2000 Larvae", "3000 Larvae"];
+    const [feedSelected, feedSetSelected] = useState("Selection");
+    const feedTypeOptions = ["Food Waste", "Non-Food Waste"];
 
     const modalRef = useRef();
   
@@ -102,12 +114,29 @@ function Modal({showModal, setShowModal}) {
         setShowModal(false);
       }
     };
+
+    function reset() {
+      setShowModal(prev => !prev);
+      setHatcheryName('');
+      hatchSetSelected("Selection");
+      numSetSelected("Selection");
+      feedSetSelected("Selection");
+    }
+
+    function createHatcheryAndReset() {
+      setShowModal(prev => !prev);
+      setHatcheryName('');
+      hatchSetSelected("Selection");
+      numSetSelected("Selection");
+      feedSetSelected("Selection");
+      
+    }
   
     const keyPress = useCallback(
       e => {
         if (e.key === 'Escape' && showModal) {
           setShowModal(false);
-          console.log('I pressed');
+          console.log('Escape pressed');
         }
       },
       [setShowModal, showModal]
@@ -120,6 +149,16 @@ function Modal({showModal, setShowModal}) {
       },
       [keyPress]
     );
+
+    
+
+    //if no existing hatcheries
+    //if the name is filled
+    //if both the selections are selected
+    //if next is clicked
+    //return something wit that content
+
+    //
   
     return (
       <>
@@ -138,22 +177,63 @@ function Modal({showModal, setShowModal}) {
                 
                 {/* <ModalImg src={grub} alt='camera' /> */}
                 <ModalContent>
-                  <h1>Select Hatchery Stage</h1>
                   <div className="hatchery-selections">
-                      <div className='beetle-box'>Beetle</div>
-                      <div className='egg-box'>Egg</div>
-                      <div className='larvae-box'>Larvae</div>
-                      <div className='pupae-box'>Pupae</div>
+
+                      <div className='number-section'>
+                        Select the size of your <br></br>WUNDERgrubs hatchery kit
+                        <br></br>
+                        <img src={hatchery} className="hatchery-small-icon" alt="Hatchery"/>
+                        <Dropdown selected={hatchSelected} setSelected={hatchSetSelected} options={hatcheryOptions}/>
+                      </div>
+
+                      <div className='number-section'>
+                        Select the number of larvae <br></br>included in your hatchery kit
+                        <br></br>
+                        <img src={larvae} className="larvae-small-icon" alt="Larvae"/>
+                        <Dropdown selected={numSelected} setSelected={numSetSelected} options ={numberOptions}/>
+                      </div>
+
+                      <div className='number-section'>
+                      <div type='text' className='large-text'>Hatchery Specifications</div>
+                          <div type='text' className='small-text'>Substrate Weight (lb.)</div>
+                          <input type = 'text' 
+                            placeholder='Enter Weight' 
+                            onChange={(e) => setSubstrateWeight(e.target.value)} 
+                            value={substrateWeight}
+                            className='specifications-input'> 
+                          </input>
+                          
+                          <div type='text' className='small-text'>Feed Weight (lb.)</div>
+                          <input type = 'text' 
+                            placeholder='Enter Weight' 
+                            onChange={(e) => setFeedWeight(e.target.value)} 
+                            value={feedWeight}
+                            className='specifications-input'> 
+                          </input>
+
+                          <div type='text' className='small-text'>Feed Type</div>
+
+                          <Dropdown selected={feedSelected} setSelected={feedSetSelected} options={feedTypeOptions}/>
+                      </div>
+                      
+                      {/* <div className='density-section'> Calculated Hatchery Density <br></br> {hatcheryDensity}
+                      </div> */}
                   </div>
+
+                  {/* <div className="specifications">
+                  <div className='specifications-section'>Hatchery Specifications</div>
+                  </div> */}
+
+                  {/* <div className='density-section'> Calculated Hatchery Density <br></br> {hatcheryDensity}</div> */}
+
                 <div className="controls">
-                    <button className='cancel-btn' onClick={() => setShowModal(prev => !prev)}>Cancel</button>
-                    <button className='next-btn'>Next</button>
+                    <button className='cancel-btn' onClick={reset}>Cancel</button>
+                    <button className='next-btn' onClick={createHatcheryAndReset}>Next</button>
                 </div>
                 </ModalContent>
-                
                 <CloseModalButton
                   aria-label='Close modal'
-                  onClick={() => setShowModal(prev => !prev)}
+                  onClick={reset}
                 />
               </ModalWrapper>
             </animated.div>
