@@ -1,37 +1,40 @@
 import React from "react";
-import Navbar from './components/Navbar/Navbar';
 import "./Home.css";
+import Navbar from './components/Navbar/Navbar';
+import VNavbar from './components/VNavbar/VNavbar';
+import GlobalStyle from "./globalStyles";
 
 
 function About() {
-    function backToHome(event) {
-        event.preventDefault();
+    // function backToHome(event) {
+    //     event.preventDefault();
 
-        window.location = '/login'
+    //     window.location = '/Login'
+    // }
 
-    }
     return (
         <div className="Home-header">
 
             <div className="Left-panel">
+                <VNavbar />
             </div>
 
             <div className="Top-panel">
-                <Navbar />
+                <Navbar className="Top-panel-content"/>
             </div>
 
-            <div className="Dashboard">
-                <h1 className="Dash-content">About Page</h1>
+            <div className="Mid-panel">
+                <h1 className='Mid-panel-content'>More About GrubTrak!</h1>
+            </div>
 
+            {/* <div className="Dashboard">
                 <input type = 'submit'
                         className='btn btn-danger btn-block'
                         value='Login'
                         onClick={backToHome}>
                 </input>
-
-            </div>
-
-            
+            </div> */}
+            <GlobalStyle />
         </div>
     );
 }

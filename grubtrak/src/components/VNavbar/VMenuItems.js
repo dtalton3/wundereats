@@ -1,42 +1,37 @@
 export const vMenuItems = [
     {
         title: 'My Hatcheries',
-        url: "/createHatchery",
+        url: "Home",
         cName: 'vnav-links'
     },
     {
         title: 'Impact Reports',
-        url: "#",
+        url: "Impact-Reports",
         cName: 'vnav-links'
     },
-    {
-        title: 'Analytics',
-        url: "#",
-        cName: 'vnav-links'
-    },
-    {
-        title: 'Messages',
-        url: "#",
-        cName: 'vnav-links'
-    },
-    {
-        title: 'Connections',
-        url: "#",
-        cName: 'vnav-links'
-    },
+    // {
+    //     title: 'Messages',
+    //     url: "Messages",
+    //     cName: 'vnav-links'
+    // },
+    // {
+    //     title: 'Connections',
+    //     url: "Connections",
+    //     cName: 'vnav-links'
+    // },
     {
         title: 'Help',
-        url: "#",
+        url: "Help",
         cName: 'vnav-links'
     },
     {
         title: 'Settings',
-        url: "#",
+        url: "Profile-Settings",
         cName: 'vnav-links'
     },
     {
         title: 'FAQ',
-        url: "#",
+        url: "FAQ",
         cName: 'vnav-links'
     },
 ]
