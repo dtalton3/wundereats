@@ -137,7 +137,6 @@ function Modal({showModal, setShowModal}) {
       }
       return trueVolume;
     }
-
     function reset() {
       setShowModal(prev => !prev);
       setHatcheryName('');
@@ -198,9 +197,6 @@ function Modal({showModal, setShowModal}) {
       [keyPress]
     );
 
-    function handleSubmit(event) {
-  }
-    
 
     //if no existing hatcheries
     //if the name is filled
