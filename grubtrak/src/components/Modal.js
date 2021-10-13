@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 import { MdClose } from 'react-icons/md';
 import { useRef, useCallback, useEffect } from "react";
+import axios from 'axios';
 import "./Modal.css";
 import larvae from "./larvae.png";
 import hatchery from "./hatchery.png";
@@ -115,6 +116,27 @@ function Modal({showModal, setShowModal}) {
       }
     };
 
+    function getTrueHatcheryVolumeValue(stringVol) {
+      let trueVolume = 0;
+      // Gets rid of all non-alphanumeric characters "17” L x 6” W x 10” H" ---> 17610
+      // But now, how do we know where one number ends and one begins? Kind of a workaround.
+      stringVol = stringVol.replace(/\D/g,'');
+
+      // If selections 1 is selected then the first two digits represent length and we account for a 
+      //      two digit height.
+      // If selection 2 is selected then the first two digits represent length and we account for a 
+      //      One digit height.
+      // If selection 3 is selected then the first digit represents length.
+      // Again, specific to these values only, will not work for all string fashioned like above.
+      if(stringVol.charAt(0) == '4'){
+        trueVolume = Number(stringVol.slice(0,0)) * Number(stringVol.slice(1,1)) * Number(stringVol.slice(2,2));
+      } else if (stringVol.charAt(0) == '1' && stringVol.charAt(1) == '7') {
+        trueVolume = Number(stringVol.slice(0,2)) * Number(stringVol.slice(2,3)) * Number(stringVol.slice(3,5));
+      } else {
+        trueVolume = Number(stringVol.slice(0,2)) * Number(stringVol.slice(2,3)) * Number(stringVol.slice(3,4));
+      }
+      return trueVolume;
+    }
     function reset() {
       setShowModal(prev => !prev);
       setHatcheryName('');
@@ -124,11 +146,36 @@ function Modal({showModal, setShowModal}) {
     }
 
     function createHatcheryAndReset() {
+      
+      // Needs to be changed for values with more than 4 digits say "1000 Larvae" vs. "10,000 Larvae"
+      const numLarvae = Number(numSelected.slice(0,4));
+      // Calculating volume so that hatcheryVolume enters database as a number
+      const hatcheryVolume = getTrueHatcheryVolumeValue(hatchSelected);
+
+      const hatchery = {
+        hatcheryName: hatcheryName,
+        hatcheryVolume: hatcheryVolume,
+        numLarvae: numLarvae,
+        feedType: feedSelected,
+        feedWeight: feedWeight,
+        substrateWeight: substrateWeight,
+      }
+
+      console.log(hatchery);
+      
+      axios.post('http://localhost:4000/api/createhatchery', hatchery)
+          .then(res => console.log(res.data))
+      
+      
       setShowModal(prev => !prev);
       setHatcheryName('');
       hatchSetSelected("Selection");
       numSetSelected("Selection");
       feedSetSelected("Selection");
+
+      window.location = '/Home';
+
+      // console.log( hatcheryName + " " + hatchSelected  + " " + numSelected + " " + feedSelected + " " + feedWeight + " " + substrateWeight)
       
     }
   
@@ -150,7 +197,6 @@ function Modal({showModal, setShowModal}) {
       [keyPress]
     );
 
-    
 
     //if no existing hatcheries
     //if the name is filled
