@@ -1,4 +1,5 @@
 const { response } = require('express')
+const mongoDB = require('mongodb')
 const express = require('express')
 const router = express.Router()
 const User = require('../models/SignUpModels')
@@ -7,11 +8,12 @@ const MUUID = require('../lib');
 
 router.post('/signup', (req, res) => {
     const user = new User({
-        _id: MUUID.v4(),
+        _id: ObjectID(MUUID.v4()),
         fullName: req.body.fullName,
         email: req.body.email,
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        hatcheries: []
     })
     console.log(user)
     user.save()
@@ -34,6 +36,7 @@ router.get('/login', (req, res) => {
 
 //POST request to save hatchery changes
 router.post('/createhatchery', (req, res) => {
+    var user = req.body.user;
     const hatchery = new Hatchery({
         _id: MUUID.v4(),
         hatcheryName: req.body.hatcheryName,
@@ -41,14 +44,14 @@ router.post('/createhatchery', (req, res) => {
         numLarvae: req.body.numLarvae,
         feedType: req.body.feedType,
         feedWeight: req.body.feedWeight,
-        substrateWeight: req.body.substrateWeight,
-
+        substrateWeight: req.body.substrateWeight
     })
     console.log(hatchery)
     
     hatchery.save()
     .then(data => {
         res.json(data)
+        user.hatcheries.push(hatchery._id)
     })
     .catch(err => {
         res.json(err)
