@@ -31,7 +31,7 @@ function Signup() {
                 let user = usersArr[i];
                 if (user.username === login.username && user.password === login.password)  {
                     authenticated = true;
-                    myStorage.setItem('currentUser', user);
+                    myStorage.setItem('currentUser', JSON.stringify(user));
                     window.location = '/Home';
                 }
             }

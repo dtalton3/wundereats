@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import Navbar from './components/Navbar/Navbar';
 import VNavbar from './components/VNavbar/VNavbar'
+import axios from 'axios';
 import "./Home.css";
 import Modal from './components/Modal.js';
 import GlobalStyle from "./globalStyles";
 import styled from "styled-components";
+import { MdQueryBuilder } from "react-icons/md";
 
 
 function Home() {
