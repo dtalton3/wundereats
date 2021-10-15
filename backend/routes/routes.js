@@ -8,7 +8,7 @@ const MUUID = require('../lib');
 
 router.post('/signup', (req, res) => {
     const user = new User({
-        _id: ObjectID(MUUID.v4()),
+        _id: MUUID.v4(),
         fullName: req.body.fullName,
         email: req.body.email,
         username: req.body.username,
@@ -46,17 +46,15 @@ router.post('/createhatchery', (req, res) => {
         feedWeight: req.body.feedWeight,
         substrateWeight: req.body.substrateWeight
     })
-    console.log(hatchery)
     
     hatchery.save()
     .then(data => {
-        res.json(data)
         user.hatcheries.push(hatchery._id)
-    })
-    .catch(err => {
+        user.save() 
+        res.json(data)
+    }).catch(err => {
         res.json(err)
-    })
-        
+    })   
 })
 
 //GET request so that existing hatchery displays on dashboard

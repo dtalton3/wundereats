@@ -6,12 +6,12 @@ import grub from "./images/grub.jpeg";
 import {Link} from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert'
 
+export var myStorage = window.localStorage;
 function Signup() {
     
     var [username, setUsername] = useState('');
     var [password, setPassword] = useState('');
     var [flag, setFlag] = useState(0);
-    var myStorage = window.localStorage;
     function validateForm() {
         return username.length > 0 && password.length > 0;
     }
@@ -116,4 +116,5 @@ function Signup() {
 
 }
 
-export default Signup;
+export default {Signup, myStorage};
+

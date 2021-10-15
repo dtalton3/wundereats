@@ -8,6 +8,7 @@ import "./Modal.css";
 import larvae from "./larvae.png";
 import hatchery from "./hatchery.png";
 import Dropdown from "../Dropdown.js";
+import { myStorage } from "../Login.js"
 
 
 const Background = styled.div`
@@ -153,6 +154,7 @@ function Modal({showModal, setShowModal}) {
       const hatcheryVolume = getTrueHatcheryVolumeValue(hatchSelected);
 
       const hatchery = {
+        user: myStorage.getItem("currentUser"), 
         hatcheryName: hatcheryName,
         hatcheryVolume: hatcheryVolume,
         numLarvae: numLarvae,

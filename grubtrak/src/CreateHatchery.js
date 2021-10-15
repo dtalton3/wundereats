@@ -17,6 +17,7 @@ function CreateHatchery() {
     function handleSubmit(event) {
         event.preventDefault();
         const hatchery = {
+            user: myStorage.getItem('currentUser'),
             hatcheryName: hatcheryName
         }
         console.log("This was the username " + hatcheryName)
