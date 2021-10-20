@@ -36,6 +36,7 @@ router.get('/login', (req, res) => {
 router.post('/createhatchery', (req, res) => {
     const hatchery = new Hatchery({
         _id: MUUID.v4(),
+        user_id: req.body.user_id,
         hatcheryName: req.body.hatcheryName,
         hatcheryVolume: req.body.hatcheryVolume,
         numLarvae: req.body.numLarvae,
@@ -68,6 +69,17 @@ router.get('/hatchery/:_id', (req, res) => {
     .catch(err => {
         console.log(err)
         res.status(500).send(err)
+    })
+})
+router.get('hatcheries/:user', (req, res) => {
+    const hatcheryQuery = Hatchery.find({ user_id: req.params.user })
+    hatcheryQuery.exec()
+    .then(userHatcheries => {
+        res.json(userHatcheries)
+        .catch(err => {
+            console.log(err)
+            res.status(500).send(err)
+        })
     })
 })
 
