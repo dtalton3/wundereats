@@ -57,25 +57,13 @@ router.post('/createhatchery', (req, res) => {
 })
 
 //GET request so that existing hatchery displays on dashboard
-//idek if I did this right but oh well
-router.get('/hatcheries', (req, res) => {
-    const hatcheryQuery = Hatchery.find({ id: req.hatcheryID })
+router.get('/hatchery/:_id', (req, res) => {
+    console.log(req.params)
+    const hatcheryQuery = Hatchery.findOne({ id: req.params._id })
     hatcheryQuery.exec()
     .then(queryResult => {
-        var response = {
-            "hatcheryID": req.hatcheryID,
-            "hatcheryName": req.name,
-            "authenticated": false,
-            "message": ''
-        }
-
-        if(queryResult.length == 0) {
-            response.authenticated = false
-            response.message = "Hatchery not found"
-        } else {
-            Hatchery = queryResult[0]
-        }
-        res.json(response)
+        res.json(queryResult) //will return undefined if the
+                                // hatchery w/ that ID doesn't exist
     })
     .catch(err => {
         console.log(err)

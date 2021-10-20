@@ -17,10 +17,18 @@
 #     "username":"test-user",
 #     "password":"password123"
 # }
-POST http://localhost:4000/api/createhatchery
+# POST http://localhost:4000/api/createhatchery
+# Content-Type: application/json
+
+# {
+#     "hatcheryID":"hatchery-000001",
+#     "name":"hatchery#9.jeans.yuh"
+# }
+
+GET http://localhost:4000/api/hatchery/3d8e4890-156b-4aa7-8365-31ff14972e88
 Content-Type: application/json
 
-{
-    "hatcheryID":"hatchery-000001",
-    "name":"hatchery#9.jeans.yuh"
-}
+ {
+
+ }
+
