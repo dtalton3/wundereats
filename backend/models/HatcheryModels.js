@@ -5,6 +5,10 @@ const hatcheryTemplate = new mongoose.Schema({
         type: String,
         required: false
     },
+    user_id: {
+        type: String,
+        required: true
+    },
     hatcheryName: {
         type: String,
         required: false
