@@ -99,6 +99,8 @@ function Modal({showModal, setShowModal}) {
     const numberOptions = ["1000 Larvae", "2000 Larvae", "3000 Larvae"];
     const [feedSelected, feedSetSelected] = useState("Selection");
     const feedTypeOptions = ["Food Waste", "Non-Food Waste"];
+    // const [substrateSelected, substrateSetSelected] = useState("Selection");
+    // const substrateTypeOptions = ["rolled oats", "wheat bran", "hops", "hemp"];
 
     const modalRef = useRef();
   
@@ -206,7 +208,7 @@ function Modal({showModal, setShowModal}) {
         numLarvae: numLarvae,
         feedType: feedSelected,
         feedWeight: feedWeight,
-        //subtrateType: substrateType;
+        //subtrateType: substrateSelected;
         substrateWeight: substrateWeight,
         //emissions : hatcheryEmissions
       }
@@ -298,6 +300,9 @@ function Modal({showModal, setShowModal}) {
                             value={substrateWeight}
                             className='specifications-input'> 
                           </input>
+
+                          {/* <div type='text' className='small-text'>Substrate Type</div>
+                          <Dropdown selected={substrateSelected} setSelected={substrateSetSelected} options={substrateTypeOptions}/> */}
                           
                           <div type='text' className='small-text'>Feed Weight (lb.)</div>
                           <input type = 'text' 
