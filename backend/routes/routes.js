@@ -42,8 +42,9 @@ router.post('/createhatchery', (req, res) => {
         numLarvae: req.body.numLarvae,
         feedType: req.body.feedType,
         feedWeight: req.body.feedWeight,
-        substrateWeight: req.body.substrateWeight,
-
+        //substrateType: req.body.substrateType,
+        substrateWeight: req.body.substrateWeight
+        //hatcheryEmissions: req.body.emissions
     })
     console.log(hatchery)
     
