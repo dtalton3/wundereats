@@ -1,0 +1,144 @@
+.Home-header {
+    background-color: white;
+    min-height: 100vh;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+}
+  
+.Left-panel {
+    position: absolute;
+    font-size: 21px;
+    left: 0px;
+    bottom: 0px;
+    display: center;
+    flex-direction: center;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* changed to account for corner logo*/
+    width: calc(100vw - 85vw);
+    background-color: #12545c;
+    padding-top: 50px;
+}
+  
+.Top-panel {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display: right;
+    flex-direction: right;
+    align-items: right;
+    text-align: right;
+    justify-content: end;
+    height: calc(100vh - 87vh);
+    width: calc(100vw - 15vw);
+    background-color: white;
+    border-bottom-style: solid;
+    border-bottom-color: #12545c;
+}
+  
+.Top-panel-content {
+    position: relative;
+    top: 50%;
+}
+
+.mp {
+    position: absolute;
+    top: calc(100vh - 87vh);
+    right: 0px;
+    height: calc(100vh - 80vh);
+    width: calc(100vw - 23vw);
+    text-align: center;
+    justify-content: center;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    top: 25%;
+}
+
+.Mid-panel-content {
+    font-family: 'ABeeZee', sans-serif;
+    color: #12545c;
+    position: relative;
+    text-align: left;
+    top: 50%;
+    right: 5px;
+}
+
+.sub {
+    font-family: 'ABeeZee', sans-serif;
+    font-size: 25px;
+    color: #12545c;
+    position: relative;
+    text-align: left;
+    padding-left: 10px;
+    top: 45%;
+}
+
+.content {
+    font-family: 'ABeeZee', sans-serif;
+    font-size: 15px;
+    color: #12545c;
+    position: relative;
+    text-align: left;
+    padding-left: 15px;
+    top: 40%;
+    padding-top: 5px;
+}
+
+.mp > input{
+    font-family: 'ABeeZee', sans-serif;
+    font-size: 15px;
+    color: #12545c;
+    position: relative;
+    text-align: left;
+    padding-left: 5px;
+    max-width: 300px;
+    top: 40%;
+    left: 10px;
+}
+
+.mp > input::placeholder{
+      color: black;
+}
+
+.mp > button{
+    background-color: #12545c;
+    border-radius: 4px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
+    min-height: 30px;
+    min-width: 40px;
+    max-width: 140px;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    top: 45%;
+    left: 10px;
+    touch-action: manipulation;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+
+.mp > button:hover {
+  opacity: .75;
+}
+
+.notif {
+    position: relative;
+    text-align: left;
+    top: 45%;
+
+}
