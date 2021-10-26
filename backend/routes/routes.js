@@ -12,7 +12,8 @@ router.post('/signup', (req, res) => {
         fullName: req.body.fullName,
         email: req.body.email,
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        hatcheries: []
     })
     console.log(user)
     user.save()
@@ -59,16 +60,6 @@ router.post('/createhatchery', (req, res) => {
     .catch(err => {
         res.json(err)
     })
-    // user.hatcheries.push(hatchery)
-    // user.save()
-    // .then(data => {
-    //     res.json(data)
-    //     console.log(user)
-    // })
-    // .catch(err => {
-    //     res.json(err)
-    //     console.log(err)
-    // })
 })
 
 //GET request so that existing hatchery displays on dashboard

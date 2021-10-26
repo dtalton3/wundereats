@@ -23,7 +23,7 @@ const userTemplate = new mongoose.Schema({
     },
     hatcheries: {
         type: Array,
-        required: false
+        required: true
     }
 })
 
