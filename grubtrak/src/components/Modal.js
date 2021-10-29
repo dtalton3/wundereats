@@ -9,6 +9,8 @@ import larvae from "./larvae.png";
 import hatchery from "./hatchery.png";
 import Dropdown from "../Dropdown.js";
 
+const HatcheryCalculations = require("./HatcheryCalculations.js");
+
 
 const Background = styled.div`
   bottom: 0px;
@@ -95,11 +97,13 @@ function Modal({showModal, setShowModal}) {
     const [feedWeight, setFeedWeight] = useState('');
     const [hatcheryDensity, setHatcheryDensity] = useState('--');
     const [hatchSelected, hatchSetSelected] = useState("Selection");
-    const hatcheryOptions = ["17” L x 6” W x 10” H", "10” L x 4” W x 6” H", "4” L x 4” W x 3” H"];
+    const hatcheryOptions = ["17” L x 6” W x 10” H", "10” L x 4” W x 6” H", "4” L x 4” W x 3” H"]; // change these once akissi gets back with the dimensions
     const [numSelected, numSetSelected] = useState("Selection");
     const numberOptions = ["1000 Larvae", "2000 Larvae", "3000 Larvae"];
     const [feedSelected, feedSetSelected] = useState("Selection");
     const feedTypeOptions = ["Food Waste", "Non-Food Waste"];
+    // const [substrateSelected, substrateSetSelected] = useState("Selection");
+    // const substrateTypeOptions = ["rolled oats", "wheat bran", "hops", "hemp"];
 
     const modalRef = useRef();
   
@@ -117,27 +121,6 @@ function Modal({showModal, setShowModal}) {
       }
     };
 
-    function getTrueHatcheryVolumeValue(stringVol) {
-      let trueVolume = 0;
-      // Gets rid of all non-alphanumeric characters "17” L x 6” W x 10” H" ---> 17610
-      // But now, how do we know where one number ends and one begins? Kind of a workaround.
-      stringVol = stringVol.replace(/\D/g,'');
-
-      // If selections 1 is selected then the first two digits represent length and we account for a 
-      //      two digit height.
-      // If selection 2 is selected then the first two digits represent length and we account for a 
-      //      One digit height.
-      // If selection 3 is selected then the first digit represents length.
-      // Again, specific to these values only, will not work for all string fashioned like above.
-      if(stringVol.charAt(0) == '4'){
-        trueVolume = Number(stringVol.slice(0,0)) * Number(stringVol.slice(1,1)) * Number(stringVol.slice(2,2));
-      } else if (stringVol.charAt(0) == '1' && stringVol.charAt(1) == '7') {
-        trueVolume = Number(stringVol.slice(0,2)) * Number(stringVol.slice(2,3)) * Number(stringVol.slice(3,5));
-      } else {
-        trueVolume = Number(stringVol.slice(0,2)) * Number(stringVol.slice(2,3)) * Number(stringVol.slice(3,4));
-      }
-      return trueVolume;
-    }
     function reset() {
       setShowModal(prev => !prev);
       setHatcheryName('');
@@ -150,17 +133,31 @@ function Modal({showModal, setShowModal}) {
       
       // Needs to be changed for values with more than 4 digits say "1000 Larvae" vs. "10,000 Larvae"
       const numLarvae = Number(numSelected.slice(0,4));
+
+      //calculating grub mass for emissions calculation
+      //this method might be combined with the below method once Akissi gives us the mass values
+      let grubMass = HatcheryCalculations.getGrubMass(numLarvae);
+
       // Calculating volume so that hatcheryVolume enters database as a number
-      const hatcheryVolume = getTrueHatcheryVolumeValue(hatchSelected);
+      let hatcheryVolume = HatcheryCalculations.getTrueHatcheryVolumeValue(hatchSelected);
+
+      // Calculating density for database storage
+      //hatcheryDensity = HatcheryCalculations.getHatcheryDensity(hatcheryVolume, grubMass, substrateWeight, feedWeight)
+
+      // Calculating hatchery emissions to store in database for retrieval later
+      let hatcheryEmissions = HatcheryCalculations.getEmissionsCalculationsFromGrubMass(grubMass);
 
       const hatchery = {
         hatcheryName: hatcheryName,
         user_id: JSON.parse(myStorage.getItem('currentUser'))._id, 
         hatcheryVolume: hatcheryVolume,
+        //hatcheryDensity: hatcheryDensity,
         numLarvae: numLarvae,
         feedType: feedSelected,
         feedWeight: feedWeight,
+        //subtrateType: substrateSelected;
         substrateWeight: substrateWeight,
+        //emissions : hatcheryEmissions
       }
 
       console.log(hatchery);
@@ -250,6 +247,9 @@ function Modal({showModal, setShowModal}) {
                             value={substrateWeight}
                             className='specifications-input'> 
                           </input>
+
+                          {/* <div type='text' className='small-text'>Substrate Type</div>
+                          <Dropdown selected={substrateSelected} setSelected={substrateSetSelected} options={substrateTypeOptions}/> */}
                           
                           <div type='text' className='small-text'>Feed Weight (lb.)</div>
                           <input type = 'text' 

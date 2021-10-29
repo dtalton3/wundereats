@@ -45,7 +45,9 @@ router.post('/createhatchery', (req, res) => {
         numLarvae: req.body.numLarvae,
         feedType: req.body.feedType,
         feedWeight: req.body.feedWeight,
+        //substrateType: req.body.substrateType,
         substrateWeight: req.body.substrateWeight
+        //hatcheryEmissions: req.body.emissions
     })
 
     const userQuery = User.findOne( { _id: userid } )
