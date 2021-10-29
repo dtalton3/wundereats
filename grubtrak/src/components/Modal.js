@@ -89,6 +89,7 @@ const CloseModalButton = styled(MdClose)`
 
 function Modal({showModal, setShowModal}) {
 
+    var myStorage = window.localStorage;
     const [hatcheryName, setHatcheryName] = useState('');
     const [substrateWeight, setSubstrateWeight] = useState('');
     const [feedWeight, setFeedWeight] = useState('');
@@ -154,6 +155,7 @@ function Modal({showModal, setShowModal}) {
 
       const hatchery = {
         hatcheryName: hatcheryName,
+        user_id: JSON.parse(myStorage.getItem('currentUser'))._id, 
         hatcheryVolume: hatcheryVolume,
         numLarvae: numLarvae,
         feedType: feedSelected,
@@ -173,7 +175,7 @@ function Modal({showModal, setShowModal}) {
       numSetSelected("Selection");
       feedSetSelected("Selection");
 
-      window.location = '/Home';
+      //window.location = '/Home';
 
       // console.log( hatcheryName + " " + hatchSelected  + " " + numSelected + " " + feedSelected + " " + feedWeight + " " + substrateWeight)
       

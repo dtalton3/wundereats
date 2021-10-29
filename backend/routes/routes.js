@@ -77,10 +77,10 @@ router.get('/hatchery/:_id', (req, res) => {
     })
 })
 router.get('/hatcheries/:user', (req, res) => {
-    const hatcheryQuery = Hatchery.find({ user_id: req.params.user })
-    hatcheryQuery.exec()
-    .then(userHatcheries => {
-        res.json(userHatcheries)
+    const query = User.findOne({ _id: req.params.user })
+    query.exec()
+    .then(user => {
+        res.json(user.hatcheries)
     })
     .catch(err => {
         console.log(err)
