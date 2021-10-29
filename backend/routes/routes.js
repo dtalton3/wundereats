@@ -6,12 +6,14 @@ const Hatchery = require('../models/HatcheryModels')
 const MUUID = require('../lib');
 
 router.post('/signup', (req, res) => {
+    var id = MUUID.v4()
     const user = new User({
-        _id: MUUID.v4(),
+        _id: id,
         fullName: req.body.fullName,
         email: req.body.email,
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        hatcheries: []
     })
     console.log(user)
     user.save()
@@ -34,9 +36,10 @@ router.get('/login', (req, res) => {
 
 //POST request to save hatchery changes
 router.post('/createhatchery', (req, res) => {
+    var userid = req.body.user_id;
     const hatchery = new Hatchery({
         _id: MUUID.v4(),
-        user_id: req.body.user_id,
+        user_id: userid,
         hatcheryName: req.body.hatcheryName,
         hatcheryVolume: req.body.hatcheryVolume,
         numLarvae: req.body.numLarvae,
@@ -46,22 +49,25 @@ router.post('/createhatchery', (req, res) => {
         substrateWeight: req.body.substrateWeight
         //hatcheryEmissions: req.body.emissions
     })
-    console.log(hatchery)
-    
-    hatchery.save()
-    .then(data => {
-        res.json(data)
+
+    const userQuery = User.findOne( { _id: userid } )
+    .exec()
+    .then(user => {
+        user.hatcheries.push(hatchery)
+        user.save()
+        .then(data => {
+            res.json(data)
+        })
     })
     .catch(err => {
         res.json(err)
     })
-        
 })
 
 //GET request so that existing hatchery displays on dashboard
 router.get('/hatchery/:_id', (req, res) => {
     console.log(req.params)
-    const hatcheryQuery = Hatchery.findOne({ id: req.params._id })
+    const hatcheryQuery = Hatchery.findOne({ _id: req.params._id })
     hatcheryQuery.exec()
     .then(queryResult => {
         res.json(queryResult) //will return undefined if the
@@ -72,15 +78,15 @@ router.get('/hatchery/:_id', (req, res) => {
         res.status(500).send(err)
     })
 })
-router.get('hatcheries/:user', (req, res) => {
+router.get('/hatcheries/:user', (req, res) => {
     const hatcheryQuery = Hatchery.find({ user_id: req.params.user })
     hatcheryQuery.exec()
     .then(userHatcheries => {
         res.json(userHatcheries)
-        .catch(err => {
-            console.log(err)
-            res.status(500).send(err)
-        })
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).send(err)
     })
 })
 

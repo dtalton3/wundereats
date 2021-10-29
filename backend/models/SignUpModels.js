@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
 const userTemplate = new mongoose.Schema({
-    userID:{
+    _id: {
         type: String,
-        required: true
+        required: false
     },
     fullName: {
         type: String,
@@ -19,6 +19,10 @@ const userTemplate = new mongoose.Schema({
     },
     password: {
         type: String,
+        required: true
+    },
+    hatcheries: {
+        type: Array,
         required: true
     }
 })
