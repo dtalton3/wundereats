@@ -38,3 +38,10 @@
 #     "substrateWeight": "15"
 # }
 
+GET http://localhost:4000/api/hatcheries/f590e02b-5c51-46ee-a79c-efa41814ed36
+Content-Type: application/json
+
+{
+    
+}
+
