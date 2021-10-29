@@ -82,3 +82,5 @@
 
       return [insectCO2FromBeef, lambCO2Eq, beefCO2Eq, porkCO2Eq, chickenCO2Eq]
     }
+
+    module.exports = { getTrueHatcheryVolumeValue, getGrubMass, getHatcheryDensity,  getEmissionsCalculationsFromGrubMass};

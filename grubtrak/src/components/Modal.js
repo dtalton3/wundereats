@@ -8,7 +8,8 @@ import "./Modal.css";
 import larvae from "./larvae.png";
 import hatchery from "./hatchery.png";
 import Dropdown from "../Dropdown.js";
-import HatcheryCalculations from "./HatcheryCalculations.js";
+
+const HatcheryCalculations = require("./HatcheryCalculations.js");
 
 
 const Background = styled.div`
@@ -134,16 +135,16 @@ function Modal({showModal, setShowModal}) {
 
       //calculating grub mass for emissions calculation
       //this method might be combined with the below method once Akissi gives us the mass values
-      const grubMass = HatcheryCalculations.getGrubMass(numLarvae);
+      let grubMass = HatcheryCalculations.getGrubMass(numLarvae);
 
       // Calculating volume so that hatcheryVolume enters database as a number
-      const hatcheryVolume = HatcheryCalculations.getTrueHatcheryVolumeValue(hatchSelected);
+      let hatcheryVolume = HatcheryCalculations.getTrueHatcheryVolumeValue(hatchSelected);
 
       // Calculating density for database storage
-      hatcheryDensity = HatcheryCalculations.getHatcheryDensity(hatcheryVolume, grubMass, substrateWeight, feedWeight)
+      //hatcheryDensity = HatcheryCalculations.getHatcheryDensity(hatcheryVolume, grubMass, substrateWeight, feedWeight)
 
       // Calculating hatchery emissions to store in database for retrieval later
-      const hatcheryEmissions = HatcheryCalculations.getEmissionsCalculationsFromGrubMass(grubMass);
+      let hatcheryEmissions = HatcheryCalculations.getEmissionsCalculationsFromGrubMass(grubMass);
 
       const hatchery = {
         hatcheryName: hatcheryName,
