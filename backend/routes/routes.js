@@ -90,4 +90,36 @@ router.get('/hatcheries/:user', (req, res) => {
     })
 })
 
+router.put('/edit-hatchery/:user/:hatchery', (req, res) => {
+    const query = User.findOne( { _id: req.params.user })
+    query.exec()
+    .then(user => {
+        var desiredHatchery;
+        var idx;
+        for (let i = 0; i < user.hatcheries.length; i++) {
+            if (user.hatcheries[i]._id == req.params.hatchery) {
+                desiredHatchery = user.hatcheries[i];
+                idx = i;
+                break;
+            }
+        }
+
+        console.log(desiredHatchery);
+
+        desiredHatchery.hatcheryName = req.body.hatcheryName;
+        desiredHatchery.hatcheryVolume = req.body.hatcheryVolume;
+        desiredHatchery.numLarvae = req.body.numLarvae;
+        desiredHatchery.feedType = req.body.feedType;
+        desiredHatchery.feedWeight = req.body.feedWeight;
+        desiredHatchery.substrateWeight = req.body.substrateWeight;
+
+        user.hatcheries[idx] = desiredHatchery;
+
+
+        user.save()
+        .then(data => {
+            res.json(data);
+        })
+    })
+})
 module.exports = router
