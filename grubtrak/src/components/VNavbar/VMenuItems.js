@@ -20,18 +20,13 @@ export const vMenuItems = [
     //     cName: 'vnav-links'
     // },
     {
-        title: 'Help',
-        url: "Help",
+        title: 'FAQ',
+        url: "FAQ",
         cName: 'vnav-links'
     },
     {
         title: 'Settings',
         url: "Profile-Settings",
-        cName: 'vnav-links'
-    },
-    {
-        title: 'FAQ',
-        url: "FAQ",
         cName: 'vnav-links'
     },
 ]

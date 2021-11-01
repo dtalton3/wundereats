@@ -25,15 +25,9 @@ function About() {
 
             <div className="Mid-panel">
                 <h1 className='Mid-panel-content'>More About GrubTrak!</h1>
-            </div>
+                <h1 className='Mid-panel-content'> Who are we </h1>
 
-            {/* <div className="Dashboard">
-                <input type = 'submit'
-                        className='btn btn-danger btn-block'
-                        value='Login'
-                        onClick={backToHome}>
-                </input>
-            </div> */}
+            </div>
             <GlobalStyle />
         </div>
     );
