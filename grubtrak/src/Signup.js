@@ -96,7 +96,7 @@ function Signup() {
                         <br />
 
                         <input type = 'submit'
-                        className = "create-button"
+                        className = "input2"
                         value='Register'
                         disabled={!validateForm()}>
                         </input>

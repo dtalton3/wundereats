@@ -4,8 +4,7 @@ import axios from 'axios';
 import "./Login.css";
 import grub from "./images/grub.jpeg";
 import {Link} from 'react-router-dom';
-import Alert from 'react-bootstrap/Alert'
-
+// import Alert from 'react-bootstrap/Alert'
 var myStorage = window.localStorage;
 
 function Signup() {
@@ -39,7 +38,7 @@ function Signup() {
                 }
             }
             if (!authenticated) {
-                {setFlag(1);}
+                setFlag(1);
                 console.log("The username and/or password you’ve entered is incorrect.");
                 //frontend: put a lil popup showing that they login creds wrong.
             }
@@ -88,7 +87,6 @@ function Signup() {
                     value={password}
                     className='input'> 
                     </input>
-
                     <br />
                     <Link className="login-link" to="/login"> 
                         Forgot username or password?
@@ -100,7 +98,7 @@ function Signup() {
                     <br />
 
                     <input type = 'submit'
-                    className='create-button'
+                    className='input2'
                     value='Login'
                     disabled={!validateForm()}>
                     </input>

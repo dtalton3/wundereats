@@ -32,14 +32,6 @@
   font-size: small;
 }
 
-.create-button {
-  background-color: #467c83;
-  color: white;
-  font-weight: bolder;
-  min-width: 250px;
-  border-radius: 5px;
-}
-
 .h2-div {
   font-size: small;
 }
@@ -48,4 +40,12 @@
   min-width: 400px;
   min-height: 40px;
   font-size: small;
+}
+
+.input2 {
+  background-color: #467c83;
+  color: white;
+  font-weight: bolder;
+  min-width: 250px;
+  border-radius: 5px;
 }

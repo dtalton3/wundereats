@@ -4,6 +4,8 @@
   background: transparent;
   display: flex;
   align-items: right;
+  /* border-style: solid; */
+  /* border-color: red; */
 }
 
 .vnav-menu {
@@ -12,16 +14,21 @@
   /* border-style: solid;
   border-color: white; */
   width: 100%;
+  /* border-style: solid; */
+  /* border-color: white; */
 }
 
 .vnav-links {
-  display: block; /* Make the links appear below each other */
-  padding: 20px; /* Add some padding */
-  text-decoration: none; /* Remove underline from links */
-  font-size: 25px;
+  display: block;
+  height: 140px;
+  padding: 20px;
+  text-decoration: none;
+  font-size: 35px;
   color: #e57c55;
   border-bottom-style: solid;
   border-bottom-color: black;
+  /* border-style: solid; */
+  /* border-color: yellow; */
 }
 
 .vnav-links:hover {
