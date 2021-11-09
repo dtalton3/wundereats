@@ -122,4 +122,23 @@ router.put('/edit-hatchery/:user/:hatchery', (req, res) => {
         })
     })
 })
+
+router.delete('delete-hatchery/:user/:hatchery', (req, res) => {
+    const query = User.findOne( { _id: req.params.user })
+    query.exec()
+    .then(user => {
+        var newHatcheries = [];
+        for (let i = 0; i < user.hatcheries.length; i++) {
+            if (user.hatcheries[i]._id != req.params.hatchery) {
+                newHatcheries.push(user.hatcheries[i]);
+            }
+        }
+        user.hatcheries = newHatcheries;
+        user.save()
+        .then(data => {
+            res.json(data);
+        })
+    })
+})
+
 module.exports = router
