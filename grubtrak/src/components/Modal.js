@@ -7,6 +7,7 @@ import axios from 'axios';
 import "./Modal.css";
 import larvae from "./larvae.png";
 import hatchery from "./hatchery.png";
+import substrate from "./substrate.png";
 import Dropdown from "../Dropdown.js";
 
 const HatcheryCalculations = require("./HatcheryCalculations.js");
@@ -27,8 +28,8 @@ const Background = styled.div`
 
 const ModalWrapper = styled.div`
   position: absolute;
-  width: 800px;
-  height: 500px;
+  width: 900px;
+  height: 600px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #fff;
   color: #000;
@@ -43,7 +44,7 @@ const ModalWrapper = styled.div`
 `;
 
 const HatcheryName = styled.div`
-  width: 800px;
+  width: 900px;
   height: 50px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #EBCBBD;
@@ -61,7 +62,7 @@ const HatcheryName = styled.div`
 const ModalContent = styled.div`
   position: relative;
   top: 20px;
-  height: 75%;
+  height: 90%;
   display: grid;
   flex-direction: column;
   justify-content: center;
@@ -98,11 +99,11 @@ function Modal({showModal, setShowModal}) {
     const [hatchSelected, hatchSetSelected] = useState("Selection");
     const hatcheryOptions = ["17” L x 6” W x 10” H", "10” L x 4” W x 6” H", "4” L x 4” W x 3” H"]; // change these once akissi gets back with the dimensions
     const [numSelected, numSetSelected] = useState("Selection");
-    const numberOptions = ["1000 Larvae", "2000 Larvae", "3000 Larvae"];
+    const numberOptions = ["100 Larvae", "500 Larvae", "1000 Larvae", "5000 Larvae"];
     const [feedSelected, feedSetSelected] = useState("Selection");
     const feedTypeOptions = ["Food Waste", "Non-Food Waste"];
-    // const [substrateSelected, substrateSetSelected] = useState("Selection");
-    // const substrateTypeOptions = ["rolled oats", "wheat bran", "hops", "hemp"];
+    const [substrateSelected, substrateSetSelected] = useState("Selection");
+    const substrateTypeOptions = ["Rolled Oats", "Wheat Bran", "Hops", "Hemp"];
 
     const modalRef = useRef();
   
@@ -155,9 +156,7 @@ function Modal({showModal, setShowModal}) {
         hatcheryVolume: hatcheryVolume,
         //hatcheryDensity: hatcheryDensity,
         numLarvae: numLarvae,
-        feedType: feedSelected,
-        feedWeight: feedWeight,
-        //subtrateType: substrateSelected;
+        subtrateType: substrateSelected,
         user_id: userID,
         numLarvae: numLarvae,
         feedType: feedSelected,
@@ -178,6 +177,7 @@ function Modal({showModal, setShowModal}) {
       hatchSetSelected("Selection");
       numSetSelected("Selection");
       feedSetSelected("Selection");
+      substrateSetSelected("Selection");
 
       //window.location = '/Home';
 
@@ -246,8 +246,15 @@ function Modal({showModal, setShowModal}) {
                       </div>
 
                       <div className='number-section'>
+                        Select the substrate type of <br></br> your WUNDERgrubs hatchery kit
+                        <br></br>
+                        <img src={substrate} className="larvae-small-icon" alt="Larvae"/>
+                        <Dropdown selected={substrateSelected} setSelected={substrateSetSelected} options={substrateTypeOptions}/>
+                      </div>
+
+                      <div className='number-section'>
                       <div type='text' className='large-text'>Hatchery Specifications</div>
-                          <div type='text' className='small-text'>Substrate Weight (lb.)</div>
+                          <div type='text' className='small-text'>Substrate Weight (g)</div>
                           <input type = 'text' 
                             placeholder='Enter Weight' 
                             onChange={(e) => setSubstrateWeight(e.target.value)} 
@@ -258,7 +265,7 @@ function Modal({showModal, setShowModal}) {
                           {/* <div type='text' className='small-text'>Substrate Type</div>
                           <Dropdown selected={substrateSelected} setSelected={substrateSetSelected} options={substrateTypeOptions}/> */}
                           
-                          <div type='text' className='small-text'>Feed Weight (lb.)</div>
+                          <div type='text' className='small-text'>Feed Weight (g)</div>
                           <input type = 'text' 
                             placeholder='Enter Weight' 
                             onChange={(e) => setFeedWeight(e.target.value)} 

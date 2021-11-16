@@ -72,7 +72,7 @@ function Home() {
 
                 <div className="Mid-panel">
                     <h1 className='Mid-panel-content'>My Hatcheries</h1>
-                    <PopUpButton className='Mid-panel-refresh-hatchery'onClick={getHatcheries}>+ Refresh Hatcheries</PopUpButton>
+                    <PopUpButton className='Mid-panel-refresh-hatchery'onClick={getHatcheries}>+ Load Hatcheries</PopUpButton>
                     <PopUpButton className='Mid-panel-create-hatchery'onClick={openModal}> + Create New Hatchery</PopUpButton>
                 </div>
 
@@ -94,19 +94,15 @@ function Home() {
     } else {
         return (
             <div className="Home-header">
-
                 <div className="Left-panel">
                     <VNavbar />
                 </div>
-
                 <div className="Top-panel">
                     <Navbar className="Top-panel-content"/>
                 </div>
-
                 <div className="Mid-panel">
                     <h1 className='Mid-panel-content'>My Hatcheries</h1>
                 </div>
-
                 <div className="Dashboard">
                     {/* <UserHatcheries /> */}
                     <PopUpButton className='Dash-content'onClick={openModal}> + Create New Hatchery</PopUpButton>
