@@ -4,15 +4,27 @@ import Navbar from './components/Navbar/Navbar';
 import VNavbar from './components/VNavbar/VNavbar';
 import GlobalStyle from "./globalStyles";
 import larvae from "./images/larvae2.png";
+import logo from "./images/grub.jpeg"
 import jsPDF from "jspdf";
 
 function Impact() {
-    
+
+    var chart_data = {
+        labels:['lamb', 'beef', 'pork', 'chicken', 'your grubs!'],
+        datasets:[
+            {
+                data:[3.55, 2.54, 0.8, 0.4, 0.0254]
+            }
+        ]
+    }
+    var canvas = document.querySelector('#pog');
+    //var context = canvas.getContext('2d');
+    //new chart_data(context).Bar(chart_data);
+
     function reportGenerator() {
         var doc = new  jsPDF();
-        var img = new Image();
-        img.src = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/7QA4UGhvdG'
-        doc.addImage(img, 'JPEG', 20, 20, 40, 40);
+        doc.addImage(logo, 'jpeg', 80, 10, 40, 20);
+        doc.addImage(larvae, 'png', 140, 20, 10, 10);
         doc.output('yeet');
         
         doc.setFontSize(10);
@@ -31,8 +43,11 @@ function Impact() {
         doc.setFontSize(20);
         doc.text('kg CO2 Equivalents for 5 protein Sources', 35, 60).setFont(undefined, 'bold');
 
-        doc.text('What Do These Numbers Mean?', 25, 180).setFont(undefined, 'bold');
+        doc.text('What Do These Numbers Mean?', 25, 170).setFont(undefined, 'bold');
         doc.setFontSize(8);
+        doc.setFont(undefined, 'normal');
+        doc.text('blah blah blah', 25, 175);
+        doc.text('blahblah.com', 25, 280);
         doc.save("hatchery.pdf");
     }
 
@@ -60,7 +75,6 @@ function Impact() {
                         </div>
                         <button onClick={reportGenerator} className="generate">Generate Impact Report</button>
                     </div>
-                    
                 </div>
             </div>
             <GlobalStyle />
