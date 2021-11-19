@@ -6,18 +6,34 @@ import "./Home.css";
 import Modal from './components/Modal.js';
 import GlobalStyle from "./globalStyles";
 import styled from "styled-components";
-import { MdQueryBuilder } from "react-icons/md";
-
+import UserHatcheries from "./UserHatcheries.js";
 
 function Home() {
-    // function backToHome(event) {
-    //     event.preventDefault();
-
-    //     window.location = '/Login'
-    // }
+    const [hatcheriesList, setHatcheriesList] = useState([]);
+    var userInfo = localStorage.getItem("currentUser");
+    //console.log(userInfo);
+    var userID = JSON.parse(userInfo)._id;
+    // console.log(userID);
+    console.log('hatcheries/:_' + userID);
+    
+    const getHatcheries = (e) => {
+        e.preventDefault();
+        axios.get('http://localhost:4000/api/hatcheries/' + userID)
+        .then(hatcheries => {
+            console.log(hatcheries.data);
+            setHatcheriesList(hatcheries.data);
+        
+        });
+    }
+    // axios.get('http://localhost:4000/api/hatcheries/' + userID)
+    // .then(hatcheries => setHatcheriesList(hatcheries.data)
+    // //     hatcheriesOfUser = hatcheries.data;
+    // //     console.log(hatcheries.data);
+    // //     console.log(hatcheriesOfUser);
+    // );
 
     const [showModal, setShowModal] = useState(false);
-    const [userHatcheriesExist, setUserHatcheriesExists] = useState(false);
+    const userHatcheriesExist = true;
 
     function openModal(event) {
         event.preventDefault();
@@ -34,8 +50,47 @@ function Home() {
     font-family: 'Arial', sans-sreif;
     `;
 
-    if (userHatcheriesExist == 'true'){
-        return ("hi");
+    if (userHatcheriesExist){
+        return (
+            // <div>
+            //     <h1> Hatchery Test </h1>
+            //     <button onClick={getHatcheries}>Get Hatcheries</button>
+            //         {
+            //         hatcheriesList.length >= 1 ? hatcheriesList.map((hatchery, indx) => {
+            //             return <p key={indx}> This is the name: {hatchery.hatcheryName}</p>
+            //         })
+            //         :'No existing hatcheries. Create one!'
+            //         }
+            // </div>
+            <div className="Home-header">
+                <div className="Left-panel">
+                    <VNavbar />
+                </div>
+                <div className="Top-panel">
+                    <Navbar className="Top-panel-content"/>
+                </div>
+
+                <div className="Mid-panel">
+                    <h1 className='Mid-panel-content'>My Hatcheries</h1>
+                    <PopUpButton className='Mid-panel-refresh-hatchery'onClick={getHatcheries}>+ Refresh Hatcheries</PopUpButton>
+                    <PopUpButton className='Mid-panel-create-hatchery'onClick={openModal}> + Create New Hatchery</PopUpButton>
+                </div>
+
+                <div className="Dashboard">
+                {/* <button onClick={getHatcheries}>Refresh Hatcheries</button> */}
+                    {
+                    hatcheriesList.length >= 1 ? hatcheriesList.map((hatchery, indx) => {
+                        // return <p key={indx}> This is the name: {hatchery.hatcheryName}</p>
+                        return <UserHatcheries key={indx} name={hatchery.hatcheryName} size="10” x 4” x 6” Hatchery" larvaeCount={"Larvae Count: " + hatchery.numLarvae} density="0.124 lb/in^3"/>
+                    })
+                    :''
+                    }
+                    <Modal showModal={showModal} setShowModal={setShowModal}></Modal>
+                    
+                </div>
+                <GlobalStyle />
+            </div>
+        );
     } else {
         return (
             <div className="Home-header">
@@ -56,19 +111,6 @@ function Home() {
                     {/* <UserHatcheries /> */}
                     <PopUpButton className='Dash-content'onClick={openModal}> + Create New Hatchery</PopUpButton>
                     <Modal showModal={showModal} setShowModal={setShowModal}></Modal>
-                    
-
-                    {/* <h1>+ Create New Hatchery</h1> */}
-                    {/* making dashboard */}
-                    {/* <Button className="Back-button">
-                        <Link to="/" className="Link-style">Back</Link>
-                    </Button> */}
-                    {/*
-                    <input type = 'submit'
-                            className='btn btn-danger btn-block'
-                            value='Login'
-                            onClick={backToHome}>
-                    </input> */}
                 </div>
                 <GlobalStyle />
             </div>

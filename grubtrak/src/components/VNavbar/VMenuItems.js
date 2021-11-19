@@ -9,16 +9,6 @@ export const vMenuItems = [
         url: "Impact-Reports",
         cName: 'vnav-links'
     },
-    // {
-    //     title: 'Messages',
-    //     url: "Messages",
-    //     cName: 'vnav-links'
-    // },
-    // {
-    //     title: 'Connections',
-    //     url: "Connections",
-    //     cName: 'vnav-links'
-    // },
     {
         title: 'FAQ',
         url: "FAQ",

@@ -4,13 +4,10 @@ import { useSpring, animated } from 'react-spring';
 import { MdClose } from 'react-icons/md';
 import { useRef, useCallback, useEffect } from "react";
 import axios from 'axios';
-import "./Modal.css";
+import "./EditModal.css";
 import larvae from "./larvae.png";
 import hatchery from "./hatchery.png";
 import Dropdown from "../Dropdown.js";
-
-const HatcheryCalculations = require("./HatcheryCalculations.js");
-
 
 const Background = styled.div`
   bottom: 10px;
@@ -25,7 +22,7 @@ const Background = styled.div`
   border-radius: 12px;
 `;
 
-const ModalWrapper = styled.div`
+const EditModalWrapper = styled.div`
   position: absolute;
   width: 800px;
   height: 500px;
@@ -58,7 +55,7 @@ const HatcheryName = styled.div`
   padding-left: 5px;
 `;
 
-const ModalContent = styled.div`
+const EditModalContent = styled.div`
   position: relative;
   top: 20px;
   height: 75%;
@@ -78,7 +75,7 @@ const ModalContent = styled.div`
   }
 `;
 
-const CloseModalButton = styled(MdClose)`
+const CloseEditModalButton = styled(MdClose)`
   cursor: pointer;
   position: absolute;
   top: 10px;
@@ -89,39 +86,58 @@ const CloseModalButton = styled(MdClose)`
   z-index: 10;
 `;
 
-function Modal({showModal, setShowModal}) {
+function EditModal({showEditModal, setShowEditModal}) {
     var myStorage = window.localStorage;
     const [hatcheryName, setHatcheryName] = useState('');
     const [substrateWeight, setSubstrateWeight] = useState('');
     const [feedWeight, setFeedWeight] = useState('');
     const [hatcheryDensity, setHatcheryDensity] = useState('--');
     const [hatchSelected, hatchSetSelected] = useState("Selection");
-    const hatcheryOptions = ["17” L x 6” W x 10” H", "10” L x 4” W x 6” H", "4” L x 4” W x 3” H"]; // change these once akissi gets back with the dimensions
+    const hatcheryOptions = ["17” L x 6” W x 10” H", "10” L x 4” W x 6” H", "4” L x 4” W x 3” H"];
     const [numSelected, numSetSelected] = useState("Selection");
     const numberOptions = ["1000 Larvae", "2000 Larvae", "3000 Larvae"];
     const [feedSelected, feedSetSelected] = useState("Selection");
     const feedTypeOptions = ["Food Waste", "Non-Food Waste"];
-    // const [substrateSelected, substrateSetSelected] = useState("Selection");
-    // const substrateTypeOptions = ["rolled oats", "wheat bran", "hops", "hemp"];
 
-    const modalRef = useRef();
+    const editModalRef = useRef();
   
     const animation = useSpring({
       config: {
         duration: 250
       },
-      opacity: showModal ? 1 : 0,
-      transform: showModal ? `translateY(0%)` : `translateY(-100%)`
+      opacity: showEditModal ? 1 : 0,
+      transform: showEditModal ? `translateY(0%)` : `translateY(-100%)`
     });
   
-    const closeModal = e => {
-      if (modalRef.current === e.target) {
-        setShowModal(false);
+    const closeEditModal = e => {
+      if (editModalRef.current === e.target) {
+        setShowEditModal(false);
       }
     };
 
+    function getTrueHatcheryVolumeValue(stringVol) {
+      let trueVolume = 0;
+      // Gets rid of all non-alphanumeric characters "17” L x 6” W x 10” H" ---> 17610
+      // But now, how do we know where one number ends and one begins? Kind of a workaround.
+      stringVol = stringVol.replace(/\D/g,'');
+
+      // If selections 1 is selected then the first two digits represent length and we account for a 
+      //      two digit height.
+      // If selection 2 is selected then the first two digits represent length and we account for a 
+      //      One digit height.
+      // If selection 3 is selected then the first digit represents length.
+      // Again, specific to these values only, will not work for all string fashioned like above.
+      if(stringVol.charAt(0) === '4'){
+        trueVolume = Number(stringVol.slice(0,0)) * Number(stringVol.slice(1,1)) * Number(stringVol.slice(2,2));
+      } else if (stringVol.charAt(0) === '1' && stringVol.charAt(1) === '7') {
+        trueVolume = Number(stringVol.slice(0,2)) * Number(stringVol.slice(2,3)) * Number(stringVol.slice(3,5));
+      } else {
+        trueVolume = Number(stringVol.slice(0,2)) * Number(stringVol.slice(2,3)) * Number(stringVol.slice(3,4));
+      }
+      return trueVolume;
+    }
     function reset() {
-      setShowModal(prev => !prev);
+      setShowEditModal(prev => !prev);
       setHatcheryName('');
       hatchSetSelected("Selection");
       numSetSelected("Selection");
@@ -133,19 +149,8 @@ function Modal({showModal, setShowModal}) {
       
       // Needs to be changed for values with more than 4 digits say "1000 Larvae" vs. "10,000 Larvae"
       const numLarvae = Number(numSelected.slice(0,4));
-
-      //calculating grub mass for emissions calculation
-      //this method might be combined with the below method once Akissi gives us the mass values
-      let grubMass = HatcheryCalculations.getGrubMass(numLarvae);
-
       // Calculating volume so that hatcheryVolume enters database as a number
-      let hatcheryVolume = HatcheryCalculations.getTrueHatcheryVolumeValue(hatchSelected);
-
-      // Calculating density for database storage
-      //hatcheryDensity = HatcheryCalculations.getHatcheryDensity(hatcheryVolume, grubMass, substrateWeight, feedWeight)
-
-      // Calculating hatchery emissions to store in database for retrieval later
-      let hatcheryEmissions = HatcheryCalculations.getEmissionsCalculationsFromGrubMass(grubMass);
+      const hatcheryVolume = getTrueHatcheryVolumeValue(hatchSelected);
 
       const userInfo = localStorage.getItem("currentUser");
       const userID = JSON.parse(userInfo)._id;
@@ -153,18 +158,12 @@ function Modal({showModal, setShowModal}) {
       const hatchery = {
         hatcheryName: hatcheryName,
         hatcheryVolume: hatcheryVolume,
-        //hatcheryDensity: hatcheryDensity,
-        numLarvae: numLarvae,
-        feedType: feedSelected,
-        feedWeight: feedWeight,
-        //subtrateType: substrateSelected;
         user_id: userID,
         numLarvae: numLarvae,
         feedType: feedSelected,
         feedWeight: feedWeight,
         hatcheryDensity: hatcheryDensity,
         substrateWeight: substrateWeight,
-        //emissions : hatcheryEmissions
       }
 
       console.log(hatchery);
@@ -173,7 +172,7 @@ function Modal({showModal, setShowModal}) {
           .then(res => console.log(res.data))
       
       
-      setShowModal(prev => !prev);
+      setShowEditModal(prev => !prev);
       setHatcheryName('');
       hatchSetSelected("Selection");
       numSetSelected("Selection");
@@ -187,12 +186,12 @@ function Modal({showModal, setShowModal}) {
   
     const keyPress = useCallback(
       e => {
-        if (e.key === 'Escape' && showModal) {
-          setShowModal(false);
+        if (e.key === 'Escape' && showEditModal) {
+          setShowEditModal(false);
           console.log('Escape pressed');
         }
       },
-      [setShowModal, showModal]
+      [setShowEditModal, showEditModal]
     );
   
     useEffect(
@@ -214,10 +213,10 @@ function Modal({showModal, setShowModal}) {
     
     return (
       <>
-        {showModal ? (
-          <Background onClick={closeModal} ref={modalRef}>
+        {showEditModal ? (
+          <Background onClick={closeEditModal} ref={editModalRef}>
             <animated.div style={animation}>
-              <ModalWrapper showModal={showModal}>
+              <EditModalWrapper showEditModal={showEditModal}>
                 <HatcheryName>
                     <input type = 'text' 
                         placeholder='Enter Name for New Hatchery' 
@@ -228,7 +227,7 @@ function Modal({showModal, setShowModal}) {
                 </HatcheryName>
                 
                 {/* <ModalImg src={grub} alt='camera' /> */}
-                <ModalContent>
+                <EditModalContent>
                   <div className="hatchery-selections">
 
                       <div className='number-section'>
@@ -254,9 +253,6 @@ function Modal({showModal, setShowModal}) {
                             value={substrateWeight}
                             className='specifications-input'> 
                           </input>
-
-                          {/* <div type='text' className='small-text'>Substrate Type</div>
-                          <Dropdown selected={substrateSelected} setSelected={substrateSetSelected} options={substrateTypeOptions}/> */}
                           
                           <div type='text' className='small-text'>Feed Weight (lb.)</div>
                           <input type = 'text' 
@@ -285,12 +281,12 @@ function Modal({showModal, setShowModal}) {
                     <button className='cancel-btn' onClick={reset}>Cancel</button>
                     <button className='next-btn' onClick={createHatcheryAndReset}>Next</button>
                 </div>
-                </ModalContent>
-                <CloseModalButton
+                </EditModalContent>
+                <CloseEditModalButton
                   aria-label='Close modal'
                   onClick={reset}
                 />
-              </ModalWrapper>
+              </EditModalWrapper>
             </animated.div>
           </Background>
         ) : null}
@@ -298,4 +294,4 @@ function Modal({showModal, setShowModal}) {
     );
 }
 
-export default Modal;
+export default EditModal;

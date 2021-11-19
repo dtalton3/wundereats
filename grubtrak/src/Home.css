@@ -33,7 +33,7 @@
   align-items: right;
   text-align: right;
   justify-content: end;
-  height: calc(100vh - 87vh);
+  height: 15%;
   width: calc(100vw - 15vw);
   background-color: white;
   border-bottom-style: solid;
@@ -49,11 +49,11 @@
   position: absolute;
   top: calc(100vh - 87vh);
   right: 0px;
-  height: calc(100vh - 80vh);
+  height: 20%;
   width: calc(100vw - 23vw);
   text-align: center;
   justify-content: center;
-  background-color: white;
+  background-color: transparent;
 }
 
 .Mid-panel-content {
@@ -66,14 +66,18 @@
 
 .Dashboard {
   position: absolute;
-  bottom: 0px;
+  bottom: 10px;
   right: 30px;
   text-align: center;
+  align-items: center;
   justify-content: center;
   height: calc(100vh - 30vh);
   width: calc(100vw - 25vw);
-  border-radius: 20px;
+  border-radius: 5px;
   background-color: #e57c55;
+  border: solid;
+  box-shadow: -10px 20px 20px 10px #888888;
+  overflow: auto;
 }
 
 .Dash-content {
@@ -96,3 +100,14 @@
   font-size: 2vh;
 }
 
+.Mid-panel-create-hatchery {
+  position: inherit;
+  right: 40px;
+  top: 60%;
+}
+
+.Mid-panel-refresh-hatchery {
+  position: inherit;
+  right: 400px;
+  top: 60%;
+}

@@ -1,0 +1,76 @@
+.userHatcheriesContainer {
+  margin: 10px;
+  display: inline-block;
+  text-align: center;
+  background-color: #afc5c7;
+  border: solid;
+  border-radius: 10px;
+  border-color: #12545c;
+
+  width: 95%;
+  height: 35%;
+}
+
+.userHatcheriesHeading {
+  position: relative;
+  width: 100%;
+  height: 30%;
+  /* border: solid;
+  border-color: yellow; */
+}
+
+.userHatcheriesBody {
+  position: relative;
+  /* left: 100px; */
+  display: grid;
+  grid-auto-flow: column;
+  width: 100%;
+  height: 60%;
+  /* border: solid;
+  border-color: red; */
+}
+
+.userHatcheryName {
+  position: absolute;
+  left: 15px;
+  top: 10px;
+}
+
+.editButton {
+  position: absolute;
+  border: solid;
+  border-color: black;
+  right: 15px;
+  top: 10px;
+}
+
+.bodyItem {
+  height: 100%;
+  /* border: solid;
+  border-color: black; */
+  padding: 0px;
+  margin: 0px;
+}
+
+.hatchery-img {
+  max-width: 120px;
+  max-height: 120px;
+}
+
+.larvae-img {
+  max-width: 120px;
+  max-height: 110px;
+}
+
+.create-button {
+  position: absolute;
+  background-color: #e57c55;
+  color: white;
+  font-weight: bolder;
+  min-width: 250px;
+  border-radius: 5px;
+  right: 15px;
+  top: 10px;
+  border: solid;
+  border-color: transparent;
+}
