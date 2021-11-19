@@ -42,12 +42,13 @@ router.post('/createhatchery', (req, res) => {
         user_id: userid,
         hatcheryName: req.body.hatcheryName,
         hatcheryVolume: req.body.hatcheryVolume,
+        hatcheryDensity: req.body.hatcheryDensity,
         numLarvae: req.body.numLarvae,
         feedType: req.body.feedType,
         feedWeight: req.body.feedWeight,
-        //substrateType: req.body.substrateType,
-        substrateWeight: req.body.substrateWeight
-        //hatcheryEmissions: req.body.emissions
+        substrateType: req.body.substrateType,
+        substrateWeight: req.body.substrateWeight,
+        hatcheryEmissions: req.body.emissions,
     })
 
     const userQuery = User.findOne( { _id: userid } )
@@ -108,10 +109,14 @@ router.put('/edit-hatchery/:user/:hatchery', (req, res) => {
 
         desiredHatchery.hatcheryName = req.body.hatcheryName;
         desiredHatchery.hatcheryVolume = req.body.hatcheryVolume;
+        desiredHatchery.hatcheryDensity = req.body.hatcheryDensity;
         desiredHatchery.numLarvae = req.body.numLarvae;
         desiredHatchery.feedType = req.body.feedType;
         desiredHatchery.feedWeight = req.body.feedWeight;
+        desiredHatchery.substrateType = req.body.substrateType;
         desiredHatchery.substrateWeight = req.body.substrateWeight;
+        desiredHatchery.dimensions = req.body.dimensions;
+        //add new fields
 
         user.hatcheries[idx] = desiredHatchery;
 
@@ -134,6 +139,29 @@ router.delete('delete-hatchery/:user/:hatchery', (req, res) => {
             }
         }
         user.hatcheries = newHatcheries;
+        user.save()
+        .then(data => {
+            res.json(data);
+        })
+    })
+})
+
+router.put('/update-emissions/:user/:hatchery', (req, res) => {
+    const query = User.findOne( { _id: req.params.user })
+    query.exec()
+    .then(user => {
+        var desiredHatchery;
+        var idx;
+        for (let i = 0; i < user.hatcheries.length; i++) {
+            if (user.hatcheries[i]._id == req.params.hatchery) {
+                desiredHatchery = user.hatcheries[i];
+                idx = i;
+                break;
+            }
+        }
+
+        console.log(desiredHatchery);
+        desiredHatchery.emissions = req.body.emissions;
         user.save()
         .then(data => {
             res.json(data);

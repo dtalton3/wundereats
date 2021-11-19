@@ -154,7 +154,7 @@ function Modal({showModal, setShowModal}) {
       const hatchery = {
         hatcheryName: hatcheryName,
         hatcheryVolume: hatcheryVolume,
-        //hatcheryDensity: hatcheryDensity,
+        hatcheryDensity: hatcheryDensity,
         numLarvae: numLarvae,
         subtrateType: substrateSelected,
         user_id: userID,
@@ -163,7 +163,7 @@ function Modal({showModal, setShowModal}) {
         feedWeight: feedWeight,
         hatcheryDensity: hatcheryDensity,
         substrateWeight: substrateWeight,
-        //emissions : hatcheryEmissions
+        emissions : hatcheryEmissions
       }
 
       console.log(hatchery);
