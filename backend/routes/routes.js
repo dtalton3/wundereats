@@ -142,4 +142,22 @@ router.delete('delete-hatchery/:user/:hatchery', (req, res) => {
     })
 })
 
+router.get('/hatchery/:user/:hatchery', (req, res) => {
+    const query = User.findOne( { _id: req.params.user })
+    query.exec()
+    .then(user => {
+        var desiredHatchery;
+        var idx;
+        for (let i = 0; i < user.hatcheries.length; i++) {
+            if (user.hatcheries[i]._id == req.params.hatchery) {
+                desiredHatchery = user.hatcheries[i];
+                idx = i;
+                break;
+            }
+        }
+        res.json(desiredHatchery);
+    })
+})
+
+
 module.exports = router
