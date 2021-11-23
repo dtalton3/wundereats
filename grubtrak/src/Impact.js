@@ -44,9 +44,15 @@ function Impact() {
     //meta: get all hatcheries
     //      get hatchery ids from array of all hatcheries
     //      call reportGenerator on all of those hatchery ids
+    //next step: show all hatcherys in impact report tab.
+    //          have "hatcheryID match depending on which hatchery you select"
     function reportGenerator(hatcheryID) {
-        hatchery = getHatchery(hatcheryID);
-        emissions = getEmissionsCalculationsFromGrubMass(getGrubMass(hatchery.numLarvae))
+        var hatchery = {
+            hatcheryName: "Hungchery",
+            numLarvae: 230,
+        }
+        //var hatchery = getHatchery(hatcheryID);
+        var emissions = getEmissionsCalculationsFromGrubMass(getGrubMass(hatchery.numLarvae))
 
         var doc = new  jsPDF();
         doc.addImage(logo, 'jpeg', 80, 10, 40, 20);
@@ -61,7 +67,7 @@ function Impact() {
         //subject to be wrong. gonna change if so.....
         doc.text('Hatchery: ' + hatchery.hatcheryName, 20, 25);
         doc.text('Report ID: 519234', 20, 30);
-        doc.text('Larvae Count: ' + hatchery.grubCount, 150, 25);
+        doc.text('Larvae Count: ' + hatchery.numLarvae, 150, 25);
         doc.text('Hatchery Mass: ' + getGrubMass(hatchery.numLarvae), 150, 30);
 
         doc.setFontSize(30);
