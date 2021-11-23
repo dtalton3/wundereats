@@ -15,7 +15,6 @@ function Impact() {
         var doc = new  jsPDF();
         doc.addImage(logo, 'jpeg', 80, 10, 40, 20);
         doc.addImage(larvae, 'png', 140, 20, 10, 10);
-        doc.output('yeet');
         
         doc.setFontSize(10);
         doc.text('Date: 11/10/2021', 20, 20);
