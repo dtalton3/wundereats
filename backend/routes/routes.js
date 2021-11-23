@@ -78,6 +78,7 @@ router.get('/hatchery/:_id', (req, res) => {
         res.status(500).send(err)
     })
 })
+
 router.get('/hatcheries/:user', (req, res) => {
     const query = User.findOne({ _id: req.params.user })
     query.exec()

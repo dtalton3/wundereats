@@ -6,20 +6,45 @@ import GlobalStyle from "./globalStyles";
 import larvae from "./images/larvae2.png";
 import logo from "./images/grub.jpeg"
 import jsPDF from "jspdf";
+import axios from 'axios';
 // import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 
 function Impact() {
 
+    var userInfo = localStorage.getItem("currentUser");
+    var userID = JSON.parse(userInfo)._id;
+    var userHatcheries;
+
+    // const getHatcheries = (e) => {
+    //     e.preventDefault();
+    //     axios.get('http://localhost:4000/api/hatcheries/' + userID)
+    //     .then(hatcheries => {
+    //         console.log(hatcheries.data);
+    //         userHatcheries = hatcheries;
+    //     });
+    // }
+
+    function getHatcheries(user) {
+        axios.get('http://localhost:4000/api/hatcheries/' + user)
+        .then(hatcheries => {
+            return hatcheries;
+        })
+    }
     function reportGenerator() {
+        userHatcheries = getHatcheries(userID);
+
         var doc = new  jsPDF();
         doc.addImage(logo, 'jpeg', 80, 10, 40, 20);
         doc.addImage(larvae, 'png', 140, 20, 10, 10);
         doc.output('yeet');
         
         doc.setFontSize(10);
-        doc.text('Date: 11/10/2021', 20, 20);
-        doc.text('Hatchery: Hatchery #1', 20, 25);
+        var today = new Date();
+        var date = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
+        doc.text('Date: ' + date, 20, 20);
+
+        doc.text('Hatchery: ' + , 20, 25);
         doc.text('Report ID: 519234', 20, 30);
         doc.text('Larvae Count: 1000', 150, 25);
         doc.text('Hatchery Mass: 0.1kg', 150, 30);
