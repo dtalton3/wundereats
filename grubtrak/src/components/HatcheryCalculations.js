@@ -70,15 +70,15 @@
           These equations represent the equivalencies of livestock animal CO2 eq to insects. 
           They should all approximate to the same value but we will be using beef's eqvuivalence 
       */
-      let insectCO2FromBeef = (beefRatio * grubMass) * 0.1
+      let insectCO2FromBeef = ((beefRatio * grubMass) * 0.1).toFixed(7);
       // insectCO2FromLamb = (lambRatio * grubMass) * 0.00715
       // insectCO2FromPork = (porkRatio * grubMass) * 0.03175
       // insectCO2FromChicken = (chickenRatio * grubMass) * 0.0635
 
-      let lambCO2Eq = grubMass * 35.5;
-      let beefCO2Eq = grubMass * 25.4;
-      let porkCO2Eq = grubMass * 8;
-      let chickenCO2Eq = grubMass * 4;
+      let lambCO2Eq = (grubMass * 35.5).toFixed(2);
+      let beefCO2Eq = (grubMass * 25.4).toFixed(2);
+      let porkCO2Eq = (grubMass * 8).toFixed(2);
+      let chickenCO2Eq = (grubMass * 4).toFixed(2);
       return [lambCO2Eq, beefCO2Eq, porkCO2Eq, chickenCO2Eq, insectCO2FromBeef];
     }
 
