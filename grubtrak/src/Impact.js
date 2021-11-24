@@ -7,6 +7,7 @@ import larvae from "./images/larvae2.png";
 import logo from "./images/grub.jpeg"
 import jsPDF from "jspdf";
 import axios from 'axios';
+import { getTrueHatcheryVolumeValue, getGrubMass, getHatcheryDensity,  getEmissionsCalculationsFromGrubMass } from './components/HatcheryCalculations';
 // import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 
@@ -31,8 +32,27 @@ function Impact() {
             return hatcheries;
         })
     }
-    function reportGenerator() {
-        userHatcheries = getHatcheries(userID);
+
+    function getHatchery(hatcheryID) {
+        axios.get('http://localhost:4000/api/hatchery/' + userID + '/' + hatcheryID)
+        .then(hatchery => {
+            return hatchery;
+        });
+    }
+
+    //goal: get the impact report of just 1 hatchery
+    //meta: get all hatcheries
+    //      get hatchery ids from array of all hatcheries
+    //      call reportGenerator on all of those hatchery ids
+    //next step: show all hatcherys in impact report tab.
+    //          have "hatcheryID match depending on which hatchery you select"
+    function reportGenerator(hatcheryID) {
+        var hatchery = {
+            hatcheryName: "Hungchery",
+            numLarvae: 230,
+        }
+        //var hatchery = getHatchery(hatcheryID);
+        var emissions = getEmissionsCalculationsFromGrubMass(getGrubMass(hatchery.numLarvae))
 
         var doc = new  jsPDF();
         doc.addImage(logo, 'jpeg', 80, 10, 40, 20);
@@ -43,13 +63,14 @@ function Impact() {
         var date = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
         doc.text('Date: ' + date, 20, 20);
 
-        doc.text('Hatchery: ' + , 20, 25);
+        //subject to be wrong. gonna change if so.....
+        doc.text('Hatchery: ' + hatchery.hatcheryName, 20, 25);
         doc.text('Report ID: 519234', 20, 30);
-        doc.text('Larvae Count: 1000', 150, 25);
-        doc.text('Hatchery Mass: 0.1kg', 150, 30);
+        doc.text('Larvae Count: ' + hatchery.numLarvae, 150, 25);
+        doc.text('Hatchery Mass: ' + getGrubMass(hatchery.numLarvae), 150, 30);
 
         doc.setFontSize(30);
-        doc.text('Emissions Report for Hatchery #1', 25, 45).setFont(undefined, 'bold');
+        doc.text('Emissions Report for ' + hatchery.hatcheryName, 25, 45).setFont(undefined, 'bold');
         doc.setFillColor('#67a6ae');
         doc.roundedRect(20, 50, 170, 105, 5, 5, 'F');
         doc.setFillColor('white');
@@ -63,7 +84,7 @@ function Impact() {
             type: 'bar',
             data: { labels: ['lamb', 'beef', 'pork', 'chicken', 'your grubs'],
             datasets: [{ 
-                data: [3.55, 2.54, 0.8, 0.4, 0.0254],
+                data: emissions,
                 backgroundColor: [
                     '#EAE6D7',
                     '#9B4A4A',

@@ -79,8 +79,7 @@
       let beefCO2Eq = grubMass * 25.4;
       let porkCO2Eq = grubMass * 8;
       let chickenCO2Eq = grubMass * 4;
-
-      return [insectCO2FromBeef, lambCO2Eq, beefCO2Eq, porkCO2Eq, chickenCO2Eq]
+      return [lambCO2Eq, beefCO2Eq, porkCO2Eq, chickenCO2Eq, insectCO2FromBeef];
     }
 
     module.exports = { getTrueHatcheryVolumeValue, getGrubMass, getHatcheryDensity,  getEmissionsCalculationsFromGrubMass};
