@@ -1,6 +1,6 @@
 export const vMenuItems = [
     {
-        title: 'My Hatcheries',
+        title: 'My Hatcheries (Home)',
         url: "Home",
         cName: 'vnav-links'
     },
