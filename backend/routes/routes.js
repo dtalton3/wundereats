@@ -147,7 +147,8 @@ router.delete('delete-hatchery/:user/:hatchery', (req, res) => {
     })
 })
 
-router.put('/update-emissions/:user/:hatchery', (req, res) => {
+
+router.put('/update-emissions/:user/:hatchery', (req, res) => 
     const query = User.findOne( { _id: req.params.user })
     query.exec()
     .then(user => {
@@ -160,7 +161,6 @@ router.put('/update-emissions/:user/:hatchery', (req, res) => {
                 break;
             }
         }
-
         console.log(desiredHatchery);
         desiredHatchery.emissions = req.body.emissions;
         user.save()
