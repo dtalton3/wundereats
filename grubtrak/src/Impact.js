@@ -24,7 +24,7 @@ function Impact() {
     var userID = JSON.parse(userInfo)._id;
 
     const getHatcheries = (e) => {
-        //e.preventDefault();
+        e.preventDefault();
         axios.get('http://localhost:4000/api/hatcheries/' + userID)
         .then(hatcheries => {
             console.log(hatcheries.data);
