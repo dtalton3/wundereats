@@ -30,12 +30,16 @@
 
 # {
 #     "user_id": "f590e02b-5c51-46ee-a79c-efa41814ed36",
-#     "hatcheryName": "test-user-2",
-#     "hatcheryVolume": 1000,
-#     "numLarvae": "2000",
-#     "feedType": "non food waste",
-#     "feedWeight": "25",
-#     "substrateWeight": "15"
+#     "hatcheryName": "testings-test request",
+#     "hatcheryVolume": 9009.84,
+#     "hatcheryDensity" : 776.9,
+#     "hatcheryDimensions" : "67.3 x 40.6 x 16.8 cm",
+#     "numLarvae": 5000,
+#     "feedType": "Styrofoam",
+#     "feedWeight": 5,
+#     "substrateType" : "Food Waste: Any",
+#     "substrateWeight": 1.5,
+#     "hatcheryEmissions" : [35.4, 25.5, 8, 4, 0.0254]
 # }
 
 # GET http://localhost:4000/api/hatcheries/f590e02b-5c51-46ee-a79c-efa41814ed36
@@ -45,15 +49,23 @@
     
 # }
 
-PUT http://localhost:4000/api/edit-hatchery/f590e02b-5c51-46ee-a79c-efa41814ed36/6661c90b-6626-4ce9-a317-27f7802f9a80
-Content-Type: application/json
+# PUT http://localhost:4000/api/edit-hatchery/f590e02b-5c51-46ee-a79c-efa41814ed36/6661c90b-6626-4ce9-a317-27f7802f9a80
+# Content-Type: application/json
 
-{
-    "hatcheryName" : "new-hatchery-name",
-    "hatcheryVolume" : 1020,
-    "numLarvae" : 1000,
-    "feedType" : "Food Waste",
-    "feedWeight" : 8,
-    "substrateWeight" : 6
-}
+# {
+#     "hatcheryName" : "new-hatchery-name",
+#     "hatcheryVolume" : 1020,
+#     "numLarvae" : 1000,
+#     "feedType" : "Food Waste",
+#     "feedWeight" : 8,
+#     "substrateWeight" : 6
+# }
+
+
+# DELETE http://localhost:4000/api/delete-hatchery/f590e02b-5c51-46ee-a79c-efa41814ed36/4a60bbe3-3eba-410d-acf5-348f55aa5d59
+# Content-Type: application/json
+
+# {
+
+# }
 

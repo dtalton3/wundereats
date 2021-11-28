@@ -42,12 +42,14 @@ router.post('/createhatchery', (req, res) => {
         user_id: userid,
         hatcheryName: req.body.hatcheryName,
         hatcheryVolume: req.body.hatcheryVolume,
+        hatcheryDensity: req.body.hatcheryDensity,
+        hatcheryDimensions: req.body.hatcheryDimensions,
         numLarvae: req.body.numLarvae,
         feedType: req.body.feedType,
         feedWeight: req.body.feedWeight,
-        //substrateType: req.body.substrateType,
-        substrateWeight: req.body.substrateWeight
-        //hatcheryEmissions: req.body.emissions
+        substrateType: req.body.substrateType,
+        substrateWeight: req.body.substrateWeight,
+        hatcheryEmissions: req.body.emissions,
     })
 
     const userQuery = User.findOne( { _id: userid } )
@@ -109,13 +111,16 @@ router.put('/edit-hatchery/:user/:hatchery', (req, res) => {
 
         desiredHatchery.hatcheryName = req.body.hatcheryName;
         desiredHatchery.hatcheryVolume = req.body.hatcheryVolume;
+        desiredHatchery.hatcheryDensity = req.body.hatcheryDensity;
+        desiredHatchery.hatcheryDimensions = req.body.hatcheryDimensions,
         desiredHatchery.numLarvae = req.body.numLarvae;
         desiredHatchery.feedType = req.body.feedType;
         desiredHatchery.feedWeight = req.body.feedWeight;
+        desiredHatchery.substrateType = req.body.substrateType;
         desiredHatchery.substrateWeight = req.body.substrateWeight;
+        desiredHatchery.emissions = req.body.hatcheryEmissions;
 
         user.hatcheries[idx] = desiredHatchery;
-
 
         user.save()
         .then(data => {
@@ -130,7 +135,7 @@ router.delete('delete-hatchery/:user/:hatchery', (req, res) => {
     .then(user => {
         var newHatcheries = [];
         for (let i = 0; i < user.hatcheries.length; i++) {
-            if (user.hatcheries[i]._id != req.params.hatchery) {
+            if (user.hatcheries[i] != req.params.hatchery) {
                 newHatcheries.push(user.hatcheries[i]);
             }
         }
@@ -142,7 +147,8 @@ router.delete('delete-hatchery/:user/:hatchery', (req, res) => {
     })
 })
 
-router.get('/hatchery/:user/:hatchery', (req, res) => {
+
+router.put('/update-emissions/:user/:hatchery', (req, res) => 
     const query = User.findOne( { _id: req.params.user })
     query.exec()
     .then(user => {
@@ -155,9 +161,13 @@ router.get('/hatchery/:user/:hatchery', (req, res) => {
                 break;
             }
         }
-        res.json(desiredHatchery);
+        console.log(desiredHatchery);
+        desiredHatchery.emissions = req.body.emissions;
+        user.save()
+        .then(data => {
+            res.json(data);
+        })
     })
 })
-
 
 module.exports = router

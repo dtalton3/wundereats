@@ -74,3 +74,10 @@
   border: solid;
   border-color: transparent;
 }
+.tester {
+  width: 500px;
+  height: 500px;
+  color: red;
+  border-style: solid;
+  border-color: black;
+}

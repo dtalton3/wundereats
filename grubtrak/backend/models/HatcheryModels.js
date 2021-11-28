@@ -1,24 +1,31 @@
 const mongoose = require('mongoose')
 
 const hatcheryTemplate = new mongoose.Schema({
-    // hatcheryID: {
-    //     type: String,
-    //     required: false
-    // },
+    _id: {
+        type: String,
+        required: false
+    },
+    user_id: {
+        type: String,
+        required: true
+    },
     hatcheryName: {
         type: String,
         required: false
     },
-    dimensions: { 
-        //pass in single number of L,W,H, as 2-digit values: 001122, parse for every 2 digits
-        type: Number,
-        required: false //need to change this and below to true once hatchery input data on front end is made 
-    },
-    grubCount: {
+    hatcheryVolume: {
         type: Number,
         required: false
     },
-    density: {
+    hatcheryDensity: {
+        type: Number,
+        required: false
+    },
+    hatcheryDimensions: {
+        type: String,
+        required: false
+    },
+    numLarvae: {
         type: Number,
         required: false
     },
@@ -30,13 +37,17 @@ const hatcheryTemplate = new mongoose.Schema({
         type: Number,
         required: false
     },
-    substrateType: {
+    subtrateType: {
         type: String,
         required: false
-    },
+    }, 
     substrateWeight: {
         type: Number,
         required: false,
+    }, 
+    hatcheryEmissions: {
+        type: Array,
+        requred: false
     }
 })
 

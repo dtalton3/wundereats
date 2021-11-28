@@ -3,25 +3,47 @@ import "./UserHatcheries.css";
 import larvae from "./components/larvae2.png";
 import hatchery from "./components/hatch2.png";
 import EditModal from './components/Modal.js';
+import GlobalStyle from "./globalStyles";
 import styled from "styled-components";
+import Modal from './components/Modal.js';
 // import GlobalStyle from "./globalStyles";
 
 
 function UserHatcheries({ name, size, larvaeCount, density }) {
     const [showEditModal, setShowEditModal] = useState(true);
 
+
+    const [showModal, setShowModal] = useState(false);
+    function openModal(event) {
+        event.preventDefault();
+        setShowModal(prev => !prev);
+    }
+
     function openEditModal(event) {
         event.preventDefault();
         setShowEditModal(prev => !prev);
     }
+
+    function consoleTest(even) {
+        console.log("test from consoleTest");
+        return <div>
+            <div className="tester"> </div>
+        </div>
+    }
     const PopUpButton = styled.button`
+    position: absolute;
     background-color: transparent;
-    border-style: none;
+    background-color: #e57c55;
+    border: solid;
+    border-color: black;
     box-sizing: border-box;
-    color: #12545C;
+    border-radius: 10px;
+    color: #white;
     margin: 0;
-    padding: 0; 
+    padding: 10; 
     font-family: 'Arial', sans-sreif;
+    right: 15px;
+    top: 10px;
     `;
 
 
@@ -36,23 +58,9 @@ function UserHatcheries({ name, size, larvaeCount, density }) {
             <div className='userHatcheriesHeading'>
                 <div className="userHatcheryName">
                     {name}
-                    {/* {size}
-                    {larvae}
-                    {density} */}
                 </div>
-
-                {/* <input type = 'submit'
-                    className='create-button' 
-                    value='Edit Hatchery'
-                    onClick={openEditModal}
-                    // onClick={openModal}
-                    >
-                </input> */}
-                <PopUpButton onClick={openEditModal}> Edit Hatchery</PopUpButton>
-                <EditModal showEditModal={showEditModal} setShowEditModal={setShowEditModal}></EditModal>
-            
+                <PopUpButton onClick={openModal}> Edit Hatchery</PopUpButton>
             </div>
-
             <div className="userHatcheriesBody">
                 <div className="bodyItem">
                     <img className='hatchery-img' alt="hatchery-img" src={hatchery} />
@@ -67,9 +75,9 @@ function UserHatcheries({ name, size, larvaeCount, density }) {
                     <br></br>
                     {density} 
                 </div>
-
+                <Modal showModal={showModal} setShowModal={setShowModal}></Modal>
             </div>
-            {/* <Modal showModal={showModal} setShowModal={setShowModal}></Modal> */}
+            <GlobalStyle />
         </div>
     );
 }
