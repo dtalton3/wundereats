@@ -8,6 +8,7 @@ import "./Modal.css";
 import larvae from "./larvae.png";
 import hatchery from "./hatchery.png";
 import substrate from "./substrate.png";
+import foodwaste from "./foodwaste.png";
 import Dropdown from "../Dropdown.js";
 
 const HatcheryCalculations = require("./HatcheryCalculations.js");
@@ -97,11 +98,11 @@ function Modal({showModal, setShowModal}) {
     const [feedWeight, setFeedWeight] = useState('');
     const [hatcheryDensity, setHatcheryDensity] = useState('--');
     const [hatchSelected, hatchSetSelected] = useState("Selection");
-    const hatcheryOptions = ["17” L x 6” W x 10” H", "10” L x 4” W x 6” H", "4” L x 4” W x 3” H"]; // change these once akissi gets back with the dimensions
+    const hatcheryOptions = ["18 x 10.4 x 13.9 cm", "34.6 x 21 x 12.4 cm", "67.3 x 40.6 x 16.8 cm"]; 
     const [numSelected, numSetSelected] = useState("Selection");
-    const numberOptions = ["100 Larvae", "500 Larvae", "1000 Larvae", "5000 Larvae"];
+    const numberOptions = ["100", "500", "1000", "5000"];
     const [feedSelected, feedSetSelected] = useState("Selection");
-    const feedTypeOptions = ["Food Waste", "Non-Food Waste"];
+    const feedTypeOptions = ["Food Waste: Any", "Styrofoam", "Paper", "Plastic"];
     const [substrateSelected, substrateSetSelected] = useState("Selection");
     const substrateTypeOptions = ["Rolled Oats", "Wheat Bran", "Hops", "Hemp"];
 
@@ -133,17 +134,16 @@ function Modal({showModal, setShowModal}) {
     function createHatcheryAndReset() {
       
       // Needs to be changed for values with more than 4 digits say "1000 Larvae" vs. "10,000 Larvae"
-      const numLarvae = Number(numSelected.slice(0,4));
+      const numLarvae = Number(numSelected);
 
       //calculating grub mass for emissions calculation
-      //this method might be combined with the below method once Akissi gives us the mass values
-      let grubMass = HatcheryCalculations.getGrubMass(numLarvae);
+      let grubMass = HatcheryCalculations.getGrubMass(numSelected);
 
       // Calculating volume so that hatcheryVolume enters database as a number
       let hatcheryVolume = HatcheryCalculations.getTrueHatcheryVolumeValue(hatchSelected);
 
       // Calculating density for database storage
-      //hatcheryDensity = HatcheryCalculations.getHatcheryDensity(hatcheryVolume, grubMass, substrateWeight, feedWeight)
+      let hatcheryDensity = HatcheryCalculations.getHatcheryDensity(hatcheryVolume, grubMass, substrateWeight, feedWeight);
 
       // Calculating hatchery emissions to store in database for retrieval later
       let hatcheryEmissions = HatcheryCalculations.getEmissionsCalculationsFromGrubMass(grubMass);
@@ -152,16 +152,15 @@ function Modal({showModal, setShowModal}) {
       const userID = JSON.parse(userInfo)._id;
 
       const hatchery = {
+        user_id: userID,
         hatcheryName: hatcheryName,
         hatcheryVolume: hatcheryVolume,
-        hatcheryDensity: hatcheryDensity,
-        numLarvae: numLarvae,
-        subtrateType: substrateSelected,
-        user_id: userID,
+        hatcheryDensity: hatcheryDensity.toFixed(1),
+        hatcheryDimensions: hatchSelected,
         numLarvae: numLarvae,
         feedType: feedSelected,
         feedWeight: feedWeight,
-        hatcheryDensity: hatcheryDensity,
+        subtrateType: substrateSelected,
         substrateWeight: substrateWeight,
         emissions : hatcheryEmissions
       }
@@ -170,7 +169,6 @@ function Modal({showModal, setShowModal}) {
       
       axios.post('http://localhost:4000/api/createhatchery', hatchery)
           .then(res => console.log(res.data))
-      
       
       setShowModal(prev => !prev);
       setHatcheryName('');
@@ -202,15 +200,6 @@ function Modal({showModal, setShowModal}) {
       },
       [keyPress]
     );
-
-
-    //if no existing hatcheries
-    //if the name is filled
-    //if both the selections are selected
-    //if next is clicked
-    //return something wit that content
-
-    //
     
     return (
       <>
@@ -231,67 +220,57 @@ function Modal({showModal, setShowModal}) {
                 <ModalContent>
                   <div className="hatchery-selections">
 
-                      <div className='number-section'>
-                        Select the size of your <br></br>WUNDERgrubs hatchery kit
-                        <br></br>
+                      <div className='number-section'> 
+                        Select your hatchery dimensions <br></br> (centimeters) <br></br>
+                        <br></br> 
                         <img src={hatchery} className="hatchery-small-icon" alt="Hatchery"/>
                         <Dropdown selected={hatchSelected} setSelected={hatchSetSelected} options={hatcheryOptions}/>
                       </div>
 
                       <div className='number-section'>
-                        Select the number of larvae <br></br>included in your hatchery kit
+                        Select your hatchery <br></br> starter grubs amount<br></br> 
                         <br></br>
-                        <img src={larvae} className="larvae-small-icon" alt="Larvae"/>
+                        <img src={larvae} width={135} height={135} className="hatchery-small-icon" alt="Larvae"/>
                         <Dropdown selected={numSelected} setSelected={numSetSelected} options ={numberOptions}/>
                       </div>
 
                       <div className='number-section'>
-                        Select the substrate type of <br></br> your WUNDERgrubs hatchery kit
-                        <br></br>
+                        Weight of substrate used (kg)
+                          <input type = 'text' 
+                            placeholder='Enter Weight in kg' 
+                            onChange={(e) => setSubstrateWeight(e.target.value)} 
+                            value={substrateWeight}
+                            className='specifications-input'>                         
+                          </input>
+                          
                         <img src={substrate} className="larvae-small-icon" alt="Larvae"/>
+                        <br></br> 
+                        Select substrate type                        
                         <Dropdown selected={substrateSelected} setSelected={substrateSetSelected} options={substrateTypeOptions}/>
                       </div>
 
-                      <div className='number-section'>
-                      <div type='text' className='large-text'>Hatchery Specifications</div>
-                          <div type='text' className='small-text'>Substrate Weight (g)</div>
-                          <input type = 'text' 
-                            placeholder='Enter Weight' 
-                            onChange={(e) => setSubstrateWeight(e.target.value)} 
-                            value={substrateWeight}
-                            className='specifications-input'> 
-                          </input>
-
-                          {/* <div type='text' className='small-text'>Substrate Type</div>
-                          <Dropdown selected={substrateSelected} setSelected={substrateSetSelected} options={substrateTypeOptions}/> */}
-                          
-                          <div type='text' className='small-text'>Feed Weight (g)</div>
+                     <div className='number-section'>
+                       Weight of feed used (kg)
                           <input type = 'text' 
                             placeholder='Enter Weight' 
                             onChange={(e) => setFeedWeight(e.target.value)} 
                             value={feedWeight}
                             className='specifications-input'> 
-                          </input>
+                          </input>  
 
-                          <div type='text' className='small-text'>Feed Type</div>
-
-                          <Dropdown selected={feedSelected} setSelected={feedSetSelected} options={feedTypeOptions}/>
+                        <img src={foodwaste} className="larvae-small-icon" alt="Larvae"/>                        
+                        <br></br> 
+                        Select feed type
+                        <Dropdown selected={feedSelected} setSelected={feedSetSelected} options={feedTypeOptions}/>
                       </div>
-                      
-                      {/* <div className='density-section'> Calculated Hatchery Density <br></br> {hatcheryDensity}
-                      </div> */}
+
                   </div>
 
-                  {/* <div className="specifications">
-                  <div className='specifications-section'>Hatchery Specifications</div>
-                  </div> */}
-
-                  {/* <div className='density-section'> Calculated Hatchery Density <br></br> {hatcheryDensity}</div> */}
-
-                <div className="controls">
+                <div className="controls">               
                     <button className='cancel-btn' onClick={reset}>Cancel</button>
-                    <button className='next-btn' onClick={createHatcheryAndReset}>Next</button>
+                    <button className='next-btn' onClick={createHatcheryAndReset}>Save</button>
                 </div>
+                
                 </ModalContent>
                 <CloseModalButton
                   aria-label='Close modal'

@@ -17,6 +17,14 @@ const hatcheryTemplate = new mongoose.Schema({
         type: Number,
         required: false
     },
+    hatcheryDensity: {
+        type: Number,
+        required: false
+    },
+    hatcheryDimensions: {
+        type: String,
+        required: false
+    },
     numLarvae: {
         type: Number,
         required: false
@@ -29,18 +37,18 @@ const hatcheryTemplate = new mongoose.Schema({
         type: Number,
         required: false
     },
-    // subtrateType: {
-    //     type: String,
-    //     required: false
-    // }, 
+    subtrateType: {
+        type: String,
+        required: false
+    }, 
     substrateWeight: {
         type: Number,
         required: false,
     }, 
-    // hatcheryEmissions: {
-    //     type: Array,
-    //     requred: false
-    // }
+    hatcheryEmissions: {
+        type: Array,
+        requred: false
+    }
 })
 
 module.exports = mongoose.model('Hatcheries', hatcheryTemplate)
