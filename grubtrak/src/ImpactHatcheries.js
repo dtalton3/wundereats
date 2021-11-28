@@ -101,19 +101,38 @@ function ImpactHatcheries({ name, larvaeCount }) {
         doc.text('What Do These Numbers Mean?', 25, 170).setFont(undefined, 'bold');
         doc.setFontSize(8);
         doc.setFont(undefined, 'normal');
-        doc.text('Carbon Dioxide equivalents are measured in kilograms (kg CO2 eq.) and represent the blah bla blah, something about', 25, 175);
-        doc.text('Global Warming Potential, blah blah.', 25, 180);
-        doc.text('The CO2 eqs. are heavily measured and known in livestock farming production, but this is not the case for insect farming', 25, 190);
-        doc.text('(yet). Until quantifiable, measurable emissions data has been collected, or until data collection techniques become more', 25, 195);
-        doc.text('common and robust, the emissions of your insect farm is roughly estimated using the known kg CO2 eq. emitted to', 25, 200);
-        doc.text(' produce 1 kilogram of edible beef.', 25, 205);
-        doc.text('Previous research has shown that to produce 1 kg of edible beef from a farm, 25.4 kg CO2 eq. is emitted into the', 25, 215);
-        doc.text('atmosphere [add source here]. Another study has measured that to produce 1 kg of edible insects, only 1% of the 25.4 kg', 25, 220);
-        doc.text('CO2 eq from beed is emitted[add the source]. That means for every kilogram of edible grubs your hatcheries produce, your', 25, 225);
-        doc.text('emissions are around 2.54  kg CO2 eq!', 25, 230);
-        doc.text('References', 25, 280);
-        doc.text('[1] www.fnofakdkprm.com', 25, 285);
-        doc.text('[2] bugsrgood.org', 25, 290);
+        doc.text('The CO2 eqs. are heavily measured and known in livestock farming production, but this is not the case for insect farming', 25, 175);
+        doc.text('(yet). Until quantifiable and measurable emissions data has been collected for them, or until data collection techniques', 25, 180);
+        doc.text('become more common and robust, the emissions of your insect farm is roughly estimated using the known kg CO2 eq. ', 25, 190);
+        doc.text('emitted to produce 1 kilogram of edible beef.', 25, 195);
+
+        doc.text('Previous research has shown that to produce 1 kg of edible beef from a farm, 25.4 kg CO2 eq. is emitted into the', 25, 205);
+        doc.text('atmosphere (processing, transportation, retail, and waste disposal notwithstanding) [1]. Another study has measured that', 25, 210);
+        doc.text('to produce 1 kg of edible insects, as little as 1% of the 25.4 kg CO2 eq from beef is emitted[2]. That means for every ', 25, 215);
+        doc.text('kilogram of edible grubs your hatcheries produce, your emissions are around 0.254  kg CO2 eq!', 25, 220);
+        
+        doc.setFontSize(12);
+        doc.text('Terminology', 25, 230).setFont(undefined, 'bold');
+        doc.setFontSize(8);
+        doc.setFont(undefined, 'normal');
+
+        doc.text('Carbon Dioxide Equivalents:', 25, 235).setFont(undefined, 'bold');
+        doc.setFont(undefined, 'normal');
+        doc.text('A carbon dioxide equivalent or CO2 equivalent, abbreviated as CO2-eq is a metric measure', 40, 235);
+        doc.text('used to compare the emissions from various greenhouse gases on the basis of their global-warming potential (GWP), by ', 25, 240);
+        doc.text('converting amounts of other gases to the equivalent amount of carbon dioxide with the same global warming potential.', 25, 245);
+        doc.text('Carbon dioxide equivalents are commonly expressed as million metric tonnes of carbon dioxide equivalents, abbreviated as', 25, 250);
+        doc.text('MMTCDE.', 25, 255);
+
+        doc.text('Global Warming Potential:', 25, 260).setFont(undefined, 'bold');
+        doc.setFont(undefined, 'normal');
+        doc.text('Global-warming potential, abbreviated as GWP, is a term used to describe the relative potency,', 30, 260);
+        doc.text('molecule for molecule, of a greenhouse gas, taking account of how long it remains active in the atmosphere. The global-', 25, 265);
+        doc.text('warming potentials (GWPs) currently used are those calculated over 100 years. Carbon dioxide is taken as the gas of', 25, 270);
+        doc.text('reference and given a 100-year GWP of 1. ', 25, 275);
+
+        doc.text('[1] https://www.ewg.org/meateatersguide/a-meat-eaters-guide-to-climate-change-health-what-you-eat-matters/climate-and-environmental-impacts/', 25, 285);
+        doc.text('[2] https://theconversation.com/more-people-are-eating-bugs-but-is-it-ethical-to-farm-insects-for-food-167248', 25, 290);
         doc.save(name + "_Emissions.pdf");
     }
 
