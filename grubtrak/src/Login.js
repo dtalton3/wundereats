@@ -5,7 +5,7 @@ import "./Login.css";
 import grub from "./images/grub.jpeg";
 import {Link} from 'react-router-dom';
 // import Alert from 'react-bootstrap/Alert'
-var myStorage = window.localStorage;
+// var myStorage = window.localStorage;
 
 function Signup() {
     

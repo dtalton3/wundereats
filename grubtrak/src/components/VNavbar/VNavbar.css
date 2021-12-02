@@ -24,13 +24,38 @@
   padding: 20px;
   text-decoration: none;
   font-size: 35px;
-  color: #e57c55;
-  border-bottom-style: solid;
-  border-bottom-color: black;
+  color: #fc5459;
+  border-bottom: 5px solid #bdb8d7;
+  border-bottom: 5px solid rgba(0, 0, 0, 0.05);
+  border-top: 5px solid rgba(255, 255, 255, 0.05);
+  /* border-bottom-style: solid;
+  border-bottom-color: lightgray; */
   /* border-style: solid; */
   /* border-color: yellow; */
 }
 
 .vnav-links:hover {
-  color: #ff6600;
+  background-color: lightseagreen;
+  color: white;
 }
+
+/* .social_media {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+
+.social_media a {
+  display: block;
+  width: 40px;
+  background: #594f8d;
+  height: 40px;
+  line-height: 45px;
+  text-align: center;
+  margin: 0 5px;
+  color: #bdb8d7;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+} */

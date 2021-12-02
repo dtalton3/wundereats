@@ -5,7 +5,7 @@
   background-color: #afc5c7;
   border: solid;
   border-radius: 10px;
-  border-color: #12545c;
+  border-color: #21b5bc;
 
   width: 95%;
   height: 35%;
@@ -64,7 +64,7 @@
 
 .create-button {
   position: absolute;
-  background-color: #e57c55;
+  background-color: #fc5459;
   color: white;
   font-weight: bolder;
   min-width: 250px;

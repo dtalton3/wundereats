@@ -13,9 +13,9 @@
       // Gets rid of all non-alphanumeric characters "18 x 10.4 x 13.9 cm" ---> 18104139
       stringVol = stringVol.replace(/\D/g,'');
 
-      if(stringVol.slice(0, 2) == '18') { // if small kit selected: 18 x 10.4 x 13.9 cm
+      if(stringVol.slice(0, 2) === '18') { // if small kit selected: 18 x 10.4 x 13.9 cm
         trueVolume = 2602.08;
-      } else if (stringVol.slice(0, 2) == '34') { // if medium kit selected: 34.6 x 21 x 12.4 cm  
+      } else if (stringVol.slice(0, 2) === '34') { // if medium kit selected: 34.6 x 21 x 12.4 cm  
         trueVolume = 9009.84;
       } else { // if large kit selected: 67.3 x 40.6 x 16.8 cm
         trueVolume = 43718.08;

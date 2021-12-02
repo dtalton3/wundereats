@@ -1,5 +1,5 @@
 .Signup-container {
-  background-color: #e57c55;
+  background-color: #fc5459;
   min-height: 100vh;
   min-width: 100%;
   display: flex;
@@ -24,11 +24,11 @@
 
 .input-titles {
   text-align: center;
-  color: #e57c55;
+  color: #fc5459;
 }
 
 .login-link {
-  color: #e57c55;
+  color: #fc5459;
   font-size: small;
 }
 

@@ -1,5 +1,5 @@
 .Home-header {
-  background-color: white;
+  background-color: #fefefe;
   min-height: 100vh;
   min-width: 100%;
   display: flex;
@@ -20,7 +20,7 @@
   justify-content: center;
   height: 100vh; /* changed to account for corner logo*/
   width: calc(100vw - 85vw);
-  background-color: #12545c;
+  background-color: #21b5bc;
   padding-top: 50px;
 }
 
@@ -37,7 +37,7 @@
   width: calc(100vw - 15vw);
   background-color: white;
   border-bottom-style: solid;
-  border-bottom-color: #12545c;
+  border-bottom-color: #21b5bc;
 }
 
 .Top-panel-content {
@@ -57,7 +57,7 @@
 }
 
 .Mid-panel-content {
-  color: #12545c;
+  color: #21b5bc;
   position: relative;
   text-align: left;
   padding-left: 15px;
@@ -74,7 +74,7 @@
   height: calc(100vh - 30vh);
   width: calc(100vw - 25vw);
   border-radius: 5px;
-  background-color: #e57c55;
+  background-color: #fc5459;
   border: solid;
   box-shadow: -10px 20px 20px 10px #888888;
   overflow: auto;
@@ -110,4 +110,26 @@
   position: inherit;
   right: 400px;
   top: 60%;
+}
+
+.social_media {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+
+.social_media a {
+  background: url(https://twitter.com/favicon.ico) no-repeat left center;
+  display: block;
+  width: 60px;
+  background: #6dbbbf;
+  height: 60px;
+  line-height: 45px;
+  text-align: center;
+  margin: 0 15px;
+  color: #cce9eb;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }

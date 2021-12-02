@@ -7,6 +7,9 @@ import Modal from './components/Modal.js';
 import GlobalStyle from "./globalStyles";
 import styled from "styled-components";
 import UserHatcheries from "./UserHatcheries.js";
+// import fb from "./grubtrak/src/components/fb.png";
+// import fb from "/Users/samkofi/Desktop/wundereats/grubtrak/src/components/fb.png";
+
 
 function Home() {
     const [hatcheriesList, setHatcheriesList] = useState([]);
@@ -44,7 +47,7 @@ function Home() {
     background-color: transparent;
     border-style: none;
     box-sizing: border-box;
-    color: #12545C;
+    color: #21b5bc;
     margin: 0;
     padding: 0; 
     font-family: 'Arial', sans-sreif;
@@ -65,6 +68,12 @@ function Home() {
             <div className="Home-header">
                 <div className="Left-panel">
                     <VNavbar />
+                    {/* working to show social media icons */}
+                    {/* <div class="social_media">
+                        <a href="https://www.facebook.com/wundergrubs/"><i class="fab fa-facebook-f"></i>fb</a>
+                        <a href="https://twitter.com/wundergrubs"><i class="fab fa-twitter"></i>tw</a>
+                        <a href="https://www.instagram.com/wundergrubs/"><i class="fab fa-instagram"></i>ig</a>
+                    </div>     */}
                 </div>
                 <div className="Top-panel">
                     <Navbar className="Top-panel-content"/>
@@ -81,7 +90,8 @@ function Home() {
                     {
                     hatcheriesList.length >= 1 ? hatcheriesList.map((hatchery, indx) => {
                         // return <p key={indx}> This is the name: {hatchery.hatcheryName}</p>
-                        return <UserHatcheries key={indx} name={hatchery.hatcheryName} size={hatchery.hatcheryDimensions} larvaeCount={"Larvae Count: " + hatchery.numLarvae} density={hatchery.hatcheryDensity + " kg/m^3"}/>
+                        console.log(hatchery._id);
+                        return <UserHatcheries key={indx} hatcheryInfo={hatchery._id} name={hatchery.hatcheryName} size={hatchery.hatcheryDimensions} larvaeCount={"Larvae Count: " + hatchery.numLarvae} density={hatchery.hatcheryDensity + " kg/m^3"}/>
                     })
                     :''
                     }

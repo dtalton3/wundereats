@@ -14,7 +14,7 @@ function Impact() {
     background-color: transparent;
     border-style: none;
     box-sizing: border-box;
-    color: #12545C;
+    color: #21b5bc;
     margin: 0;
     padding: 0; 
     font-family: 'Arial', sans-sreif;

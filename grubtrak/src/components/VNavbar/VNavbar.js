@@ -17,7 +17,12 @@
                         )
                     })}
                     
-                </ul>     
+                </ul> 
+                {/* <div class="social_media">
+          <a href="#"><i class="fab fa-facebook-f"></i>fb</a>
+          <a href="#"><i class="fab fa-twitter"></i>tw</a>
+          <a href="#"><i class="fab fa-instagram"></i>ig</a>
+      </div>     */}
             </nav>
          )
      }

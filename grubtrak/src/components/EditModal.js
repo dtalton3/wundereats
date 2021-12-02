@@ -51,7 +51,7 @@ const HatcheryName = styled.div`
   z-index: 10;
   border-radius: 10px;
   border-style: solid;
-  border-color: #E57C55;
+  border-color: #fc5459;
   padding-left: 5px;
 `;
 

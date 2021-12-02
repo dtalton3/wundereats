@@ -1,7 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import "./Impact.css";
 import larvae from "./images/larvae2.png";
-import styled from "styled-components";
 import { getGrubMass, getEmissionsCalculationsFromGrubMass } from './components/HatcheryCalculations';
 import logo from "./images/grub.jpeg"
 import jsPDF from "jspdf";
@@ -9,15 +8,15 @@ import jsPDF from "jspdf";
 
 function ImpactHatcheries({ name, larvaeCount }) {
 
-    const PopUpButton = styled.button`
-    background-color: transparent;
-    border-style: none;
-    box-sizing: border-box;
-    color: #12545C;
-    margin: 0;
-    padding: 0; 
-    font-family: 'Arial', sans-sreif;
-    `;
+    // const PopUpButton = styled.button`
+    // background-color: transparent;
+    // border-style: none;
+    // box-sizing: border-box;
+    // color: #21b5bc;
+    // margin: 0;
+    // padding: 0; 
+    // font-family: 'Arial', sans-sreif;
+    // `;
 
     function reportGenerator(name, larvaeCount) {
         var emissions = getEmissionsCalculationsFromGrubMass(getGrubMass(larvaeCount))

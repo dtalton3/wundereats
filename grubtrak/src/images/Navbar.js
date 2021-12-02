@@ -2,7 +2,7 @@
  import React from 'react';
  import { MenuItems } from "./MenuItems";
  import './Navbar.css';
- import wunda from "../wundergrubs.png";
+ import wunda from "../wunda.png";
  
 
 function Navbar () {
@@ -19,7 +19,7 @@ function Navbar () {
                         </li>
                     )
                 })}       
-            </ul>
+            </ul>     
         </div>
     )
  }

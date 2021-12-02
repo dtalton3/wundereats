@@ -15,7 +15,7 @@ const HatcheryCalculations = require("./HatcheryCalculations.js");
 
 
 const Background = styled.div`
-  bottom: 10px;
+  bottom: 0px;
   right: 30px;
   height: calc(100vh - 30vh);
   width: calc(100vw - 25vw);
@@ -24,13 +24,13 @@ const Background = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 12px;
+  border-radius: 25px;
 `;
 
 const ModalWrapper = styled.div`
   position: absolute;
   width: 900px;
-  height: 600px;
+  height: calc(100vh - 32vh);
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #fff;
   color: #000;
@@ -56,7 +56,7 @@ const HatcheryName = styled.div`
   z-index: 10;
   border-radius: 10px;
   border-style: solid;
-  border-color: #E57C55;
+  border-color: #fc5459;
   padding-left: 5px;
 `;
 
@@ -92,12 +92,11 @@ const CloseModalButton = styled(MdClose)`
 `;
 
 function Modal({showModal, setShowModal}) {
-    var myStorage = window.localStorage;
     const [hatcheryName, setHatcheryName] = useState('');
     const [substrateWeight, setSubstrateWeight] = useState('');
     const [feedWeight, setFeedWeight] = useState('');
-    const [hatcheryDensity, setHatcheryDensity] = useState('--');
-    const [hatchSelected, hatchSetSelected] = useState("Selection");
+    // const [hatcheryDensity, setHatcheryDensity] = useState('--');
+    const [hatchSelected, hatchSetSelected] = useState("s");
     const hatcheryOptions = ["18 x 10.4 x 13.9 cm", "34.6 x 21 x 12.4 cm", "67.3 x 40.6 x 16.8 cm"]; 
     const [numSelected, numSetSelected] = useState("Selection");
     const numberOptions = ["100", "500", "1000", "5000"];
@@ -128,7 +127,7 @@ function Modal({showModal, setShowModal}) {
       hatchSetSelected("Selection");
       numSetSelected("Selection");
       feedSetSelected("Selection");
-      setHatcheryDensity('0');
+      // setHatcheryDensity('0');
     }
 
     function createHatcheryAndReset() {
