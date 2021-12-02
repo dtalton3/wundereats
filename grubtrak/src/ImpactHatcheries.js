@@ -18,7 +18,7 @@ function ImpactHatcheries({ name, larvaeCount }) {
     // font-family: 'Arial', sans-sreif;
     // `;
 
-    function reportGenerator(name, larvaeCount) {
+    function reportGenerator() {
         var emissions = getEmissionsCalculationsFromGrubMass(getGrubMass(larvaeCount))
 
         var doc = new  jsPDF();
@@ -146,7 +146,7 @@ function ImpactHatcheries({ name, larvaeCount }) {
                             <div>Hatchery Mass: {getGrubMass(larvaeCount)} kg</div>
                         </div>
                         {/* <PopUpButton className='generate'onClick={reportGenerator(name, larvaeCount)}>Generate Impact Report</PopUpButton> */}
-                        <button onClick={reportGenerator(name, larvaeCount)} className="generate">Generate Impact Report</button>
+                        <button onClick={reportGenerator} className="generate">Generate Impact Report</button>
                     </div>
         </div>
     );
