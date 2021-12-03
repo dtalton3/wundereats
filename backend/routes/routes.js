@@ -99,8 +99,11 @@ router.put('/edit-hatchery/:user/:hatchery', (req, res) => {
     .then(user => {
         var desiredHatchery;
         var idx;
+        console.log(req.params.hatchery + " : 102");
         for (let i = 0; i < user.hatcheries.length; i++) {
+            console.log(user.hatcheries[i]._id + " : 104");
             if (user.hatcheries[i]._id == req.params.hatchery) {
+                console.log("match found");
                 desiredHatchery = user.hatcheries[i];
                 idx = i;
                 break;

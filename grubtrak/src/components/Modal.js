@@ -12,7 +12,7 @@ import foodwaste from "../images/foodwaste.png";
 import Dropdown from "../Dropdown.js";
 
 const HatcheryCalculations = require("./HatcheryCalculations.js");
-
+var myStorage = window.localStorage;
 
 const Background = styled.div`
   bottom: 0px;
@@ -130,6 +130,52 @@ function Modal({showModal, setShowModal}) {
       // setHatcheryDensity('0');
     }
 
+    function editHatchery() {
+
+      // Needs to be changed for values with more than 4 digits say "1000 Larvae" vs. "10,000 Larvae"
+      const numLarvae = Number(numSelected);
+      console.log(myStorage.getItem('currentHatch'));
+
+      //calculating grub mass for emissions calculation
+      let grubMass = HatcheryCalculations.getGrubMass(numSelected);
+
+      // Calculating volume so that hatcheryVolume enters database as a number
+      let hatcheryVolume = HatcheryCalculations.getTrueHatcheryVolumeValue(hatchSelected);
+
+      // Calculating density for database storage
+      let hatcheryDensity = HatcheryCalculations.getHatcheryDensity(hatcheryVolume, grubMass, substrateWeight, feedWeight);
+
+      // Calculating hatchery emissions to store in database for retrieval later
+      let hatcheryEmissions = HatcheryCalculations.getEmissionsCalculationsFromGrubMass(grubMass);
+      const userInfo = localStorage.getItem("currentUser");
+      const userID = JSON.parse(userInfo)._id;
+
+      console.log(hatcheryName);
+      const hatchery = {
+        user_id: userID,
+        hatcheryName: hatcheryName,
+        hatcheryVolume: hatcheryVolume,
+        hatcheryDensity: hatcheryDensity.toFixed(1),
+        hatcheryDimensions: hatchSelected,
+        numLarvae: numLarvae,
+        feedType: feedSelected,
+        feedWeight: feedWeight,
+        subtrateType: substrateSelected,
+        substrateWeight: substrateWeight,
+        emissions : hatcheryEmissions
+      }
+
+      axios.put('http://localhost:4000/api/edit-hatchery/' + userID + '/' + myStorage.getItem('currentHatch'), hatchery)
+          .then(res => console.log(res.data))
+      
+
+      setShowModal(prev => !prev);
+      setHatcheryName('');
+      hatchSetSelected("Selection");
+      numSetSelected("Selection");
+      feedSetSelected("Selection");
+      substrateSetSelected("Selection");
+    }
     function createHatcheryAndReset() {
       
       // Needs to be changed for values with more than 4 digits say "1000 Larvae" vs. "10,000 Larvae"

@@ -4,13 +4,18 @@ import { useSpring, animated } from 'react-spring';
 import { MdClose } from 'react-icons/md';
 import { useRef, useCallback, useEffect } from "react";
 import axios from 'axios';
-import "./EditModal.css";
-import larvae from "./larvae.png";
-import hatchery from "./hatchery.png";
+import "./Modal.css";
+import larvae from "../images/larvae.png";
+import hatchery from "../images/hatchery.png";
+import substrate from "../images/substrate.png";
+import foodwaste from "../images/foodwaste.png";
 import Dropdown from "../Dropdown.js";
 
+const HatcheryCalculations = require("./HatcheryCalculations.js");
+var myStorage = window.localStorage;
+
 const Background = styled.div`
-  bottom: 10px;
+  bottom: 0px;
   right: 30px;
   height: calc(100vh - 30vh);
   width: calc(100vw - 25vw);
@@ -19,13 +24,13 @@ const Background = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 12px;
+  border-radius: 25px;
 `;
 
-const EditModalWrapper = styled.div`
+const ModalWrapper = styled.div`
   position: absolute;
-  width: 800px;
-  height: 500px;
+  width: 900px;
+  height: calc(100vh - 32vh);
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #fff;
   color: #000;
@@ -40,7 +45,7 @@ const EditModalWrapper = styled.div`
 `;
 
 const HatcheryName = styled.div`
-  width: 800px;
+  width: 900px;
   height: 50px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #EBCBBD;
@@ -55,10 +60,10 @@ const HatcheryName = styled.div`
   padding-left: 5px;
 `;
 
-const EditModalContent = styled.div`
+const ModalContent = styled.div`
   position: relative;
   top: 20px;
-  height: 75%;
+  height: 90%;
   display: grid;
   flex-direction: column;
   justify-content: center;
@@ -75,7 +80,7 @@ const EditModalContent = styled.div`
   }
 `;
 
-const CloseEditModalButton = styled(MdClose)`
+const CloseModalButton = styled(MdClose)`
   cursor: pointer;
   position: absolute;
   top: 10px;
@@ -86,84 +91,123 @@ const CloseEditModalButton = styled(MdClose)`
   z-index: 10;
 `;
 
-function EditModal({showEditModal, setShowEditModal}) {
-    var myStorage = window.localStorage;
+function Modal({showModal, setShowModal}) {
     const [hatcheryName, setHatcheryName] = useState('');
     const [substrateWeight, setSubstrateWeight] = useState('');
     const [feedWeight, setFeedWeight] = useState('');
-    const [hatcheryDensity, setHatcheryDensity] = useState('--');
-    const [hatchSelected, hatchSetSelected] = useState("Selection");
-    const hatcheryOptions = ["17” L x 6” W x 10” H", "10” L x 4” W x 6” H", "4” L x 4” W x 3” H"];
-    const [numSelected, numSetSelected] = useState("Selection");
-    const numberOptions = ["1000 Larvae", "2000 Larvae", "3000 Larvae"];
-    const [feedSelected, feedSetSelected] = useState("Selection");
-    const feedTypeOptions = ["Food Waste", "Non-Food Waste"];
+    // const [hatcheryDensity, setHatcheryDensity] = useState('--');
+    const [hatchSelected, hatchSetSelected] = useState("Select kit");
+    const hatcheryOptions = ["18 x 10.4 x 13.9 cm", "34.6 x 21 x 12.4 cm", "67.3 x 40.6 x 16.8 cm"]; 
+    const [numSelected, numSetSelected] = useState("Select grubs");
+    const numberOptions = ["100", "500", "1000", "5000"];
+    const [feedSelected, feedSetSelected] = useState("Select feed");
+    const feedTypeOptions = ["Food Waste: Any", "Styrofoam", "Paper", "Plastic"];
+    const [substrateSelected, substrateSetSelected] = useState("Select substrate");
+    const substrateTypeOptions = ["Rolled Oats", "Wheat Bran", "Hops", "Hemp"];
 
-    const editModalRef = useRef();
+    const modalRef = useRef();
   
     const animation = useSpring({
       config: {
         duration: 250
       },
-      opacity: showEditModal ? 1 : 0,
-      transform: showEditModal ? `translateY(0%)` : `translateY(-100%)`
+      opacity: showModal ? 1 : 0,
+      transform: showModal ? `translateY(0%)` : `translateY(-100%)`
     });
   
-    const closeEditModal = e => {
-      if (editModalRef.current === e.target) {
-        setShowEditModal(false);
+    const closeModal = e => {
+      if (modalRef.current === e.target) {
+        setShowModal(false);
       }
     };
 
-    function getTrueHatcheryVolumeValue(stringVol) {
-      let trueVolume = 0;
-      // Gets rid of all non-alphanumeric characters "17” L x 6” W x 10” H" ---> 17610
-      // But now, how do we know where one number ends and one begins? Kind of a workaround.
-      stringVol = stringVol.replace(/\D/g,'');
-
-      // If selections 1 is selected then the first two digits represent length and we account for a 
-      //      two digit height.
-      // If selection 2 is selected then the first two digits represent length and we account for a 
-      //      One digit height.
-      // If selection 3 is selected then the first digit represents length.
-      // Again, specific to these values only, will not work for all string fashioned like above.
-      if(stringVol.charAt(0) === '4'){
-        trueVolume = Number(stringVol.slice(0,0)) * Number(stringVol.slice(1,1)) * Number(stringVol.slice(2,2));
-      } else if (stringVol.charAt(0) === '1' && stringVol.charAt(1) === '7') {
-        trueVolume = Number(stringVol.slice(0,2)) * Number(stringVol.slice(2,3)) * Number(stringVol.slice(3,5));
-      } else {
-        trueVolume = Number(stringVol.slice(0,2)) * Number(stringVol.slice(2,3)) * Number(stringVol.slice(3,4));
-      }
-      return trueVolume;
-    }
     function reset() {
-      setShowEditModal(prev => !prev);
+      setShowModal(prev => !prev);
       setHatcheryName('');
       hatchSetSelected("Selection");
       numSetSelected("Selection");
       feedSetSelected("Selection");
-      setHatcheryDensity('0');
+      // setHatcheryDensity('0');
     }
 
+    function editHatchery() {
+
+      // Needs to be changed for values with more than 4 digits say "1000 Larvae" vs. "10,000 Larvae"
+      const numLarvae = Number(numSelected);
+      console.log(myStorage.getItem('currentHatch'));
+
+      //calculating grub mass for emissions calculation
+      let grubMass = HatcheryCalculations.getGrubMass(numSelected);
+
+      // Calculating volume so that hatcheryVolume enters database as a number
+      let hatcheryVolume = HatcheryCalculations.getTrueHatcheryVolumeValue(hatchSelected);
+
+      // Calculating density for database storage
+      let hatcheryDensity = HatcheryCalculations.getHatcheryDensity(hatcheryVolume, grubMass, substrateWeight, feedWeight);
+
+      // Calculating hatchery emissions to store in database for retrieval later
+      let hatcheryEmissions = HatcheryCalculations.getEmissionsCalculationsFromGrubMass(grubMass);
+      const userInfo = localStorage.getItem("currentUser");
+      const userID = JSON.parse(userInfo)._id;
+
+      console.log(hatcheryName);
+      const hatchery = {
+        user_id: userID,
+        hatcheryName: hatcheryName,
+        hatcheryVolume: hatcheryVolume,
+        hatcheryDensity: hatcheryDensity.toFixed(1),
+        hatcheryDimensions: hatchSelected,
+        numLarvae: numLarvae,
+        feedType: feedSelected,
+        feedWeight: feedWeight,
+        subtrateType: substrateSelected,
+        substrateWeight: substrateWeight,
+        emissions : hatcheryEmissions
+      }
+
+      axios.put('http://localhost:4000/api/edit-hatchery/' + userID + '/' + myStorage.getItem('currentHatch'), hatchery)
+          .then(res => console.log(res.data))
+      
+
+      setShowModal(prev => !prev);
+      setHatcheryName('');
+      hatchSetSelected("Selection");
+      numSetSelected("Selection");
+      feedSetSelected("Selection");
+      substrateSetSelected("Selection");
+    }
     function createHatcheryAndReset() {
       
       // Needs to be changed for values with more than 4 digits say "1000 Larvae" vs. "10,000 Larvae"
-      const numLarvae = Number(numSelected.slice(0,4));
+      const numLarvae = Number(numSelected);
+
+      //calculating grub mass for emissions calculation
+      let grubMass = HatcheryCalculations.getGrubMass(numSelected);
+
       // Calculating volume so that hatcheryVolume enters database as a number
-      const hatcheryVolume = getTrueHatcheryVolumeValue(hatchSelected);
+      let hatcheryVolume = HatcheryCalculations.getTrueHatcheryVolumeValue(hatchSelected);
+
+      // Calculating density for database storage
+      let hatcheryDensity = HatcheryCalculations.getHatcheryDensity(hatcheryVolume, grubMass, substrateWeight, feedWeight);
+
+      // Calculating hatchery emissions to store in database for retrieval later
+      let hatcheryEmissions = HatcheryCalculations.getEmissionsCalculationsFromGrubMass(grubMass);
 
       const userInfo = localStorage.getItem("currentUser");
       const userID = JSON.parse(userInfo)._id;
 
       const hatchery = {
+        user_id: userID,
         hatcheryName: hatcheryName,
         hatcheryVolume: hatcheryVolume,
-        user_id: userID,
+        hatcheryDensity: hatcheryDensity.toFixed(1),
+        hatcheryDimensions: hatchSelected,
         numLarvae: numLarvae,
         feedType: feedSelected,
         feedWeight: feedWeight,
-        hatcheryDensity: hatcheryDensity,
+        subtrateType: substrateSelected,
         substrateWeight: substrateWeight,
+        emissions : hatcheryEmissions
       }
 
       console.log(hatchery);
@@ -171,12 +215,12 @@ function EditModal({showEditModal, setShowEditModal}) {
       axios.post('http://localhost:4000/api/createhatchery', hatchery)
           .then(res => console.log(res.data))
       
-      
-      setShowEditModal(prev => !prev);
+      setShowModal(prev => !prev);
       setHatcheryName('');
       hatchSetSelected("Selection");
       numSetSelected("Selection");
       feedSetSelected("Selection");
+      substrateSetSelected("Selection");
 
       //window.location = '/Home';
 
@@ -186,12 +230,12 @@ function EditModal({showEditModal, setShowEditModal}) {
   
     const keyPress = useCallback(
       e => {
-        if (e.key === 'Escape' && showEditModal) {
-          setShowEditModal(false);
+        if (e.key === 'Escape' && showModal) {
+          setShowModal(false);
           console.log('Escape pressed');
         }
       },
-      [setShowEditModal, showEditModal]
+      [setShowModal, showModal]
     );
   
     useEffect(
@@ -201,22 +245,13 @@ function EditModal({showEditModal, setShowEditModal}) {
       },
       [keyPress]
     );
-
-
-    //if no existing hatcheries
-    //if the name is filled
-    //if both the selections are selected
-    //if next is clicked
-    //return something wit that content
-
-    //
     
     return (
       <>
-        {showEditModal ? (
-          <Background onClick={closeEditModal} ref={editModalRef}>
+        {showModal ? (
+          <Background onClick={closeModal} ref={modalRef}>
             <animated.div style={animation}>
-              <EditModalWrapper showEditModal={showEditModal}>
+              <ModalWrapper showModal={showModal}>
                 <HatcheryName>
                     <input type = 'text' 
                         placeholder='Enter Name for New Hatchery' 
@@ -227,66 +262,66 @@ function EditModal({showEditModal, setShowEditModal}) {
                 </HatcheryName>
                 
                 {/* <ModalImg src={grub} alt='camera' /> */}
-                <EditModalContent>
+                <ModalContent>
                   <div className="hatchery-selections">
 
-                      <div className='number-section'>
-                        Select the size of your <br></br>WUNDERgrubs hatchery kit
-                        <br></br>
+                      <div className='number-section'> 
+                        Select your hatchery dimensions <br></br> (centimeters) <br></br>
+                        <br></br> 
                         <img src={hatchery} className="hatchery-small-icon" alt="Hatchery"/>
                         <Dropdown selected={hatchSelected} setSelected={hatchSetSelected} options={hatcheryOptions}/>
                       </div>
 
                       <div className='number-section'>
-                        Select the number of larvae <br></br>included in your hatchery kit
+                        Select your hatchery <br></br> starter grubs amount<br></br> 
                         <br></br>
-                        <img src={larvae} className="larvae-small-icon" alt="Larvae"/>
+                        <img src={larvae} width={135} height={135} className="hatchery-small-icon" alt="Larvae"/>
                         <Dropdown selected={numSelected} setSelected={numSetSelected} options ={numberOptions}/>
                       </div>
 
                       <div className='number-section'>
-                      <div type='text' className='large-text'>Hatchery Specifications</div>
-                          <div type='text' className='small-text'>Substrate Weight (lb.)</div>
+                        Weight of substrate used (kg)
                           <input type = 'text' 
                             placeholder='Enter Weight' 
                             onChange={(e) => setSubstrateWeight(e.target.value)} 
                             value={substrateWeight}
-                            className='specifications-input'> 
+                            className='specifications-input'>                         
                           </input>
                           
-                          <div type='text' className='small-text'>Feed Weight (lb.)</div>
+                        <img src={substrate} className="larvae-small-icon" alt="Larvae"/>
+                        <br></br> 
+                        Select substrate type                        
+                        <Dropdown selected={substrateSelected} setSelected={substrateSetSelected} options={substrateTypeOptions}/>
+                      </div>
+
+                     <div className='number-section'>
+                       Weight of feed used (kg)
                           <input type = 'text' 
                             placeholder='Enter Weight' 
                             onChange={(e) => setFeedWeight(e.target.value)} 
                             value={feedWeight}
                             className='specifications-input'> 
-                          </input>
+                          </input>  
 
-                          <div type='text' className='small-text'>Feed Type</div>
-
-                          <Dropdown selected={feedSelected} setSelected={feedSetSelected} options={feedTypeOptions}/>
+                        <img src={foodwaste} className="larvae-small-icon" alt="Larvae"/>                        
+                        <br></br> 
+                        Select feed type
+                        <Dropdown selected={feedSelected} setSelected={feedSetSelected} options={feedTypeOptions}/>
                       </div>
-                      
-                      {/* <div className='density-section'> Calculated Hatchery Density <br></br> {hatcheryDensity}
-                      </div> */}
+
                   </div>
 
-                  {/* <div className="specifications">
-                  <div className='specifications-section'>Hatchery Specifications</div>
-                  </div> */}
-
-                  {/* <div className='density-section'> Calculated Hatchery Density <br></br> {hatcheryDensity}</div> */}
-
-                <div className="controls">
+                <div className="controls">               
                     <button className='cancel-btn' onClick={reset}>Cancel</button>
-                    <button className='next-btn' onClick={createHatcheryAndReset}>Next</button>
+                    <button className='next-btn' onClick={editHatchery}>Save</button>
                 </div>
-                </EditModalContent>
-                <CloseEditModalButton
+                
+                </ModalContent>
+                <CloseModalButton
                   aria-label='Close modal'
                   onClick={reset}
                 />
-              </EditModalWrapper>
+              </ModalWrapper>
             </animated.div>
           </Background>
         ) : null}
@@ -294,4 +329,4 @@ function EditModal({showEditModal, setShowEditModal}) {
     );
 }
 
-export default EditModal;
+export default Modal;
