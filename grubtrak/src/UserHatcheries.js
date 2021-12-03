@@ -2,13 +2,10 @@ import React, {useState} from "react";
 import "./UserHatcheries.css";
 import larvae from "./images/larvae2.png";
 import hatchery from "./images/hatch2.png";
-// import EditModal from './components/Modal.js';
 import GlobalStyle from "./globalStyles";
 import styled from "styled-components";
-import Modal from './components/Modal.js';
 import EditModal from './components/EditModal.js';
 import axios from 'axios';
-// import GlobalStyle from "./globalStyles";
 
 
 function UserHatcheries({ hatcheryInfo, name, size, larvaeCount, density }) {
