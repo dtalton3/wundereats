@@ -2,13 +2,13 @@
  import React from 'react';
  import { MenuItems } from "./MenuItems";
  import './Navbar.css';
- import wunda from "../wundergrubs.png";
+ import wundergrubs_logo from "../wundergrubs.png";
  
 
 function Navbar () {
     return(
         <div className="NavbarItems">
-            <img src={wunda} className="Grub-logo"alt="Grub-logo"></img>
+            <img src={wundergrubs_logo} className="Grub-logo"alt="Grub-logo"></img>
             <ul className="nav-menu">
                 {MenuItems.map((item, index) => {
                     return (
