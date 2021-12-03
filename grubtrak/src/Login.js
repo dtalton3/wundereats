@@ -2,7 +2,7 @@ import React, { useState } from "react";
 //import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
 import "./Login.css";
-import grub from "./images/grub.jpeg";
+import wundergrubs_logo from "./images/wundergrubs.png";
 import {Link} from 'react-router-dom';
 // import Alert from 'react-bootstrap/Alert'
 // var myStorage = window.localStorage;
@@ -61,7 +61,7 @@ function Signup() {
     return (
         <div className='Login-container'>
             <div className='form-div'>
-                <img src={grub} alt="GrubLogo"></img>
+                <img src={wundergrubs_logo} alt="GrubLogo"></img>
                 <br />
                 <form onSubmit={handleSubmit}>
                     <label className="input-titles">

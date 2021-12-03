@@ -5,10 +5,10 @@ import { MdClose } from 'react-icons/md';
 import { useRef, useCallback, useEffect } from "react";
 import axios from 'axios';
 import "./Modal.css";
-import larvae from "./larvae.png";
-import hatchery from "./hatchery.png";
-import substrate from "./substrate.png";
-import foodwaste from "./foodwaste.png";
+import larvae from "../images/larvae.png";
+import hatchery from "../images/hatchery.png";
+import substrate from "../images/substrate.png";
+import foodwaste from "../images/foodwaste.png";
 import Dropdown from "../Dropdown.js";
 
 const HatcheryCalculations = require("./HatcheryCalculations.js");
@@ -96,13 +96,13 @@ function Modal({showModal, setShowModal}) {
     const [substrateWeight, setSubstrateWeight] = useState('');
     const [feedWeight, setFeedWeight] = useState('');
     // const [hatcheryDensity, setHatcheryDensity] = useState('--');
-    const [hatchSelected, hatchSetSelected] = useState("s");
+    const [hatchSelected, hatchSetSelected] = useState("Select kit");
     const hatcheryOptions = ["18 x 10.4 x 13.9 cm", "34.6 x 21 x 12.4 cm", "67.3 x 40.6 x 16.8 cm"]; 
-    const [numSelected, numSetSelected] = useState("Selection");
+    const [numSelected, numSetSelected] = useState("Select grubs");
     const numberOptions = ["100", "500", "1000", "5000"];
-    const [feedSelected, feedSetSelected] = useState("Selection");
+    const [feedSelected, feedSetSelected] = useState("Select feed");
     const feedTypeOptions = ["Food Waste: Any", "Styrofoam", "Paper", "Plastic"];
-    const [substrateSelected, substrateSetSelected] = useState("Selection");
+    const [substrateSelected, substrateSetSelected] = useState("Select substrate");
     const substrateTypeOptions = ["Rolled Oats", "Wheat Bran", "Hops", "Hemp"];
 
     const modalRef = useRef();
@@ -236,7 +236,7 @@ function Modal({showModal, setShowModal}) {
                       <div className='number-section'>
                         Weight of substrate used (kg)
                           <input type = 'text' 
-                            placeholder='Enter Weight in kg' 
+                            placeholder='Enter Weight' 
                             onChange={(e) => setSubstrateWeight(e.target.value)} 
                             value={substrateWeight}
                             className='specifications-input'>                         

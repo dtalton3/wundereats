@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 import "./Signup.css";
 import {Link} from 'react-router-dom';
-import grub from "./images/grub.jpeg";
+import wundergrubs_logo from "./images/wundergrubs.png";
  
 function Signup() {
     const [fullName, setFullName] = useState('');
@@ -36,7 +36,7 @@ function Signup() {
         <div>
             <div className='Signup-container'>
                 <div className='form-div'>
-                    <img src={grub} alt="GrubLogo"></img>
+                    <img src={wundergrubs_logo} alt="GrubLogo"></img>
 
                     <form onSubmit={handleSubmit}>
                         <label className="input-titles">

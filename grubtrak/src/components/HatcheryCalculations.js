@@ -48,27 +48,13 @@
     }
 
     /**
-     * gets the list of CO2 emissions values for mealworms, lamb, beef, pork, and chicken (in that order) for the emissions report visuals
+     * gets the list of CO2 emissions values for lamb, beef, pork, chicken, and grubs (in that order) for the emissions report visuals
      * 
      * @param {Number} grubMass in kg
      */
     function getEmissionsCalculationsFromGrubMass(grubMass) {
-      // ratio of 1kg edible mass : kg CO2 eqvuivalencies for each animal, but we will be using the beef ratio
-      let beefRatio = 0.03937;  // 1kg : 25.4 kg CO2 eqvuivalent
-      //let lambRatio = 0.02817 -> 1kg : 35.5 kg CO2 eqvuivalent
-      //let porkRatio = 0.125;  -> 1kg : 8 kg CO2 eqvuivalent 
-      //let chickenRatio = 0.25 -> 1kg : 4 kg CO2 eqvuivalent
       
-      /* 
-          These equations represent the equivalencies of livestock animal CO2 eq to insects. 
-          They should all approximate to the same value but we will be using beef's equivalence 
-      */
-      let insectCO2FromBeef = ((beefRatio * grubMass) * 0.1).toFixed(7);
-
-      // insectCO2FromLamb = (lambRatio * grubMass) * 0.00715
-      // insectCO2FromPork = (porkRatio * grubMass) * 0.03175
-      // insectCO2FromChicken = (chickenRatio * grubMass) * 0.0635
-
+      let insectCO2FromBeef = ((grubMass * 25.4) * 0.1).toFixed(2);
       let lambCO2Eq = (grubMass * 35.5).toFixed(2);
       let beefCO2Eq = (grubMass * 25.4).toFixed(2);
       let porkCO2Eq = (grubMass * 8).toFixed(2);

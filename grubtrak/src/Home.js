@@ -7,8 +7,8 @@ import Modal from './components/Modal.js';
 import GlobalStyle from "./globalStyles";
 import styled from "styled-components";
 import UserHatcheries from "./UserHatcheries.js";
-// import fb from "./grubtrak/src/components/fb.png";
-// import fb from "/Users/samkofi/Desktop/wundereats/grubtrak/src/components/fb.png";
+// import fb from "./grubtrak/src/images/fb.png";
+// import fb from "/Users/samkofi/Desktop/wundereats/grubtrak/src/images/fb.png";
 
 
 function Home() {

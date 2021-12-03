@@ -24,7 +24,7 @@
   padding: 20px;
   text-decoration: none;
   font-size: 35px;
-  color: #fc5459;
+  color: white;
   border-bottom: 5px solid #bdb8d7;
   border-bottom: 5px solid rgba(0, 0, 0, 0.05);
   border-top: 5px solid rgba(255, 255, 255, 0.05);
@@ -36,7 +36,7 @@
 
 .vnav-links:hover {
   background-color: lightseagreen;
-  color: white;
+  color: #fc5459;
 }
 
 /* .social_media {
