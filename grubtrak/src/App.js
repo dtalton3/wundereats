@@ -4,8 +4,6 @@ import {Route} from 'react-router-dom';
 import Signup from "./Signup";
 import Login from "./Login"; 
 import Home from "./Home";
-//import CreateHatchery from "./CreateHatchery"
-// import CreateHatchery from "./CreateHatchery"
 import About from "./About";
 import Contact from "./Contact";
 import Settings from "./Settings";

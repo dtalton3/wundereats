@@ -54,7 +54,7 @@
      */
     function getEmissionsCalculationsFromGrubMass(grubMass) {
       
-      let insectCO2FromBeef = ((grubMass * 25.4) * 0.1).toFixed(2);
+      let insectCO2FromBeef = ((grubMass * 25.4) * 0.01).toFixed(4);
       let lambCO2Eq = (grubMass * 35.5).toFixed(2);
       let beefCO2Eq = (grubMass * 25.4).toFixed(2);
       let porkCO2Eq = (grubMass * 8).toFixed(2);

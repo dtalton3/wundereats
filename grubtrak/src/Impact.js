@@ -23,6 +23,7 @@ function Impact() {
     var userInfo = localStorage.getItem("currentUser");
     var userID = JSON.parse(userInfo)._id;
 
+    //retrieves hatcheries of specified user
     const getHatcheries = (e) => {
         e.preventDefault();
         axios.get('http://localhost:4000/api/hatcheries/' + userID)
@@ -47,10 +48,10 @@ function Impact() {
                 <h1 className='Mid-panel-content'>Impact Reports</h1>
                 <PopUpButton className='Mid-panel-refresh-hatchery'onClick={getHatcheries}>+ Refresh Hatcheries</PopUpButton>
             </div>
+
             <div className="Dashboard">
                 {
                 hatcheriesList.length >= 1 ? hatcheriesList.map((hatchery, indx) => {
-                    // return <p key={indx}> This is the name: {hatchery.hatcheryName}</p>
                     return <ImpactHatcheries key={indx} name={hatchery.hatcheryName} larvaeCount={hatchery.numLarvae} />
                 })
                 :''

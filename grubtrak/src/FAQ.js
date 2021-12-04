@@ -4,13 +4,12 @@ import Navbar from './components/Navbar/Navbar';
 import VNavbar from './components/VNavbar/VNavbar';
 import GlobalStyle from "./globalStyles";
 
-
+/**
+ * Function that populates the FAQ page
+ * 
+ * @returns the form populated with whichever string content is specified below
+ */
 function FAQ() {
-    // function backToHome(event) {
-    //     event.preventDefault();
-
-    //     window.location = '/Login'
-    // }
 
     return (
         <div className="Home-header">

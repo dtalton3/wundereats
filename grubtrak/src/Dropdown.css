@@ -8,7 +8,6 @@
 .dropdown .dropdown-btn {
   padding: 15px 20px;
   background: #21b5bc;
-  /* box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06); */
   box-shadow: -5px 10px 10px 5px #888888;
   font-weight: bold;
   display: flex;
@@ -26,9 +25,7 @@
   position: absolute;
   display: grid;
   top: 110%;
-  /* padding: 10px; */
   background: #21b5bc;
-  /* box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06); */
   box-shadow: -5px 10px 10px 5px #888888;
   font-weight: 500;
   color: #333;

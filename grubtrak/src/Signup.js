@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-//import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
 import "./Signup.css";
 import {Link} from 'react-router-dom';
@@ -11,10 +10,16 @@ function Signup() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    //user can't submit form until all fields have been populated with a character
     function validateForm() {
         return fullName.length > 0 && username.length > 0 && email.length > 0 && password.length > 0;
     }
     
+     /** 
+      * Function that registers user into system so their credentials can log them in
+      * 
+      * @param {*} event - event object that determines certain app functions
+      */
     function handleSubmit(event) {
         event.preventDefault();
 
@@ -30,7 +35,6 @@ function Signup() {
 
         window.location = '/Home';
     }
-
 
     return (
         <div>
@@ -102,8 +106,6 @@ function Signup() {
                         </input>
                         <br />
                         <Link className="login-link" to="/Login"> Already have an account? Login here</Link>
-
-                        
 
                         <br />
 

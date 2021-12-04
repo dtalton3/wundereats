@@ -4,18 +4,12 @@
   background: transparent;
   display: flex;
   align-items: right;
-  /* border-style: solid; */
-  /* border-color: red; */
 }
 
 .vnav-menu {
   list-style: none;
   padding-left: unset;
-  /* border-style: solid;
-  border-color: white; */
   width: 100%;
-  /* border-style: solid; */
-  /* border-color: white; */
 }
 
 .vnav-links {
@@ -28,10 +22,6 @@
   border-bottom: 5px solid #bdb8d7;
   border-bottom: 5px solid rgba(0, 0, 0, 0.05);
   border-top: 5px solid rgba(255, 255, 255, 0.05);
-  /* border-bottom-style: solid;
-  border-bottom-color: lightgray; */
-  /* border-style: solid; */
-  /* border-color: yellow; */
 }
 
 .vnav-links:hover {
@@ -39,6 +29,7 @@
   color: #fc5459;
 }
 
+/* styling for social media icons, couldn't get to it in time  */
 /* .social_media {
   position: absolute;
   bottom: 0;

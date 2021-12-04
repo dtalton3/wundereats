@@ -6,12 +6,6 @@ import GlobalStyle from "./globalStyles";
 
 
 function About() {
-    // function backToHome(event) {
-    //     event.preventDefault();
-
-    //     window.location = '/Login'
-    // }
-
     return (
         <div className="Home-header">
 
@@ -25,7 +19,7 @@ function About() {
 
             <div className="Mid-panel">
                 <h1 className='Mid-panel-content'>More About GrubTrak!</h1>
-                <h1 className='Mid-panel-content'> Who are we </h1>
+                <h1 className='Mid-panel-content'> ... </h1>
 
             </div>
             <GlobalStyle />

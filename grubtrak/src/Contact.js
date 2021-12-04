@@ -4,7 +4,11 @@ import Navbar from './components/Navbar/Navbar';
 import VNavbar from './components/VNavbar/VNavbar';
 import GlobalStyle from "./globalStyles";
 
-
+/**
+ * Function that populates the Contact Us page
+ * 
+ * @returns a form [NOT IMPLEMENTED] that accepts user input to email contact wundergrubs
+ */
 function Contact() {
     return (
         <div className="Home-header">

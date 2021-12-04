@@ -2,35 +2,31 @@ import React from "react";
 import "./Impact.css";
 import larvae from "./images/larvae2.png";
 import { getGrubMass, getEmissionsCalculationsFromGrubMass } from './components/HatcheryCalculations';
-import logo from "./images/grub.jpeg"
+import wundergrubs_logo from "./images/wundergrubs.png"
 import jsPDF from "jspdf";
 
-
+/**
+ * Function that generates impact report for a user's specified hatchery
+ * 
+ * @param {*} {name, larvaeCount} - name is the String name of the hatchery, larvaeCount is a Number count of starter grubs 
+ * @returns the specified hatchery to display on the Impact Report dashboard so an emissions report can be generated for it
+ */
 function ImpactHatcheries({ name, larvaeCount }) {
 
-    // const PopUpButton = styled.button`
-    // background-color: transparent;
-    // border-style: none;
-    // box-sizing: border-box;
-    // color: #21b5bc;
-    // margin: 0;
-    // padding: 0; 
-    // font-family: 'Arial', sans-sreif;
-    // `;
-
+    /**
+     * Function that populates impact report with content
+     */
     function reportGenerator() {
         var emissions = getEmissionsCalculationsFromGrubMass(getGrubMass(larvaeCount))
 
         var doc = new  jsPDF();
-        doc.addImage(logo, 'jpeg', 80, 10, 40, 20);
+        doc.addImage(wundergrubs_logo, 'jpeg', 80, 10, 40, 20);
         doc.addImage(larvae, 'png', 140, 20, 10, 10);
         
         doc.setFontSize(10);
         var today = new Date();
         var date = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
         doc.text('Date: ' + date, 20, 20);
-
-        //subject to be wrong. gonna change if so.....
         doc.text('Hatchery: ' + name, 20, 25);
         doc.text('Report ID: 519234', 20, 30);
         doc.text('Larvae Count: ' + larvaeCount, 150, 25);
@@ -45,6 +41,7 @@ function ImpactHatcheries({ name, larvaeCount }) {
         doc.setFontSize(20);
         doc.text('kg CO2 Equivalents for 5 protein Sources', 35, 60).setFont(undefined, 'bold');
 
+        //actual making of the graph visual
         const QuickChart = require('quickchart-js');
         const myChart = new QuickChart();
         myChart.setConfig({
@@ -97,6 +94,7 @@ function ImpactHatcheries({ name, larvaeCount }) {
         img.src = chartImageUrl;
         doc.addImage(img, 'jpeg', 30, 70, 150, 80);
 
+        // impact report description 
         doc.text('What Do These Numbers Mean?', 25, 170).setFont(undefined, 'bold');
         doc.setFontSize(8);
         doc.setFont(undefined, 'normal');
@@ -139,15 +137,14 @@ function ImpactHatcheries({ name, larvaeCount }) {
 
     return(
         <div className="Hatchery">{name}
-                    <div className="HatcheryDetails">
-                        <div className="HatcherySpecs">
-                            <img src={larvae} className="larvae-small-icon" alt="Larvae"/>
-                            <div>Larvae count: {larvaeCount}</div>
-                            <div>Hatchery Mass: {getGrubMass(larvaeCount)} kg</div>
-                        </div>
-                        {/* <PopUpButton className='generate'onClick={reportGenerator(name, larvaeCount)}>Generate Impact Report</PopUpButton> */}
-                        <button onClick={reportGenerator} className="generate">Generate Impact Report</button>
-                    </div>
+            <div className="HatcheryDetails">
+                <div className="HatcherySpecs">
+                    <img src={larvae} className="larvae-small-icon" alt="Larvae"/>
+                    <div>Larvae count: {larvaeCount}</div>
+                    <div>Hatchery Mass: {getGrubMass(larvaeCount)} kg</div>
+                </div>
+                <button onClick={reportGenerator} className="generate">Generate Impact Report</button>
+            </div>
         </div>
     );
 }

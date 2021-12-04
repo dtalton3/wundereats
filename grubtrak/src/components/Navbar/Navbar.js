@@ -5,6 +5,7 @@
  import wundergrubs_logo from "../wundergrubs.png";
  
 
+// Container file for the top/horizontal navigation bar 
 function Navbar () {
     return(
         <div className="NavbarItems">

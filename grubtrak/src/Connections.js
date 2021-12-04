@@ -4,13 +4,12 @@ import Navbar from './components/Navbar/Navbar';
 import VNavbar from './components/VNavbar/VNavbar';
 import GlobalStyle from "./globalStyles";
 
+/**
+ * Unused files since the connections page was pushed out as a future implementation goal
+ * 
+ * @returns a dashboard style similar to hatcheries that displays user connections
+ */
 function Connections() {
-    // function backToHome(event) {
-    //     event.preventDefault();
-
-    //     window.location = '/Login'
-    // }
-
     return (
         <div className="Home-header">
 
@@ -25,14 +24,6 @@ function Connections() {
             <div className="Mid-panel">
                 <h1 className='Mid-panel-content'>Connections</h1>
             </div>
-
-            {/* <div className="Dashboard">
-                <input type = 'submit'
-                        className='btn btn-danger btn-block'
-                        value='Login'
-                        onClick={backToHome}>
-                </input>
-            </div> */}
             <GlobalStyle />
         </div>
     );
