@@ -5,6 +5,13 @@ import VNavbar from './components/VNavbar/VNavbar';
 import GlobalStyle from "./globalStyles";
 import Switch from './components/Switch/Switch'
 
+/**
+ * Function to display user settings/notifications
+ * NOTE: there are no functionalities on this page, none of the 
+ * buttons work and nothing saves into database
+ * 
+ * @returns a empty form for users to change their data at any time
+ */
 function Settings() {
     const [isToggled, setIsToggled] = useState(false);
     return (

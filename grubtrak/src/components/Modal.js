@@ -90,11 +90,18 @@ const CloseModalButton = styled(MdClose)`
   z-index: 10;
 `;
 
+/**
+ * function that displays hatchery creation, calculates grub mass, density, and emissions calculations, 
+ * and parses data to be stored into the user's account
+ * 
+ * @param {*} showModal a boolean that determines whether the modal will be displayed on the hatchery dashboard
+ * @param {*} setShowModal is a function that takes in a boolean to change the status of showModal
+ * @returns the user input's from the form as String objects to be parsed into the database and stored for future use
+ */
 function Modal({showModal, setShowModal}) {
     const [hatcheryName, setHatcheryName] = useState('');
     const [substrateWeight, setSubstrateWeight] = useState('');
     const [feedWeight, setFeedWeight] = useState('');
-    // const [hatcheryDensity, setHatcheryDensity] = useState('--');
     const [hatchSelected, hatchSetSelected] = useState("Select kit");
     const hatcheryOptions = ["18 x 10.4 x 13.9 cm", "34.6 x 21 x 12.4 cm", "67.3 x 40.6 x 16.8 cm"]; 
     const [numSelected, numSetSelected] = useState("Select grubs");
@@ -129,9 +136,11 @@ function Modal({showModal, setShowModal}) {
       // setHatcheryDensity('0');
     }
 
+    /**
+     *  Function that calls the calculations and then stores hatchery object with user inputted data
+     */
     function createHatcheryAndReset() {
       
-      // Needs to be changed for values with more than 4 digits say "1000 Larvae" vs. "10,000 Larvae"
       const numLarvae = Number(numSelected);
 
       //calculating grub mass for emissions calculation
@@ -149,6 +158,8 @@ function Modal({showModal, setShowModal}) {
       const userInfo = localStorage.getItem("currentUser");
       const userID = JSON.parse(userInfo)._id;
 
+      // creating Hatchery object that will be stored in database
+      console.log(hatcheryName);
       const hatchery = {
         user_id: userID,
         hatcheryName: hatcheryName,
@@ -175,10 +186,8 @@ function Modal({showModal, setShowModal}) {
       feedSetSelected("Selection");
       substrateSetSelected("Selection");
 
-      //window.location = '/Home';
-
+      // uncomment this line to see these values display in the console log when hatchery is created
       // console.log( hatcheryName + " " + hatchSelected  + " " + numSelected + " " + feedSelected + " " + feedWeight + " " + substrateWeight)
-      
     }
   
     const keyPress = useCallback(
@@ -214,7 +223,6 @@ function Modal({showModal, setShowModal}) {
                     </input>
                 </HatcheryName>
                 
-                {/* <ModalImg src={grub} alt='camera' /> */}
                 <ModalContent>
                   <div className="hatchery-selections">
 
@@ -242,8 +250,7 @@ function Modal({showModal, setShowModal}) {
                           </input>
                           
                         <img src={substrate} className="larvae-small-icon" alt="Larvae"/>
-                        <br></br> 
-                        Select substrate type                        
+                        <br></br> Select substrate type                        
                         <Dropdown selected={substrateSelected} setSelected={substrateSetSelected} options={substrateTypeOptions}/>
                       </div>
 
@@ -257,8 +264,7 @@ function Modal({showModal, setShowModal}) {
                           </input>  
 
                         <img src={foodwaste} className="larvae-small-icon" alt="Larvae"/>                        
-                        <br></br> 
-                        Select feed type
+                        <br></br> Select feed type
                         <Dropdown selected={feedSelected} setSelected={feedSetSelected} options={feedTypeOptions}/>
                       </div>
 

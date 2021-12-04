@@ -7,6 +7,7 @@ import Modal from './components/Modal.js';
 import GlobalStyle from "./globalStyles";
 import styled from "styled-components";
 import UserHatcheries from "./UserHatcheries.js";
+// social media related import statements
 // import fb from "./grubtrak/src/images/fb.png";
 // import fb from "/Users/samkofi/Desktop/wundereats/grubtrak/src/images/fb.png";
 
@@ -28,16 +29,11 @@ function Home() {
         
         });
     }
-    // axios.get('http://localhost:4000/api/hatcheries/' + userID)
-    // .then(hatcheries => setHatcheriesList(hatcheries.data)
-    // //     hatcheriesOfUser = hatcheries.data;
-    // //     console.log(hatcheries.data);
-    // //     console.log(hatcheriesOfUser);
-    // );
 
     const [showModal, setShowModal] = useState(false);
     const userHatcheriesExist = true;
 
+    // function to open the hatchery creation modal
     function openModal(event) {
         event.preventDefault();
         setShowModal(prev => !prev);
@@ -55,25 +51,16 @@ function Home() {
 
     if (userHatcheriesExist){
         return (
-            // <div>
-            //     <h1> Hatchery Test </h1>
-            //     <button onClick={getHatcheries}>Get Hatcheries</button>
-            //         {
-            //         hatcheriesList.length >= 1 ? hatcheriesList.map((hatchery, indx) => {
-            //             return <p key={indx}> This is the name: {hatchery.hatcheryName}</p>
-            //         })
-            //         :'No existing hatcheries. Create one!'
-            //         }
-            // </div>
+
             <div className="Home-header">
                 <div className="Left-panel">
                     <VNavbar />
-                    {/* working to show social media icons */}
+                    {/* code to show social media icons. didn't finish in time */}
                     {/* <div class="social_media">
                         <a href="https://www.facebook.com/wundergrubs/"><i class="fab fa-facebook-f"></i>fb</a>
                         <a href="https://twitter.com/wundergrubs"><i class="fab fa-twitter"></i>tw</a>
                         <a href="https://www.instagram.com/wundergrubs/"><i class="fab fa-instagram"></i>ig</a>
-                    </div>     */}
+                    </div> */}
                 </div>
                 <div className="Top-panel">
                     <Navbar className="Top-panel-content"/>
@@ -81,15 +68,13 @@ function Home() {
 
                 <div className="Mid-panel">
                     <h1 className='Mid-panel-content'>My Hatcheries</h1>
-                    <PopUpButton className='Mid-panel-refresh-hatchery'onClick={getHatcheries}>+ Load Hatcheries</PopUpButton>
+                    <PopUpButton className='Mid-panel-refresh-hatchery'onClick={getHatcheries}>+ Refresh Hatcheries</PopUpButton>
                     <PopUpButton className='Mid-panel-create-hatchery'onClick={openModal}> + Create New Hatchery</PopUpButton>
                 </div>
 
                 <div className="Dashboard">
-                {/* <button onClick={getHatcheries}>Refresh Hatcheries</button> */}
                     {
                     hatcheriesList.length >= 1 ? hatcheriesList.map((hatchery, indx) => {
-                        // return <p key={indx}> This is the name: {hatchery.hatcheryName}</p>
                         console.log(hatchery._id);
                         return <UserHatcheries key={indx} hatcheryInfo={hatchery._id} name={hatchery.hatcheryName} size={hatchery.hatcheryDimensions} larvaeCount={"Larvae Count: " + hatchery.numLarvae} density={hatchery.hatcheryDensity + " kg/m^3"}/>
                     })
@@ -114,7 +99,6 @@ function Home() {
                     <h1 className='Mid-panel-content'>My Hatcheries</h1>
                 </div>
                 <div className="Dashboard">
-                    {/* <UserHatcheries /> */}
                     <PopUpButton className='Dash-content'onClick={openModal}> + Create New Hatchery</PopUpButton>
                     <Modal showModal={showModal} setShowModal={setShowModal}></Modal>
                 </div>
